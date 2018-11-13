@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="程序小栈">
 <meta property="og:description" content="树及其操作（C语言版）树定义和性质： 树的定义： 树是n个（n&amp;gt;=0）有限节点组成一个具有层次关系的集合。  根及子树： 在任意一个非空树中，有且仅有一个特定的称为根的结点，当n&amp;gt;1时，其余结点又可以分为m（m&amp;gt;0）个互不相交的有限集$ T_1,T_2,…T_m$,其中每一个集合本身又是一颗树，并称为根的子树。  基本操作：  InitTree(&amp;amp;T):构造一颗空树 De">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-13T08:47:07.278Z">
+<meta property="og:updated_time" content="2018-11-13T08:57:23.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树及其操作（C语言版）">
 <meta name="twitter:description" content="树及其操作（C语言版）树定义和性质： 树的定义： 树是n个（n&amp;gt;=0）有限节点组成一个具有层次关系的集合。  根及子树： 在任意一个非空树中，有且仅有一个特定的称为根的结点，当n&amp;gt;1时，其余结点又可以分为m（m&amp;gt;0）个互不相交的有限集$ T_1,T_2,…T_m$,其中每一个集合本身又是一颗树，并称为根的子树。  基本操作：  InitTree(&amp;amp;T):构造一颗空树 De">
@@ -390,9 +390,9 @@
 <h3 id="二叉树："><a href="#二叉树：" class="headerlink" title="二叉树："></a>二叉树：</h3><ol>
 <li><p><strong>定义：</strong> 树中每个结点最多只有两颗子树（即结点的度不大于2），而且子树有左右之分（子树次序不能任意颠倒）的树称为二叉树。</p>
 </li>
-<li><p><strong>满二叉树：</strong>一颗深度为$k$且有$2^k-1$个结点的树称为满二叉树</p>
+<li><p><strong>满二叉树：</strong> 一颗深度为$k$且有$2^k-1$个结点的树称为满二叉树</p>
 </li>
-<li><p><strong>完全二叉树：</strong>深度为$k$，有n个结点的二叉树，当且仅当其每一个结点都与深度为$k$的满二叉树中编号从1至n的结点一一对应时，称之为完全二叉树。 </p>
+<li><p><strong>完全二叉树：</strong> 深度为$k$，有n个结点的二叉树，当且仅当其每一个结点都与深度为$k$的满二叉树中编号从1至n的结点一一对应时，称之为完全二叉树。 </p>
 </li>
 <li><p><strong>二叉树性质</strong>：</p>
 <ul>
@@ -812,6 +812,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
