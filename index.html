@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/渗透测试---信息搜集初识/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/树及其操作（C语言版）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="WeiQingcai">
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/09/渗透测试---信息搜集初识/" itemprop="url">渗透测试---信息搜集初识</a></h1>
+                <a class="post-title-link" href="/2018/11/09/树及其操作（C语言版）/" itemprop="url">树及其操作（C语言版）</a></h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络安全/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
                   </a>
                 </span>
 
@@ -355,86 +355,92 @@
       
         
           
-            <h2 id="渗透测试—信息搜集初识"><a href="#渗透测试—信息搜集初识" class="headerlink" title="渗透测试—信息搜集初识"></a>渗透测试—信息搜集初识</h2><h3 id="一-外围信息搜集方式"><a href="#一-外围信息搜集方式" class="headerlink" title="一. 外围信息搜集方式"></a><strong>一. 外围信息搜集方式</strong></h3><ol>
-<li><strong>使用whois 进行域名注册信息查询</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois [域名]</span><br></pre></td></tr></table></figure>
-<p>注：使用whois查询时需要去掉www，ftp等前缀</p>
-<ol start="2">
-<li><strong>使用nslookup与dig查询域名注册信息</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.  nslookup</span><br><span class="line">2.  set type=A           //（参数A表示查询IP地址，MX表示邮件转发）</span><br><span class="line">	set [域名]</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.  dig @[DNS服务器][待查询域名]</span><br></pre></td></tr></table></figure>
-<p>注：nslookup和dig的区别在于：nslookup得到的是DNS解析服务器保存在Cache中的非权威解答，而dig则是可以指定DNS解析服务器向官方权威DNS服务器进行查询</p>
-<ol start="3">
-<li><strong>使用IP2Location进行地理位置查询，网站信息查询，反查域名等</strong></li>
-</ol>
-<p>一些网站提供IP地址到地理位置的查询服务，网站的信息查询等服务，可以进行信息的搜集。对于一些虚拟主机，可以通过域名反查来获取信息。</p>
-<ol start="4">
-<li><strong>使用搜索引擎进行信息搜集</strong><ol>
-<li>使用Google Hacking技术，以及一些自动化工具来进行查询，如SiteDigger和Search Diggity</li>
-<li>通过在Google中输入parent directory site：[域名]来查询网站的目录</li>
-<li>通过在Google中输入site：[域名] filetype：[文件类型名]来查询特定的文件</li>
-<li>通过使用Metasploit中的辅助模块search_email_collector来进行邮件地址搜集</li>
-<li>通过在Google中输入site:[域名] inurl:[关键字]来查询易存在SQL注入点的页面</li>
-</ol>
+            <h1 id="树及其操作（C语言版）"><a href="#树及其操作（C语言版）" class="headerlink" title="树及其操作（C语言版）"></a>树及其操作（C语言版）</h1><ul>
+<li><a href="#%E6%A0%91%E5%8F%8A%E5%85%B6%E6%93%8D%E4%BD%9Cc%E8%AF%AD%E8%A8%80%E7%89%88">树及其操作（C语言版）</a><pre><code>- [树定义和性质：](#%E6%A0%91%E5%AE%9A%E4%B9%89%E5%92%8C%E6%80%A7%E8%B4%A8)
+- [二叉树：](#%E4%BA%8C%E5%8F%89%E6%A0%91)
+- [线索二叉树：](#%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91)
+- [树的存储结构：](#%E6%A0%91%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84)
+- [树的实现：](#%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0)
+</code></pre></li>
+</ul>
+<h3 id="树定义和性质："><a href="#树定义和性质：" class="headerlink" title="树定义和性质："></a>树定义和性质：</h3><ol>
+<li><p><strong>树的定义：</strong> 树是n个（n&gt;=0）有限节点组成一个具有层次关系的集合。</p>
+</li>
+<li><p><strong>根及子树：</strong> 在任意一个非空树中，有且仅有一个特定的称为根的结点，当n&gt;1时，其余结点又可以分为m（m&gt;0）个互不相交的有限集$ T_1,T_2,…T_m$,其中每一个集合本身又是一颗树，并称为根的子树。</p>
+</li>
+<li><p><strong>基本操作：</strong></p>
+<ul>
+<li>InitTree(&amp;T):构造一颗空树</li>
+<li>DestroyTree(&amp;T):销毁一颗树</li>
+<li>ClearTree(&amp;T):清空一颗树</li>
+<li>TreeDepth(&amp;T):求一颗树的深度</li>
+<li>TraverseTree(&amp;T,Visit()):遍历树 </li>
+</ul>
+</li>
+<li><p><strong>结点：</strong> 树中包含一个数据元素和若干指向其子树的分支的集合叫做树的结点</p>
+</li>
+<li><p><strong>度：</strong> 结点拥有的子树称为结点的度</p>
+</li>
+<li><p><strong>叶子(终端结点)：</strong> 度为0的结点称为终端结点或者是叶子</p>
+</li>
+<li><p><strong>分支结点(非终端结点)：</strong> 度不为0的结点称为分支结点或者是非终端结点。</p>
+</li>
+<li><p><strong>孩子/双亲/兄弟：</strong> 结点的子树称为该结点的孩子，相应的，该结点称为孩子的双亲，同一个双亲的孩子互称兄弟。</p>
+</li>
+<li><p><strong>祖先/子孙</strong> 结点的祖先是从根到该节点所经过的分支上的所有结点，反之，以某结点为根的子树中的任意结点都是该节点的子孙。</p>
+</li>
+<li><p><strong>结点的层次：</strong> 结点的层次从根开始算起，根为第一层，根的孩子为第二层…..</p>
+</li>
+<li><p><strong>树的深度：</strong> 树中结点的最大层次称为树的深度或者是高度</p>
+</li>
+<li><p><strong>有序树/无序树：</strong> 如果树中结点的各子树看成从左到右是有次序的（不能互换），则树称为有序树，否则称为无序树。</p>
+</li>
+<li><p><strong>森林：</strong> m（m&gt;=0）颗互不相交的树的集合</p>
 </li>
 </ol>
-<h3 id="二-主机探测与端口扫描"><a href="#二-主机探测与端口扫描" class="headerlink" title="二.  主机探测与端口扫描"></a><strong>二.  主机探测与端口扫描</strong></h3><ol>
-<li><strong>ICMP Ping命令</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping [域名或IP地址]</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li><strong>Metasploit的主机发现模块</strong></li>
-</ol>
-<p>Metasploit中提供了一些辅助模块用于发现活跃的主机，位于Metasploit的modules/auxiliary/scanner/discovery/目录下。其中arp_sweep与udp_sweep两个模块最常用</p>
-<ol start="3">
-<li><strong>使用Nmap进行主机探测及系统识别</strong></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap [扫描选项][扫描目标地址] //可以扫描单个地址或者是一个地址段</span><br><span class="line">nmap -o [目标IP地址] -A     //-o参数可以识别目标地址的系统类型，-A可以得到更加详细信息</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li><p><strong>端口扫描与服务类型探测</strong></p>
-<ol>
-<li>Metasploit中的端口扫描器，Metasploit中的auxiliary/scanner/portscan/中提供了多种端口扫描器</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. ack: 通过ack扫描的方式对防火墙上未被屏蔽的端口进行探测</span><br><span class="line">2. ftpbounce： 通过ftp bounce攻击的原理对TCP服务进行枚举</span><br><span class="line">3. syn： 使用发送TCP SYN标志的方式探测开放端口</span><br><span class="line">4. tcp： 通过一次完整的TCP链接过程来探测端口是否开放，准确度最高，但速			度很慢</span><br><span class="line">5. xmans： 一种更为隐秘的扫描方式，通过发送FIN，PSH和URG标志，能够躲				避一些TCP标记检测器的过滤</span><br></pre></td></tr></table></figure>
-<p>​</p>
-<ol start="2">
-<li>nmap端口扫描：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nmap [扫描参数] [扫描选项] [扫描地址]</span><br><span class="line">1）常见扫描参数：</span><br><span class="line">	 	1.  -sT:Tcp connect 扫描，类似于Metasploit中的tcp扫描模块</span><br><span class="line">	 	2.  -sS:TCP SYN扫描，类似于Metasploit中的syn扫描模块</span><br><span class="line">	 	3.  -sF/-sX/-sN:通过发送一些特殊的标记位来避开一些设备或者软件的监测</span><br><span class="line">	 	4.  -sP：通过发送ICMP echo请求探测主机是否存活，原理同ping</span><br><span class="line">	 	5.  -sU：探测目标主机开放了哪些UDP端口</span><br><span class="line">	 	6.  -sA：TCP ACK扫描，类似于Metasploit中的ack扫描模块</span><br><span class="line">	 	7.  -sV：获取更加详细的服务版本等信息</span><br><span class="line">2）常见扫描选项：</span><br><span class="line">		-Pn：在扫描之前不发送ICMP echo测试目标是否活跃</span><br><span class="line">		-O：启用对于TCP/IP协议栈的指纹特征扫描以获得远程主机的操作系统类型等信息</span><br><span class="line">		-F：快速扫描模式，只扫描在nmap-services中列出的端口</span><br><span class="line">		-p[端口范围]：可以使用这个参数指定希望扫描的端口</span><br></pre></td></tr></table></figure>
+<h3 id="二叉树："><a href="#二叉树：" class="headerlink" title="二叉树："></a>二叉树：</h3><ol>
+<li><p><strong>定义：</strong> 树中每个结点最多只有两颗子树（即结点的度不大于2），而且子树有左右之分（子树次序不能任意颠倒）的树称为二叉树。</p>
+</li>
+<li><p><strong>满二叉树：</strong>一颗深度为$k$且有$2^k-1$个结点的树称为满二叉树</p>
+</li>
+<li><p><strong>完全二叉树：</strong>深度为$k$，有n个结点的二叉树，当且仅当其每一个结点都与深度为$k$的满二叉树中编号从1至n的结点一一对应时，称之为完全二叉树。 </p>
+</li>
+<li><p><strong>二叉树性质</strong>：</p>
+<ul>
+<li>在二叉树的第$i$层上最多有$2^(i-1)$个结点（i&gt;=1）</li>
+<li>深度为$k$的二叉树最多有$2^k-1$个结点（k&gt;=1）</li>
+<li>对任何一个二叉树T，如果其终端结点数为$n_0$,度为2的结点数为$n_2$,则$n_0 = n_2+1$</li>
+</ul>
+</li>
+<li><p><strong>完全二叉树的性质</strong></p>
+<ul>
+<li>具有n个结点的完全二叉树的深度为$\lfloor log_(2^n) \rfloor+1$</li>
+</ul>
 </li>
 </ol>
-<h3 id="三-服务扫描与查点"><a href="#三-服务扫描与查点" class="headerlink" title="三. 服务扫描与查点"></a><strong>三. 服务扫描与查点</strong></h3><ol>
-<li><strong>Telnet服务扫描</strong></li>
+<h3 id="线索二叉树："><a href="#线索二叉树：" class="headerlink" title="线索二叉树："></a>线索二叉树：</h3><ol>
+<li>定义：若做如下规定：若结点有左子树，则其lchild域指示其左孩子，否则令其指向其前驱，同样的，若结点有右子树，则其rchild域指向其右孩子，否则令其指向其后继。为了区分，我们增设一个tag字段。</li>
 </ol>
-<p>Metasploit中提供了Telnet服务扫描的模块，该模块位于auxiliary/scanner/telnet/telnet_version，可以通过该模块探查目标主机的telnet版本</p>
+<p>$$  LTag =<br>\begin{cases}<br>0  &amp; \text{lchild域指示结点的左孩子} \<br>1 &amp; \text{lchild域指示结点的前驱}<br>\end{cases}$$<br>$$  RTag =<br>\begin{cases}<br>0  &amp; \text{lchild域指示结点的右孩子} \<br>1 &amp; \text{lchild域指示结点的后继}<br>\end{cases}$$<br>以这种结点结构构成的二叉链表表示的二叉树叫做线索二叉树，其中指向前驱和后继的指针叫做线索。</p>
 <ol start="2">
-<li><strong>SHH服务扫描</strong></li>
+<li>线索化：以某种遍历顺序使二叉树称为线索二叉树的过程叫做二叉树的线索化</li>
 </ol>
-<p>Metasploit同样提供了对于SSH服务的扫描木块，该模块位于auxiliary/scanner/ssh/ssh_version。</p>
+<h3 id="树的存储结构："><a href="#树的存储结构：" class="headerlink" title="树的存储结构："></a>树的存储结构：</h3><ol>
+<li>双亲表示法：</li>
+</ol>
+<p>以一组连续的空间存储树的结点，同时在每一个结点中附设一个指示器指示其双亲结点在链表中的位置</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_TREE_SIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">PTNode</span>&#123;</span><span class="comment">//结点结构</span></span><br><span class="line">    TElemTye data;<span class="comment">//数据元素类型</span></span><br><span class="line">    <span class="keyword">int</span> parent;<span class="comment">//双亲结点域</span></span><br><span class="line">&#125;PTNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span><span class="comment">//树结构</span></span><br><span class="line">    PTNode nodes[MAX_TREE_SIZE];<span class="comment">//存储的结点</span></span><br><span class="line">    <span class="keyword">int</span> r,n;<span class="comment">//根的位置和节点数</span></span><br><span class="line">&#125;PTNode;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>孩子表示法：</li>
+</ol>
+<p>把每个结点的孩子结点排列起来，看成一个线性表，并且以单链表做存储结构，则n个结点有n个孩子链表（叶节点的孩子链表为空表），而n个头结点又组成一个线性表。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_TREE_SIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span>&#123;</span><span class="comment">//孩子结点</span></span><br><span class="line">    <span class="keyword">int</span> child;<span class="comment">//孩子数</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span>* <span class="title">next</span>;</span><span class="comment">//下一个孩子结点指针</span></span><br><span class="line">&#125;* ChildPtr;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    TElemType data;<span class="comment">//数据域</span></span><br><span class="line">    ChildPtr firstChild;<span class="comment">//孩子链表头指针</span></span><br><span class="line">&#125;CTBox;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    CTBox nodes[MAX_TREE_SIZE];<span class="comment">//存储的结点</span></span><br><span class="line">    <span class="keyword">int</span> n,r;<span class="comment">//结点和根的位置</span></span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li><strong>Oracle数据库查点</strong></li>
+<li>孩子兄弟表示法：</li>
 </ol>
-<p>Metasploit提供对于Oracle数据库的扫描，该模块位于auxiliary/scanner/oracle/tnslsnr_version。</p>
-<ol start="4">
-<li><strong>开放代理与利用</strong></li>
-</ol>
-<p>Metasploit提供用于隐藏自己地址的代理服务，该模块位于auxiliary/scanner/http/open_proxy，可以使用该模块设置自己的代理服务</p>
-<ol start="5">
-<li><strong>口令猜测和嗅探</strong><ol>
-<li>SSH口令猜测：Metasploit提供了用于猜测SSH口令的模块，通过设置高质量的密码字典可以有效的破解弱口令密码，该模块位于auxiliary/scanner/ssh/ssh_login</li>
-<li>psnuffle口令嗅探：Metasploit提供了一个用于口令嗅探的工具，可以截获常见协议的身份认证过程，并记录用户名和口令，该模块位于auxiliary/sniffer/psnuffle</li>
-</ol>
-</li>
-</ol>
-<h3 id="三-网络漏洞扫描"><a href="#三-网络漏洞扫描" class="headerlink" title="三. 网络漏洞扫描"></a><strong>三. 网络漏洞扫描</strong></h3><p><strong>1.  使用Nessus</strong></p>
-<p>Nessus提供完整的电脑端漏洞扫描服务，并会及时更新漏洞数据库。同时不同于传统的漏洞扫描工具，Nessus提供同时在本机和远程端上得控制，在命令行的基础上也提供图形化操作界面。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.  启动Nessus</span><br><span class="line">	nessusd start</span><br><span class="line">2.  激活Nessus</span><br><span class="line">	nessus -fetch --register [激活码]</span><br><span class="line">3.  添加用户</span><br><span class="line">	nessus -add user</span><br></pre></td></tr></table></figure>
-<p><strong>2.  使用OpenVAS</strong></p>
-<p>OpenVAS常用来评估目标主机上得漏洞，是Nessus项目的一个分支，提供完全免费的服务。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.  配置OpenVAS</span><br><span class="line">	openvas-mkcert</span><br><span class="line">2.  同步OpenVAS NVT数据库</span><br><span class="line">	openvas-nvt-sync</span><br><span class="line">3.  创建客户端证书库</span><br><span class="line">	openvas-mkcert-client -n [用户名] -i</span><br><span class="line">4.  重建数据库</span><br><span class="line">	openvasmd -rebuild</span><br><span class="line">5.  启动openvas并加载插件</span><br><span class="line">	openvassd</span><br><span class="line">6.  创建数据库备份</span><br><span class="line">	openvasmd -backup</span><br><span class="line">7.  创建管理账户</span><br><span class="line">	openvasad -c 'add_user' -n [账户名] -r Admin</span><br><span class="line">8.  创建普通账户</span><br><span class="line">	openvasad -adduser</span><br><span class="line">9.  为openvas配置端口</span><br><span class="line">	openvasmd -p [端口号] -a [IP地址]</span><br></pre></td></tr></table></figure>
-
+<p>又称二叉树表示法，或者二叉链表表示法。链表中结点的两个链域分别指向该节点的第一个孩子结点和下一个兄弟结点</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CSNode</span>&#123;</span></span><br><span class="line">    TElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CSNode</span> *<span class="title">firstChild</span>, *<span class="title">nextSibling</span>;</span></span><br><span class="line">&#125;CSNode , *CSTree;</span><br></pre></td></tr></table></figure>
+<h3 id="树的实现："><a href="#树的实现：" class="headerlink" title="树的实现："></a>树的实现：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *定义的树节点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> *<span class="title">Lchild</span>,*<span class="title">Rchild</span>;</span></span><br><span class="line">&#125;BiTNode, *BiTree;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">递归方式，先序遍历建立二叉树</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">createBiTree</span><span class="params">(BiTree *T)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="comment">//读取字符</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%c"</span>,&amp;ch);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(ch == <span class="string">' '</span>)&#123;</span><br><span class="line">        *T = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//申请新的结点空间</span></span><br><span class="line">        <span class="keyword">if</span>(!(*T = (BiTNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BiTNode))))&#123;</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        (*T)-&gt;data = ch;</span><br><span class="line">        createBiTree(&amp;((*T)-&gt;Lchild));</span><br><span class="line">        createBiTree(&amp;((*T)-&gt;Rchild));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*先序遍历*/</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">preOrderTraverse</span><span class="params">(BiTree T,<span class="keyword">bool</span> (*printElem)(<span class="keyword">char</span> elem))</span></span>&#123;</span><br><span class="line">    <span class="comment">//检验是否为空</span></span><br><span class="line">    <span class="keyword">if</span>(T)&#123;</span><br><span class="line">        <span class="keyword">if</span>(printElem(T-&gt;data))&#123;<span class="comment">//打印根元素的值</span></span><br><span class="line">            <span class="keyword">if</span>(preOrderTraverse(T-&gt;Lchild,printElem))&#123;<span class="comment">//打印左子树</span></span><br><span class="line">                <span class="keyword">if</span>(preOrderTraverse(T-&gt;Rchild,printElem))&#123;<span class="comment">//打印右子树</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 打印函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">printElem</span><span class="params">(<span class="keyword">char</span> elem)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%c\n"</span>,elem);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;   BiTree tree;</span><br><span class="line">    <span class="keyword">bool</span> res;</span><br><span class="line">    res = createBiTree(&amp;tree);</span><br><span class="line">    <span class="keyword">if</span>(res)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"建立成功\n"</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"建立失败\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//先序遍历打印树</span></span><br><span class="line">    preOrderTraverse(tree,printElem);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1563,6 +1569,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/渗透测试---信息搜集初识/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiQingcai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head_logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="程序小栈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/09/渗透测试---信息搜集初识/" itemprop="url">渗透测试---信息搜集初识</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-09T16:49:37+08:00">
+                2018-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络安全/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="渗透测试—信息搜集初识"><a href="#渗透测试—信息搜集初识" class="headerlink" title="渗透测试—信息搜集初识"></a>渗透测试—信息搜集初识</h2><h3 id="一-外围信息搜集方式"><a href="#一-外围信息搜集方式" class="headerlink" title="一. 外围信息搜集方式"></a><strong>一. 外围信息搜集方式</strong></h3><ol>
+<li><strong>使用whois 进行域名注册信息查询</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois [域名]</span><br></pre></td></tr></table></figure>
+<p>注：使用whois查询时需要去掉www，ftp等前缀</p>
+<ol start="2">
+<li><strong>使用nslookup与dig查询域名注册信息</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.  nslookup</span><br><span class="line">2.  set type=A           //（参数A表示查询IP地址，MX表示邮件转发）</span><br><span class="line">	set [域名]</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.  dig @[DNS服务器][待查询域名]</span><br></pre></td></tr></table></figure>
+<p>注：nslookup和dig的区别在于：nslookup得到的是DNS解析服务器保存在Cache中的非权威解答，而dig则是可以指定DNS解析服务器向官方权威DNS服务器进行查询</p>
+<ol start="3">
+<li><strong>使用IP2Location进行地理位置查询，网站信息查询，反查域名等</strong></li>
+</ol>
+<p>一些网站提供IP地址到地理位置的查询服务，网站的信息查询等服务，可以进行信息的搜集。对于一些虚拟主机，可以通过域名反查来获取信息。</p>
+<ol start="4">
+<li><strong>使用搜索引擎进行信息搜集</strong><ol>
+<li>使用Google Hacking技术，以及一些自动化工具来进行查询，如SiteDigger和Search Diggity</li>
+<li>通过在Google中输入parent directory site：[域名]来查询网站的目录</li>
+<li>通过在Google中输入site：[域名] filetype：[文件类型名]来查询特定的文件</li>
+<li>通过使用Metasploit中的辅助模块search_email_collector来进行邮件地址搜集</li>
+<li>通过在Google中输入site:[域名] inurl:[关键字]来查询易存在SQL注入点的页面</li>
+</ol>
+</li>
+</ol>
+<h3 id="二-主机探测与端口扫描"><a href="#二-主机探测与端口扫描" class="headerlink" title="二.  主机探测与端口扫描"></a><strong>二.  主机探测与端口扫描</strong></h3><ol>
+<li><strong>ICMP Ping命令</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping [域名或IP地址]</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>Metasploit的主机发现模块</strong></li>
+</ol>
+<p>Metasploit中提供了一些辅助模块用于发现活跃的主机，位于Metasploit的modules/auxiliary/scanner/discovery/目录下。其中arp_sweep与udp_sweep两个模块最常用</p>
+<ol start="3">
+<li><strong>使用Nmap进行主机探测及系统识别</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap [扫描选项][扫描目标地址] //可以扫描单个地址或者是一个地址段</span><br><span class="line">nmap -o [目标IP地址] -A     //-o参数可以识别目标地址的系统类型，-A可以得到更加详细信息</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p><strong>端口扫描与服务类型探测</strong></p>
+<ol>
+<li>Metasploit中的端口扫描器，Metasploit中的auxiliary/scanner/portscan/中提供了多种端口扫描器</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. ack: 通过ack扫描的方式对防火墙上未被屏蔽的端口进行探测</span><br><span class="line">2. ftpbounce： 通过ftp bounce攻击的原理对TCP服务进行枚举</span><br><span class="line">3. syn： 使用发送TCP SYN标志的方式探测开放端口</span><br><span class="line">4. tcp： 通过一次完整的TCP链接过程来探测端口是否开放，准确度最高，但速			度很慢</span><br><span class="line">5. xmans： 一种更为隐秘的扫描方式，通过发送FIN，PSH和URG标志，能够躲				避一些TCP标记检测器的过滤</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<ol start="2">
+<li>nmap端口扫描：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nmap [扫描参数] [扫描选项] [扫描地址]</span><br><span class="line">1）常见扫描参数：</span><br><span class="line">	 	1.  -sT:Tcp connect 扫描，类似于Metasploit中的tcp扫描模块</span><br><span class="line">	 	2.  -sS:TCP SYN扫描，类似于Metasploit中的syn扫描模块</span><br><span class="line">	 	3.  -sF/-sX/-sN:通过发送一些特殊的标记位来避开一些设备或者软件的监测</span><br><span class="line">	 	4.  -sP：通过发送ICMP echo请求探测主机是否存活，原理同ping</span><br><span class="line">	 	5.  -sU：探测目标主机开放了哪些UDP端口</span><br><span class="line">	 	6.  -sA：TCP ACK扫描，类似于Metasploit中的ack扫描模块</span><br><span class="line">	 	7.  -sV：获取更加详细的服务版本等信息</span><br><span class="line">2）常见扫描选项：</span><br><span class="line">		-Pn：在扫描之前不发送ICMP echo测试目标是否活跃</span><br><span class="line">		-O：启用对于TCP/IP协议栈的指纹特征扫描以获得远程主机的操作系统类型等信息</span><br><span class="line">		-F：快速扫描模式，只扫描在nmap-services中列出的端口</span><br><span class="line">		-p[端口范围]：可以使用这个参数指定希望扫描的端口</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="三-服务扫描与查点"><a href="#三-服务扫描与查点" class="headerlink" title="三. 服务扫描与查点"></a><strong>三. 服务扫描与查点</strong></h3><ol>
+<li><strong>Telnet服务扫描</strong></li>
+</ol>
+<p>Metasploit中提供了Telnet服务扫描的模块，该模块位于auxiliary/scanner/telnet/telnet_version，可以通过该模块探查目标主机的telnet版本</p>
+<ol start="2">
+<li><strong>SHH服务扫描</strong></li>
+</ol>
+<p>Metasploit同样提供了对于SSH服务的扫描木块，该模块位于auxiliary/scanner/ssh/ssh_version。</p>
+<ol start="3">
+<li><strong>Oracle数据库查点</strong></li>
+</ol>
+<p>Metasploit提供对于Oracle数据库的扫描，该模块位于auxiliary/scanner/oracle/tnslsnr_version。</p>
+<ol start="4">
+<li><strong>开放代理与利用</strong></li>
+</ol>
+<p>Metasploit提供用于隐藏自己地址的代理服务，该模块位于auxiliary/scanner/http/open_proxy，可以使用该模块设置自己的代理服务</p>
+<ol start="5">
+<li><strong>口令猜测和嗅探</strong><ol>
+<li>SSH口令猜测：Metasploit提供了用于猜测SSH口令的模块，通过设置高质量的密码字典可以有效的破解弱口令密码，该模块位于auxiliary/scanner/ssh/ssh_login</li>
+<li>psnuffle口令嗅探：Metasploit提供了一个用于口令嗅探的工具，可以截获常见协议的身份认证过程，并记录用户名和口令，该模块位于auxiliary/sniffer/psnuffle</li>
+</ol>
+</li>
+</ol>
+<h3 id="三-网络漏洞扫描"><a href="#三-网络漏洞扫描" class="headerlink" title="三. 网络漏洞扫描"></a><strong>三. 网络漏洞扫描</strong></h3><p><strong>1.  使用Nessus</strong></p>
+<p>Nessus提供完整的电脑端漏洞扫描服务，并会及时更新漏洞数据库。同时不同于传统的漏洞扫描工具，Nessus提供同时在本机和远程端上得控制，在命令行的基础上也提供图形化操作界面。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.  启动Nessus</span><br><span class="line">	nessusd start</span><br><span class="line">2.  激活Nessus</span><br><span class="line">	nessus -fetch --register [激活码]</span><br><span class="line">3.  添加用户</span><br><span class="line">	nessus -add user</span><br></pre></td></tr></table></figure>
+<p><strong>2.  使用OpenVAS</strong></p>
+<p>OpenVAS常用来评估目标主机上得漏洞，是Nessus项目的一个分支，提供完全免费的服务。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.  配置OpenVAS</span><br><span class="line">	openvas-mkcert</span><br><span class="line">2.  同步OpenVAS NVT数据库</span><br><span class="line">	openvas-nvt-sync</span><br><span class="line">3.  创建客户端证书库</span><br><span class="line">	openvas-mkcert-client -n [用户名] -i</span><br><span class="line">4.  重建数据库</span><br><span class="line">	openvasmd -rebuild</span><br><span class="line">5.  启动openvas并加载插件</span><br><span class="line">	openvassd</span><br><span class="line">6.  创建数据库备份</span><br><span class="line">	openvasmd -backup</span><br><span class="line">7.  创建管理账户</span><br><span class="line">	openvasad -c 'add_user' -n [账户名] -r Admin</span><br><span class="line">8.  创建普通账户</span><br><span class="line">	openvasad -adduser</span><br><span class="line">9.  为openvas配置端口</span><br><span class="line">	openvasmd -p [端口号] -a [IP地址]</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/Google Java编程风格指南/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1901,232 +2127,6 @@
 <h5 id="7-3-3-可选的Javadoc"><a href="#7-3-3-可选的Javadoc" class="headerlink" title="7.3.3 可选的Javadoc"></a>7.3.3 可选的Javadoc</h5><p>对于包外不可见的类和方法，如有需要，也是要使用Javadoc的。如果一个注释是用来定义一个类，方法，字段的整体目的或行为， 那么这个注释应该写成Javadoc，这样更统一更友好。</p>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>本文档翻译自<a href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html" target="_blank" rel="noopener">Google Java Style</a>， 译者<a href="http://weibo.com/hawstein" target="_blank" rel="noopener">@Hawstein</a>。</p>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/树及其操作（C语言版）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WeiQingcai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head_logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="程序小栈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/09/树及其操作（C语言版）/" itemprop="url">树及其操作（C语言版）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-09T16:49:37+08:00">
-                2018-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构及算法/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构及算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="树及其操作（C语言版）"><a href="#树及其操作（C语言版）" class="headerlink" title="树及其操作（C语言版）"></a>树及其操作（C语言版）</h1><ul>
-<li><a href="#%E6%A0%91%E5%8F%8A%E5%85%B6%E6%93%8D%E4%BD%9Cc%E8%AF%AD%E8%A8%80%E7%89%88">树及其操作（C语言版）</a><pre><code>- [树定义和性质：](#%E6%A0%91%E5%AE%9A%E4%B9%89%E5%92%8C%E6%80%A7%E8%B4%A8)
-- [二叉树：](#%E4%BA%8C%E5%8F%89%E6%A0%91)
-- [线索二叉树：](#%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91)
-- [树的存储结构：](#%E6%A0%91%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84)
-- [树的实现：](#%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0)
-</code></pre></li>
-</ul>
-<h3 id="树定义和性质："><a href="#树定义和性质：" class="headerlink" title="树定义和性质："></a>树定义和性质：</h3><ol>
-<li><p><strong>树的定义：</strong> 树是n个（n&gt;=0）有限节点组成一个具有层次关系的集合。</p>
-</li>
-<li><p><strong>根及子树：</strong> 在任意一个非空树中，有且仅有一个特定的称为根的结点，当n&gt;1时，其余结点又可以分为m（m&gt;0）个互不相交的有限集$ T_1,T_2,…T_m$,其中每一个集合本身又是一颗树，并称为根的子树。</p>
-</li>
-<li><p><strong>基本操作：</strong></p>
-<ul>
-<li>InitTree(&amp;T):构造一颗空树</li>
-<li>DestroyTree(&amp;T):销毁一颗树</li>
-<li>ClearTree(&amp;T):清空一颗树</li>
-<li>TreeDepth(&amp;T):求一颗树的深度</li>
-<li>TraverseTree(&amp;T,Visit()):遍历树 </li>
-</ul>
-</li>
-<li><p><strong>结点：</strong> 树中包含一个数据元素和若干指向其子树的分支的集合叫做树的结点</p>
-</li>
-<li><p><strong>度：</strong> 结点拥有的子树称为结点的度</p>
-</li>
-<li><p><strong>叶子(终端结点)：</strong> 度为0的结点称为终端结点或者是叶子</p>
-</li>
-<li><p><strong>分支结点(非终端结点)：</strong> 度不为0的结点称为分支结点或者是非终端结点。</p>
-</li>
-<li><p><strong>孩子/双亲/兄弟：</strong> 结点的子树称为该结点的孩子，相应的，该结点称为孩子的双亲，同一个双亲的孩子互称兄弟。</p>
-</li>
-<li><p><strong>祖先/子孙</strong> 结点的祖先是从根到该节点所经过的分支上的所有结点，反之，以某结点为根的子树中的任意结点都是该节点的子孙。</p>
-</li>
-<li><p><strong>结点的层次：</strong> 结点的层次从根开始算起，根为第一层，根的孩子为第二层…..</p>
-</li>
-<li><p><strong>树的深度：</strong> 树中结点的最大层次称为树的深度或者是高度</p>
-</li>
-<li><p><strong>有序树/无序树：</strong> 如果树中结点的各子树看成从左到右是有次序的（不能互换），则树称为有序树，否则称为无序树。</p>
-</li>
-<li><p><strong>森林：</strong> m（m&gt;=0）颗互不相交的树的集合</p>
-</li>
-</ol>
-<h3 id="二叉树："><a href="#二叉树：" class="headerlink" title="二叉树："></a>二叉树：</h3><ol>
-<li><p><strong>定义：</strong> 树中每个结点最多只有两颗子树（即结点的度不大于2），而且子树有左右之分（子树次序不能任意颠倒）的树称为二叉树。</p>
-</li>
-<li><p><strong>满二叉树：</strong>一颗深度为$k$且有$2^k-1$个结点的树称为满二叉树</p>
-</li>
-<li><p><strong>完全二叉树：</strong>深度为$k$，有n个结点的二叉树，当且仅当其每一个结点都与深度为$k$的满二叉树中编号从1至n的结点一一对应时，称之为完全二叉树。 </p>
-</li>
-<li><p><strong>二叉树性质</strong>：</p>
-<ul>
-<li>在二叉树的第$i$层上最多有$2^(i-1)$个结点（i&gt;=1）</li>
-<li>深度为$k$的二叉树最多有$2^k-1$个结点（k&gt;=1）</li>
-<li>对任何一个二叉树T，如果其终端结点数为$n_0$,度为2的结点数为$n_2$,则$n_0 = n_2+1$</li>
-</ul>
-</li>
-<li><p><strong>完全二叉树的性质</strong></p>
-<ul>
-<li>具有n个结点的完全二叉树的深度为$\lfloor log_(2^n) \rfloor+1$</li>
-</ul>
-</li>
-</ol>
-<h3 id="线索二叉树："><a href="#线索二叉树：" class="headerlink" title="线索二叉树："></a>线索二叉树：</h3><ol>
-<li>定义：若做如下规定：若结点有左子树，则其lchild域指示其左孩子，否则令其指向其前驱，同样的，若结点有右子树，则其rchild域指向其右孩子，否则令其指向其后继。为了区分，我们增设一个tag字段。</li>
-</ol>
-<p>$$  LTag =<br>\begin{cases}<br>0  &amp; \text{lchild域指示结点的左孩子} \<br>1 &amp; \text{lchild域指示结点的前驱}<br>\end{cases}$$<br>$$  RTag =<br>\begin{cases}<br>0  &amp; \text{lchild域指示结点的右孩子} \<br>1 &amp; \text{lchild域指示结点的后继}<br>\end{cases}$$<br>以这种结点结构构成的二叉链表表示的二叉树叫做线索二叉树，其中指向前驱和后继的指针叫做线索。</p>
-<ol start="2">
-<li>线索化：以某种遍历顺序使二叉树称为线索二叉树的过程叫做二叉树的线索化</li>
-</ol>
-<h3 id="树的存储结构："><a href="#树的存储结构：" class="headerlink" title="树的存储结构："></a>树的存储结构：</h3><ol>
-<li>双亲表示法：</li>
-</ol>
-<p>以一组连续的空间存储树的结点，同时在每一个结点中附设一个指示器指示其双亲结点在链表中的位置</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_TREE_SIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">PTNode</span>&#123;</span><span class="comment">//结点结构</span></span><br><span class="line">    TElemTye data;<span class="comment">//数据元素类型</span></span><br><span class="line">    <span class="keyword">int</span> parent;<span class="comment">//双亲结点域</span></span><br><span class="line">&#125;PTNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span><span class="comment">//树结构</span></span><br><span class="line">    PTNode nodes[MAX_TREE_SIZE];<span class="comment">//存储的结点</span></span><br><span class="line">    <span class="keyword">int</span> r,n;<span class="comment">//根的位置和节点数</span></span><br><span class="line">&#125;PTNode;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>孩子表示法：</li>
-</ol>
-<p>把每个结点的孩子结点排列起来，看成一个线性表，并且以单链表做存储结构，则n个结点有n个孩子链表（叶节点的孩子链表为空表），而n个头结点又组成一个线性表。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_TREE_SIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span>&#123;</span><span class="comment">//孩子结点</span></span><br><span class="line">    <span class="keyword">int</span> child;<span class="comment">//孩子数</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CTNode</span>* <span class="title">next</span>;</span><span class="comment">//下一个孩子结点指针</span></span><br><span class="line">&#125;* ChildPtr;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    TElemType data;<span class="comment">//数据域</span></span><br><span class="line">    ChildPtr firstChild;<span class="comment">//孩子链表头指针</span></span><br><span class="line">&#125;CTBox;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    CTBox nodes[MAX_TREE_SIZE];<span class="comment">//存储的结点</span></span><br><span class="line">    <span class="keyword">int</span> n,r;<span class="comment">//结点和根的位置</span></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>孩子兄弟表示法：</li>
-</ol>
-<p>又称二叉树表示法，或者二叉链表表示法。链表中结点的两个链域分别指向该节点的第一个孩子结点和下一个兄弟结点</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">CSNode</span>&#123;</span></span><br><span class="line">    TElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">CSNode</span> *<span class="title">firstChild</span>, *<span class="title">nextSibling</span>;</span></span><br><span class="line">&#125;CSNode , *CSTree;</span><br></pre></td></tr></table></figure>
-<h3 id="树的实现："><a href="#树的实现：" class="headerlink" title="树的实现："></a>树的实现：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;malloc.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *定义的树节点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> *<span class="title">Lchild</span>,*<span class="title">Rchild</span>;</span></span><br><span class="line">&#125;BiTNode, *BiTree;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">递归方式，先序遍历建立二叉树</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">createBiTree</span><span class="params">(BiTree *T)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="comment">//读取字符</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%c"</span>,&amp;ch);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(ch == <span class="string">' '</span>)&#123;</span><br><span class="line">        *T = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//申请新的结点空间</span></span><br><span class="line">        <span class="keyword">if</span>(!(*T = (BiTNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BiTNode))))&#123;</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        (*T)-&gt;data = ch;</span><br><span class="line">        createBiTree(&amp;((*T)-&gt;Lchild));</span><br><span class="line">        createBiTree(&amp;((*T)-&gt;Rchild));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*先序遍历*/</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">preOrderTraverse</span><span class="params">(BiTree T,<span class="keyword">bool</span> (*printElem)(<span class="keyword">char</span> elem))</span></span>&#123;</span><br><span class="line">    <span class="comment">//检验是否为空</span></span><br><span class="line">    <span class="keyword">if</span>(T)&#123;</span><br><span class="line">        <span class="keyword">if</span>(printElem(T-&gt;data))&#123;<span class="comment">//打印根元素的值</span></span><br><span class="line">            <span class="keyword">if</span>(preOrderTraverse(T-&gt;Lchild,printElem))&#123;<span class="comment">//打印左子树</span></span><br><span class="line">                <span class="keyword">if</span>(preOrderTraverse(T-&gt;Rchild,printElem))&#123;<span class="comment">//打印右子树</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 打印函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">printElem</span><span class="params">(<span class="keyword">char</span> elem)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%c\n"</span>,elem);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;   BiTree tree;</span><br><span class="line">    <span class="keyword">bool</span> res;</span><br><span class="line">    res = createBiTree(&amp;tree);</span><br><span class="line">    <span class="keyword">if</span>(res)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"建立成功\n"</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"建立失败\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//先序遍历打印树</span></span><br><span class="line">    preOrderTraverse(tree,printElem);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -2936,7 +2936,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2958,7 +2958,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
