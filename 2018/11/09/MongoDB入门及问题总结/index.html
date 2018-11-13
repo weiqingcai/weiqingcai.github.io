@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="MongoDB使用入门及问题总结 关于MongoDB 参考文档： MongoDB官网 MongoDB中文社区 MongoDB官方中文文档 MongoDB的入门视频教程   MongoDB的下载和安装 MongoDB的遇到的问题 一 . 安装官方下载的msi的时候始终提示安装失败 二. 配置MongoDB为window服务时失败 相关参考文章      MongoDB使用入门及问题总结最近学习Py">
+<meta name="description" content="MongoDB使用入门及问题总结最近学习Python爬虫开发时需要使用MongoDB数据库，为此做个使用入门的介绍和所遇问题的总结。 关于MongoDB关于MongoDB的简介可以直接去官网查看，主要和传统的MySQL，SQL Server这些数据库的不同之处在于它是NoSql型数据库，即非关系型数据库。不同于MySQL中的数据都是一张张的关系表结构，MongoDB中的数据并不是以相互之间的关系表">
 <meta name="keywords" content="MongoDB,数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB使用入门及问题总结">
 <meta property="og:url" content="http://yoursite.com/2018/11/09/MongoDB入门及问题总结/index.html">
 <meta property="og:site_name" content="程序小栈">
-<meta property="og:description" content="MongoDB使用入门及问题总结 关于MongoDB 参考文档： MongoDB官网 MongoDB中文社区 MongoDB官方中文文档 MongoDB的入门视频教程   MongoDB的下载和安装 MongoDB的遇到的问题 一 . 安装官方下载的msi的时候始终提示安装失败 二. 配置MongoDB为window服务时失败 相关参考文章      MongoDB使用入门及问题总结最近学习Py">
+<meta property="og:description" content="MongoDB使用入门及问题总结最近学习Python爬虫开发时需要使用MongoDB数据库，为此做个使用入门的介绍和所遇问题的总结。 关于MongoDB关于MongoDB的简介可以直接去官网查看，主要和传统的MySQL，SQL Server这些数据库的不同之处在于它是NoSql型数据库，即非关系型数据库。不同于MySQL中的数据都是一张张的关系表结构，MongoDB中的数据并不是以相互之间的关系表">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="c:/Users/75993/Pictures/Saved%20Pictures/study124.PNG">
-<meta property="og:updated_time" content="2018-11-13T07:48:45.157Z">
+<meta property="og:updated_time" content="2018-11-13T08:35:34.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB使用入门及问题总结">
-<meta name="twitter:description" content="MongoDB使用入门及问题总结 关于MongoDB 参考文档： MongoDB官网 MongoDB中文社区 MongoDB官方中文文档 MongoDB的入门视频教程   MongoDB的下载和安装 MongoDB的遇到的问题 一 . 安装官方下载的msi的时候始终提示安装失败 二. 配置MongoDB为window服务时失败 相关参考文章      MongoDB使用入门及问题总结最近学习Py">
+<meta name="twitter:description" content="MongoDB使用入门及问题总结最近学习Python爬虫开发时需要使用MongoDB数据库，为此做个使用入门的介绍和所遇问题的总结。 关于MongoDB关于MongoDB的简介可以直接去官网查看，主要和传统的MySQL，SQL Server这些数据库的不同之处在于它是NoSql型数据库，即非关系型数据库。不同于MySQL中的数据都是一张张的关系表结构，MongoDB中的数据并不是以相互之间的关系表">
 <meta name="twitter:image" content="c:/Users/75993/Pictures/Saved%20Pictures/study124.PNG">
 
 
@@ -354,27 +354,7 @@
       
 
       
-        <ul>
-<li><a href="#mongodb%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8%E5%8F%8A%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93">MongoDB使用入门及问题总结</a><ul>
-<li><a href="#%E5%85%B3%E4%BA%8Emongodb">关于MongoDB</a><ul>
-<li><a href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><strong>参考文档：</strong></a></li>
-<li><a href="#mongodb%E5%AE%98%E7%BD%91"><strong>MongoDB官网</strong></a></li>
-<li><a href="#mongodb%E4%B8%AD%E6%96%87%E7%A4%BE%E5%8C%BA"><strong>MongoDB中文社区</strong></a></li>
-<li><a href="#mongodb%E5%AE%98%E6%96%B9%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3"><strong>MongoDB官方中文文档</strong></a></li>
-<li><a href="#mongodb%E7%9A%84%E5%85%A5%E9%97%A8%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B"><strong>MongoDB的入门视频教程</strong></a></li>
-</ul>
-</li>
-<li><a href="#mongodb%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%92%8C%E5%AE%89%E8%A3%85">MongoDB的下载和安装</a></li>
-<li><a href="#mongodb%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><strong>MongoDB的遇到的问题</strong></a><ul>
-<li><a href="#%E4%B8%80--%E5%AE%89%E8%A3%85%E5%AE%98%E6%96%B9%E4%B8%8B%E8%BD%BD%E7%9A%84msi%E7%9A%84%E6%97%B6%E5%80%99%E5%A7%8B%E7%BB%88%E6%8F%90%E7%A4%BA%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5"><strong>一 . 安装官方下载的msi的时候始终提示安装失败</strong></a></li>
-<li><a href="#%E4%BA%8C-%E9%85%8D%E7%BD%AEmongodb%E4%B8%BAwindow%E6%9C%8D%E5%8A%A1%E6%97%B6%E5%A4%B1%E8%B4%A5"><strong>二. 配置MongoDB为window服务时失败</strong></a></li>
-<li><a href="#%E7%9B%B8%E5%85%B3%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><strong>相关参考文章</strong></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="MongoDB使用入门及问题总结"><a href="#MongoDB使用入门及问题总结" class="headerlink" title="MongoDB使用入门及问题总结"></a>MongoDB使用入门及问题总结</h1><p>最近学习Python爬虫开发时需要使用MongoDB数据库，为此做个使用入门的介绍和所遇问题的总结。</p>
+        <h1 id="MongoDB使用入门及问题总结"><a href="#MongoDB使用入门及问题总结" class="headerlink" title="MongoDB使用入门及问题总结"></a>MongoDB使用入门及问题总结</h1><p>最近学习Python爬虫开发时需要使用MongoDB数据库，为此做个使用入门的介绍和所遇问题的总结。</p>
 <h2 id="关于MongoDB"><a href="#关于MongoDB" class="headerlink" title="关于MongoDB"></a>关于MongoDB</h2><p>关于MongoDB的简介可以直接去官网查看，主要和传统的MySQL，SQL Server这些数据库的不同之处在于它是NoSql型数据库，即非关系型数据库。不同于MySQL中的数据都是一张张的关系表结构，MongoDB中的数据并不是以相互之间的关系表来存储的，所以这种数据的存储方式更适合复杂的爬虫环境。</p>
 <h3 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a><strong>参考文档：</strong></h3><h3 id="MongoDB官网"><a href="#MongoDB官网" class="headerlink" title="MongoDB官网"></a><strong><a href="https://www.mongodb.com/" target="_blank" rel="noopener">MongoDB官网</a></strong></h3><h3 id="MongoDB中文社区"><a href="#MongoDB中文社区" class="headerlink" title="MongoDB中文社区"></a><strong><a href="http://www.mongoing.com/" target="_blank" rel="noopener">MongoDB中文社区</a></strong></h3><h3 id="MongoDB官方中文文档"><a href="#MongoDB官方中文文档" class="headerlink" title="MongoDB官方中文文档"></a><strong><a href="http://www.mongoing.com/docs/" target="_blank" rel="noopener">MongoDB官方中文文档</a></strong></h3><h3 id="MongoDB的入门视频教程"><a href="#MongoDB的入门视频教程" class="headerlink" title="MongoDB的入门视频教程"></a><strong><a href="https://www.bilibili.com/video/av13384870" target="_blank" rel="noopener">MongoDB的入门视频教程</a></strong></h3><h2 id="MongoDB的下载和安装"><a href="#MongoDB的下载和安装" class="headerlink" title="MongoDB的下载和安装"></a>MongoDB的下载和安装</h2><p>关于下载和安装直接按照官网的流程来即可</p>
 <p><img src="C:\Users\75993\Pictures\Saved Pictures\study124.PNG" alt="官网下载社区版"></p>
