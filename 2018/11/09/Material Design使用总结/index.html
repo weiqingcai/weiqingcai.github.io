@@ -377,9 +377,9 @@
 <h2 id="主题："><a href="#主题：" class="headerlink" title="主题："></a>主题：</h2><p><img src="http://img.blog.csdn.net/20160519113211572" alt="颜色分布"><br>最基本的主题有三个：<br>@android:style/Theme.Material<br>@android:style/Theme.Material.Light<br>@android:style/Theme.Material.Light.DarkActionBar<br>这几个是基本的主题，也是分别代表三种风格的主题，更多的需要我们自己根据自己的需要来进行定制。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--actionBar颜色--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimary"</span>&gt;</span>@android:color/holo_green_light<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--状态栏颜色--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorPrimaryDark"</span>&gt;</span>@android:color/holo_green_light<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--控件颜色--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"colorAccent"</span>&gt;</span>#464545<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>主要由几部分组成，colorPrimary，colorPrimaryDark，colorAccent，textColorPrimary，windowPrimary，navigationBarColor这个值可以使用系统已经提供的颜色值，也可以直接自己定制。</p>
-<h2 id="基本使用方式："><a href="#基本使用方式：" class="headerlink" title="基本使用方式："></a>基本使用方式：</h2><p>Android中为我们提供了一个便捷的提取相应主题的工具—Palette。其能根据传入的Bitmap来获取到一系列特定风格的颜色值，使得当前主题和传入的图片更为的贴切。使用该工具能很方便的创建出各种风格的主题。</p>
+<h2 id="基本使用方式："><a href="#基本使用方式：" class="headerlink" title="基本使用方式："></a>基本使用方式：</h2><p>Android中为我们提供了一个便捷的提取相应主题的工具—-Palette。其能根据传入的Bitmap来获取到一系列特定风格的颜色值，使得当前主题和传入的图片更为的贴切。使用该工具能很方便的创建出各种风格的主题。</p>
 <ul>
-<li><p>要使用需要导入相应的包–com.android.support:palette-v7。如果是AS，则直接打开module setting，在dependencies中进行添加即可。如果是Eclipse，这需要去sdk文件夹—–extras—android–support—v7文件夹中将palette项目导入工作空间，并作为主工程的依赖项目。</p>
+<li><p>要使用需要导入相应的包—com.android.support:palette-v7。如果是AS，则直接打开module setting，在dependencies中进行添加即可。如果是Eclipse，这需要去sdk文件夹——-extras—-android—support—-v7文件夹中将palette项目导入工作空间，并作为主工程的依赖项目。</p>
 </li>
 <li><p>导入完成后直接在代码中使用。</p>
 </li>
@@ -388,12 +388,12 @@
 <p>效果如下：<br><em>点击前：</em><br><img src="http://img.blog.csdn.net/20160520160704957" alt="点击前"></p>
 <p><em>点击后：</em><br><img src="http://img.blog.csdn.net/20160520160742255" alt="点击后"></p>
 <p>常见的一些提取的色调：</p>
-<p>getDarkMutedColor(int defaultColor)——获取一个柔和的，深色的颜色</p>
-<p>getLightMutedColor(int defaultColor)——获取一个柔和的，亮色的颜色</p>
-<p>getDarkVibrantColor(int defaultColor)——获取一个有活力的，深色的颜色</p>
-<p>getLightVibrantColor(int defaultColor)——获取一个有活力的，浅色的颜色</p>
-<p>getMutedColor(int defaultColor)——获取一个柔和的颜色</p>
-<p>getVibrantColor(int defaultColor)——获取最为有活力的颜色</p>
+<p>getDarkMutedColor(int defaultColor)———获取一个柔和的，深色的颜色</p>
+<p>getLightMutedColor(int defaultColor)———获取一个柔和的，亮色的颜色</p>
+<p>getDarkVibrantColor(int defaultColor)———获取一个有活力的，深色的颜色</p>
+<p>getLightVibrantColor(int defaultColor)———获取一个有活力的，浅色的颜色</p>
+<p>getMutedColor(int defaultColor)———获取一个柔和的颜色</p>
+<p>getVibrantColor(int defaultColor)———获取最为有活力的颜色</p>
 <h2 id="视图与阴影："><a href="#视图与阴影：" class="headerlink" title="视图与阴影："></a>视图与阴影：</h2><p>在Material Design中新添加了一个布局属性，除了原本的X，Y之外，新添加了Z轴（包含静态的高度和动态的高度），使得视图在垂直与手机屏幕的方向上也有了属性，也就是产生了视图和阴影效果，而不像是之前所有的视图都在同一个平面上。</p>
 <p>一张图来说明在Material Design中视图的推荐高度：<br><img src="http://img.blog.csdn.net/20160518214813904" alt="图片说明"></p>
 <p><strong>阴影效果：</strong>Z轴由两部分组成，静态高度和动态高度。静态高度常用于视图的固定布局，动态高度则常用于实现动画效果。即  <strong>Z =elevation + translationZ</strong></p>
@@ -516,21 +516,13 @@
 <p>官方文档的内容：</p>
 <blockquote>
 <p>Snackbars provide lightweight feedback about an operation. They show a brief message at the bottom of the screen on mobile and lower left on larger devices. Snackbars appear above all other elements on screen and only one can be displayed at a time. </p>
-</blockquote>
-<blockquote>
 <p>Snackbars can contain an action which is set via setAction(CharSequence, android.view.View.OnClickListener).</p>
-</blockquote>
-<blockquote>
 <p>To be notified when a snackbar has been shown or dismissed, you can provide a Snackbar.Callback via setCallback(Callback).</p>
 </blockquote>
 <p>翻译：</p>
 <blockquote>
 <p>SnackBar为一个操作提供了一个轻量级的回馈。它在手机屏幕的底部或者是在大屏幕设备的左下方显示一个简短的消息。SnackBar位于屏幕上所有元素的上方，并且只能显示一段时间</p>
-</blockquote>
-<blockquote>
 <p>SnackBar可以通过setAction(CharSequence, android.view.View.OnClickListener)方法来包含一个动作</p>
-</blockquote>
-<blockquote>
 <p>可以通过提供setCallback(Callback)接口来获取SnackBar显示和消失时的通知</p>
 </blockquote>
 <p><strong>基本使用方式：</strong></p>
@@ -615,14 +607,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/11/09/图及其操作（C语言版）/" rel="next" title="图及其操作（C语言版）">
+                <i class="fa fa-chevron-left"></i> 图及其操作（C语言版）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/09/面试中的 10 大排序算法总结/" rel="prev" title="面试中的十大排序算法总结">
-                面试中的十大排序算法总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/09/Windows系统安全综述/" rel="prev" title="Windows系统安全综述">
+                Windows系统安全综述 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -713,7 +709,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

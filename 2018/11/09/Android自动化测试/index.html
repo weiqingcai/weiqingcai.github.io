@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Android自动化测试  adb shell monkey -p package [事件数]   用于对指定包名的应用进行压力测试   adb logcat | find “标签字符串”   用于将logcat中的命令输出到控制台   adb shell monkey –throttle [milliseconds]   每步操作之间间隔时长为 milliseconds   adb shell">
+<meta name="description" content="Android自动化测试  adb shell monkey -p package [事件数]   用于对指定包名的应用进行压力测试   adb logcat | find “标签字符串”   用于将logcat中的命令输出到控制台   adb shell monkey —throttle [milliseconds]   —more 每步操作之间间隔时长为 milliseconds   adb">
 <meta name="keywords" content="Android,自动化测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android自动化测试">
 <meta property="og:url" content="http://yoursite.com/2018/11/09/Android自动化测试/index.html">
 <meta property="og:site_name" content="程序小栈">
-<meta property="og:description" content="Android自动化测试  adb shell monkey -p package [事件数]   用于对指定包名的应用进行压力测试   adb logcat | find “标签字符串”   用于将logcat中的命令输出到控制台   adb shell monkey –throttle [milliseconds]   每步操作之间间隔时长为 milliseconds   adb shell">
+<meta property="og:description" content="Android自动化测试  adb shell monkey -p package [事件数]   用于对指定包名的应用进行压力测试   adb logcat | find “标签字符串”   用于将logcat中的命令输出到控制台   adb shell monkey —throttle [milliseconds]   —more 每步操作之间间隔时长为 milliseconds   adb">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-10T14:29:34.217Z">
+<meta property="og:updated_time" content="2018-12-28T15:30:24.092Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android自动化测试">
-<meta name="twitter:description" content="Android自动化测试  adb shell monkey -p package [事件数]   用于对指定包名的应用进行压力测试   adb logcat | find “标签字符串”   用于将logcat中的命令输出到控制台   adb shell monkey –throttle [milliseconds]   每步操作之间间隔时长为 milliseconds   adb shell">
+<meta name="twitter:description" content="Android自动化测试  adb shell monkey -p package [事件数]   用于对指定包名的应用进行压力测试   adb logcat | find “标签字符串”   用于将logcat中的命令输出到控制台   adb shell monkey —throttle [milliseconds]   —more 每步操作之间间隔时长为 milliseconds   adb">
 
 
 
@@ -359,85 +359,86 @@
 </blockquote>
 <p>用于对指定包名的应用进行压力测试</p>
 <blockquote>
-<ol start="2">
+<ol>
 <li>adb logcat | find “标签字符串”</li>
 </ol>
 </blockquote>
 <p>用于将logcat中的命令输出到控制台</p>
 <blockquote>
-<ol start="3">
-<li>adb shell monkey –throttle [milliseconds]</li>
+<ol>
+<li>adb shell monkey —throttle [milliseconds]</li>
 </ol>
 </blockquote>
+<p>—more</p>
 <p>每步操作之间间隔时长为 milliseconds</p>
 <blockquote>
-<ol start="4">
+<ol>
 <li>adb shell monkey -s seed [event-count]</li>
 </ol>
 </blockquote>
 <p>指定一个随机生成的值，每一个随机值确定一组相同的随机操作</p>
 <blockquote>
-<ol start="5">
-<li>adb shell monkey –ptc-touch [percent]</li>
+<ol>
+<li>adb shell monkey —ptc-touch [percent]</li>
 </ol>
 </blockquote>
 <p>设定一组monkey事件组中触摸事件所占百分比</p>
 <blockquote>
-<ol start="6">
-<li>adb shell monkey –ptc-motion [percent]</li>
+<ol>
+<li>adb shell monkey —ptc-motion [percent]</li>
 </ol>
 </blockquote>
 <p>设定一组monkey事件组中动作事件所占百分比</p>
 <blockquote>
-<ol start="7">
-<li>adb shell monkey –ptc-trackball [percent]</li>
+<ol>
+<li>adb shell monkey —ptc-trackball [percent]</li>
 </ol>
 </blockquote>
 <p>设定一组monkey事件组中轨迹球事件所占百分比</p>
 <blockquote>
-<ol start="8">
-<li>adb shell monkey –ptc-nav [percent]</li>
+<ol>
+<li>adb shell monkey —ptc-nav [percent]</li>
 </ol>
 </blockquote>
 <p>设定一组monkey事件组中基本导航事件所占百分比</p>
 <blockquote>
-<ol start="9">
-<li>adb shell monkey –ptc-majornav [percent]</li>
+<ol>
+<li>adb shell monkey —ptc-majornav [percent]</li>
 </ol>
 </blockquote>
 <p>设定一组monkey事件组中主要导航事件所占百分比</p>
 <blockquote>
-<ol start="10">
-<li>adb shell monkey –ptc-syskeys [percent]</li>
+<ol>
+<li>adb shell monkey —ptc-syskeys [percent]</li>
 </ol>
 </blockquote>
 <p>设定一组monkey事件组中系统导航事件所占百分比</p>
 <blockquote>
-<ol start="11">
-<li>adb shell monkey –ptc-appswitch [percent]</li>
+<ol>
+<li>adb shell monkey —ptc-appswitch [percent]</li>
 </ol>
 </blockquote>
 <p>设定一组monkey事件组中启动Activity事件所占百分比</p>
 <blockquote>
-<ol start="12">
-<li>adb shell monkey –ptc-anyevent [percent]</li>
+<ol>
+<li>adb shell monkey —ptc-anyevent [percent]</li>
 </ol>
 </blockquote>
 <p>设定一组monkey事件组中不常用事件所占百分比</p>
 <blockquote>
-<ol start="13">
-<li>adb shell monkey –ignore-crashs [event-count]</li>
+<ol>
+<li>adb shell monkey —ignore-crashs [event-count]</li>
 </ol>
 </blockquote>
 <p>忽略崩溃事件继续进行测试</p>
 <blockquote>
-<ol start="13">
-<li>adb shell monkey –ignore-timeout [event-count]</li>
+<ol>
+<li>adb shell monkey —ignore-timeout [event-count]</li>
 </ol>
 </blockquote>
 <p>忽略ANR事件继续进行测试</p>
 <blockquote>
-<ol start="14">
+<ol>
 <li>adb shell monkey -f [scriptfile] [event-count] </li>
 </ol>
 </blockquote>
@@ -474,8 +475,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/09/CCNA考试复习总结/" rel="next" title="CCNA考试复习总结">
-                <i class="fa fa-chevron-left"></i> CCNA考试复习总结
+              <a href="/2018/11/09/Windows系统安全综述/" rel="next" title="Windows系统安全综述">
+                <i class="fa fa-chevron-left"></i> Windows系统安全综述
               </a>
             
           </div>
@@ -484,8 +485,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/09/树及其操作（C语言版）/" rel="prev" title="树及其操作（C语言版）">
-                树及其操作（C语言版） <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/09/CCNA考试复习总结/" rel="prev" title="CCNA考试复习总结">
+                CCNA考试复习总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -576,7 +577,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

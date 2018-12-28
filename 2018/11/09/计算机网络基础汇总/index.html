@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="计算机网络体系分类：计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。    OSI七层模型 TCP/IP四层模型     应用层   表示层 应用层   会话层   传输层 传输层   网络层 网络层   数据链路层 物理接入层   物理层    物理层：物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口有关的一些特性。">
+<meta name="description" content="计算机网络体系分类：计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。     OSI七层模型 TCP/IP四层模型     应用层   表示层 应用层   会话层   传输层 传输层   网络层 网络层   数据链路层 物理接入层   物理层     物理层：物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口有关的一些特性">
 <meta name="keywords" content="计算机网络,网络协议">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络基础汇总">
 <meta property="og:url" content="http://yoursite.com/2018/11/09/计算机网络基础汇总/index.html">
 <meta property="og:site_name" content="程序小栈">
-<meta property="og:description" content="计算机网络体系分类：计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。    OSI七层模型 TCP/IP四层模型     应用层   表示层 应用层   会话层   传输层 传输层   网络层 网络层   数据链路层 物理接入层   物理层    物理层：物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口有关的一些特性。">
+<meta property="og:description" content="计算机网络体系分类：计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。     OSI七层模型 TCP/IP四层模型     应用层   表示层 应用层   会话层   传输层 传输层   网络层 网络层   数据链路层 物理接入层   物理层     物理层：物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口有关的一些特性">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-11-13T07:13:32.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络基础汇总">
-<meta name="twitter:description" content="计算机网络体系分类：计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。    OSI七层模型 TCP/IP四层模型     应用层   表示层 应用层   会话层   传输层 传输层   网络层 网络层   数据链路层 物理接入层   物理层    物理层：物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口有关的一些特性。">
+<meta name="twitter:description" content="计算机网络体系分类：计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。     OSI七层模型 TCP/IP四层模型     应用层   表示层 应用层   会话层   传输层 传输层   网络层 网络层   数据链路层 物理接入层   物理层     物理层：物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口有关的一些特性">
 
 
 
@@ -353,6 +353,7 @@
 
       
         <h1 id="计算机网络体系分类："><a href="#计算机网络体系分类：" class="headerlink" title="计算机网络体系分类："></a>计算机网络体系分类：</h1><p>计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -388,6 +389,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h1 id="物理层："><a href="#物理层：" class="headerlink" title="物理层："></a>物理层：</h1><p>物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口有关的一些特性。</p>
 <h2 id="通信方式："><a href="#通信方式：" class="headerlink" title="通信方式："></a>通信方式：</h2><ul>
 <li><p><strong>单工通信：</strong> 只能由A主机向B主机发送消息，通信是单向的。</p>
@@ -419,7 +421,7 @@
 </li>
 </ul>
 <h2 id="核心要解决的问题："><a href="#核心要解决的问题：" class="headerlink" title="核心要解决的问题："></a>核心要解决的问题：</h2><ul>
-<li><p><strong>封装成帧：</strong>在一段数据的前后分别添加首部和尾部，这样就构成了一个帧。接收端在接受到后就可以方便准确的确定帧的首尾，也称为帧定界符。同时定义出了最大传输单元（MTU）–表示一次可以传输的最大长度上限。</p>
+<li><p><strong>封装成帧：</strong>在一段数据的前后分别添加首部和尾部，这样就构成了一个帧。接收端在接受到后就可以方便准确的确定帧的首尾，也称为帧定界符。同时定义出了最大传输单元（MTU）—表示一次可以传输的最大长度上限。</p>
 </li>
 <li><p><strong>透明传输：</strong> 由于使用特定的字符来表示帧的开始和结束，所以传输的内容中不能出现和帧定界符相同的字符，但这显然是不可能的，为了解决这个办法，就可以在内容中和帧定界符一样的字符前边加上规定好的转义字符，这种方法称为字符填充或者是字节填充。</p>
 </li>
@@ -461,7 +463,7 @@
 <h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><p>网络层主要是为主机之间提供逻辑通讯，而传输层为应用程序之间提供端到端的逻辑通讯。主要是两种类型的通讯方式，面向连接的TCP协议和面向无连接的UDP。</p>
 <h2 id="端口号："><a href="#端口号：" class="headerlink" title="端口号："></a>端口号：</h2><p>端口号按照使用地方的不同分为两大类：服务端端口号，客户端端口号。<br>按照占用时长又可以分为熟知端口号（0~1023），登记端口号（1024~49151），短暂端口号（49152~65535）</p>
 <h3 id="常见端口："><a href="#常见端口：" class="headerlink" title="常见端口："></a>常见端口：</h3><ul>
-<li><p>FTP（文件传输协议）：20，21——其中20端口用于传输数据，21端口用于命令控制</p>
+<li><p>FTP（文件传输协议）：20，21———其中20端口用于传输数据，21端口用于命令控制</p>
 </li>
 <li><p>Telnet（远程登录协议）：23 </p>
 </li>
@@ -486,7 +488,7 @@
 <li><p><strong>TCP（传输控制协议）：</strong></p>
 <ul>
 <li>TCP是面向连接的</li>
-<li>每一条TCP连接只能由两个端点，每一条TCP连接只能是点对点的$TCP连接：：= { socket_1,socket_2 } ={ (IP_1:port_1),(IP_2:port_2)}$</li>
+<li>每一条TCP连接只能由两个端点，每一条TCP连接只能是点对点的$TCP连接：：= \{ socket_1,socket_2 \} =\{ (IP_1:port_1),(IP_2:port_2)\}$</li>
 <li>TCP提供可靠交付的服务</li>
 <li>TCP提供全双工通信</li>
 <li>面向字节流</li>
@@ -529,6 +531,7 @@
 <li>客户端对服务端的请求应答：ACK=1，seq=u+1，ack=w+1；</li>
 </ol>
 <h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><p>应用层有多种协议，常用到的就是HTTP以及HTTPS。<br><strong>HTTP协议报文格式</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -555,6 +558,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p><strong>常见状态码</strong></p>
 <blockquote>
 <p>1xx：表示通知信息，例如表示收到或者是正在处理<br>2xx：表示成功，例如表示接受或知道了<br>3xx：表示重定向，例如表示完成请求还需要采取进一步的行动<br>4xx：表示客户端的差错，例如表示请求中有语法错误或不能完成<br>5xx：表示服务器端的差错：例如表示服务器失效无法完成请求</p>
@@ -592,18 +596,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/09/面试中的 10 大排序算法总结/" rel="next" title="面试中的十大排序算法总结">
-                <i class="fa fa-chevron-left"></i> 面试中的十大排序算法总结
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/09/渗透测试--密码攻击初识/" rel="prev" title="渗透测试--密码攻击初识">
-                渗透测试--密码攻击初识 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/09/MongoDB入门及问题总结/" rel="prev" title="MongoDB使用入门及问题总结">
+                MongoDB使用入门及问题总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -694,7 +694,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
