@@ -2,7 +2,7 @@
 title: CCNA考试复习总结
 date: 2018-11-09 16:49:37
 tags: [计算机网络,CCNA,Cisco]
-categories: 计算机网络
+categories: 大数据与网络安全
 ---
 
 # CCNA考试复习总结
@@ -36,7 +36,6 @@ categories: 计算机网络
  - SVC：虚电路
  - DLCI：数据链路标识符
  - PVST+：增强的按VLAN生成树
- 
 - 几种协议的管理距离：
  - RIP：120
  - OSPF：110

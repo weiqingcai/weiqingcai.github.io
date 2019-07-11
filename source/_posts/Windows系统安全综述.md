@@ -2,7 +2,7 @@
 title: Windows系统安全综述
 date: 2018-11-09 16:49:37
 tags: [系统安全概述,Windows]
-categories: 网络安全
+categories: 大数据与网络安全
 ---
 # Windows系统安全综述
 

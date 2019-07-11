@@ -8,9 +8,9 @@ subtitle:
 description: 这是我的小栈，记录点滴
 keywords:
 author: WeiQingcai
-language: zh-Hans
+language: zh-CN
 timezone:
-avatar: /images/head_logo.png
+avatar: /image/avatar.png
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -74,11 +74,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: hexo-theme-snippet
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/weiqingcai/weiqingcai.github.io.git
+  repository: git@github.com:weiqingcai/weiqingcai.github.io.git
   branch: master      

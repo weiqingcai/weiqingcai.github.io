@@ -16,6 +16,7 @@ categories: Android
 
 >3. adb shell monkey --throttle [milliseconds]
 
+
 每步操作之间间隔时长为 milliseconds
 
 >4. adb shell monkey -s seed [event-count]
