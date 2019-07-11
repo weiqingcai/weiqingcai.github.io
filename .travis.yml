@@ -23,16 +23,16 @@ before_install:
 
 install:
   - npm install
-#  - gem install travis
-#  - travis login --pro --github-token ${GH_TOKEN}
+#   - gem install travis
+#   - travis login --pro --github-token ${GH_TOKEN}
 
 before_script:
   - export TZ='Asia/Shanghai'
   - npm install -g gulp
-  - chmod +x _travis.sh
+  - chmod +777 _travis.sh
 
 script:
-  - hexo g && hexo d
+  - sudo hexo g && hexo d
 
 after_success:
  # - LAST_BUILD_NUMBER=68
