@@ -1,0 +1,244 @@
+# ---------------------------------------------------------------
+#   Site Information And Theme Configuration Settings
+#   language: zh-CN
+# ---------------------------------------------------------------
+
+## menu
+menu:
+- page: home
+  url: /
+  icon:
+- page: 大数据与网络安全
+  url: /categories/大数据与网络安全/
+  icon:
+- page: Android
+  url: /categories/Android/
+  icon:
+- page: 数据结构与算法
+  url: /categories/数据结构与算法/
+  icon:
+- page: 时间轴
+  url: /archives/
+  icon:
+
+## favicon
+favicon: /favicon.ico
+
+## Feed
+rss: /atom.xml
+
+## Carousel
+carousel:
+  img: 
+  url: 
+
+# 各个小工具的设置
+
+## widgets
+widgets:
+  - search
+  - category
+  - social
+  - archive
+  - tagcloud
+  - friends
+  - stick
+
+
+## 搜索
+jsonContent:
+  searchLocal: true
+  searchGoogle: false
+  posts:
+    title: true
+    text: true
+    content: true
+    categories: false
+    tags: false
+
+## 网站公告设置
+notification: |-
+            <p>
+                主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
+                主题使用：<a href="https://github.com/shenliyang/hexo-theme-snippet/blob/master/README.md#常见问题" title="" target="_blank">常见使用问题</a> <br/>
+                支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
+            </p>
+
+## 社交设置
+social:
+ - name: Github
+   icon: github
+   href: https://github.com/weiqingcai
+ - name: CSDN
+   icon: leaf
+   href: https://blog.csdn.net/wqc_CSDN
+ - name: 邮箱
+   icon: envelope-o
+   href: weiqingcai1994@gmail.com
+ - name: RSS
+   icon: feed
+   href: /atom.xml
+
+## 文章分类设置
+cate_config:
+   show_count: true
+   show_current: true
+
+## 文章归档设置
+arch_config:
+   type: 'monthly'
+   format: 'YYYY年MM月'
+   show_count: true
+   order: -1
+
+## 标签云设置
+tagcloud:
+  tag3d: true
+  textColour: '#444'
+  outlineMethod: 'block'
+  outlineColour: '#FFDAB9'
+  interval: 30
+  freezeActive: true
+  frontSelect: true
+  reverse: true
+  wheelZoom: false
+
+## 友链设置
+links:
+  - Hexo官网: https://hexo.io/zh-cn/
+  - 主题地址: https://github.com/shenliyang/hexo-theme-snippet
+
+
+# 主题自定义个性化配置
+
+## 网站宣传语
+branding: 兜里有糖心不慌
+
+## 设置banner背景图片
+banner:
+    img: /img/start.jpg
+
+## 首页列表底部面板
+homePanel: true
+
+## 缩略图自定义随机图片
+defaultImgs:
+ - 
+## 截取文章首页描述字数
+excerptLength: 120
+
+## 是否开启文章目录
+toc: true
+
+## 代码高亮配置
+highlightTheme:
+
+## bootstrap配置
+bootstrap:
+
+## ICON配置
+fontAwesome:
+
+## 文章过期提醒功能
+warning:
+  days: 300
+  text: '本文于%d天之前发表，文中内容可能已经过时。'
+
+## 文章内声明
+declaration:
+  enable: true
+  title: '转载声明'
+  tip: |-
+      商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+
+## 文章打赏
+reward:
+  alipay: '/img/reward-alipay.jpg'
+  wepay: '/img/reward-wepay.png'
+  tip: 赞赏是不耍流氓的鼓励
+
+## 主题评论
+
+## Valine评论
+valine:
+   enable: false
+   appId: n1CHpWg3eI3vJevqboGKaJ0W-gzGzoHsz
+   appKey: 6N4y7d6YyRLyjjQbvxw5Aetd
+   placeholder: 说点什么吧
+   notify: false
+   verify: false
+   avatar: mm
+   meta: nick,mail
+   pageSize: 10
+
+### 畅言评论(需要ICP备案)
+changyan:
+  enable: false
+  appid:
+  conf:
+
+### 来必力
+livere:
+  enable: true
+  livere_uid: MTAyMC8zMzA1MS85NjEz
+
+## Gitalk评论
+gitalk:
+   enable: false
+   clientID: 8cf47c6fbeca6c81d579
+   clientSecret: 410bc8ef86c5a31d2c4e52614d18030c7e8e269d
+   repo: weiqingcai.github.io
+   owner: weiqingcai
+   admin: weiqingcai
+   perPage: 10
+
+### Disqus评论
+disqus:
+  enable: false
+  shortname: snippet
+  count: false
+
+### gitment评论(长期不更新，不建议使用)
+gitment:
+  enable: false
+  owner:
+  repo:
+  client_id:
+  client_secret:
+  perPage: 10
+
+### 友言评论(服务不稳定)
+uyan:
+  enable: false
+  uyan_id: 1966422
+
+
+## 网站访客统计
+visit_counter:
+   site: true
+   page: true
+
+## 网站访问统计分析
+
+### 网盟CNZZ统计
+cnzz_analytics:
+
+### 百度统计
+baidu_analytics:
+
+### 谷歌统计
+google_analytics:
+
+### 腾讯分析
+tencent_analytics:
+
+### 百度站点认证
+baidu_site_verification:
+
+### 百度自动推送
+baidu_push: false
+
+#网站主题配置
+since: 2019
+robot: 'all' ### 控制搜索引擎的抓取和索引编制行为，默认为all
+version: 1.2.3
