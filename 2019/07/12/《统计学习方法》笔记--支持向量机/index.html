@@ -1,0 +1,387 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="统计学习,机器学习">
+
+
+    <meta name="description" content="支持向量机概述支持向量机是一种二类分类模型，它的基本模型是定义在特征空间上的间隔最大的线性分类器。支持向量机由简至繁依次可分为：线性可分支持向量机，线性支持向量机，非线性支持向量机。当数据线性可...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>统计学习方法--支持向量机 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="统计学习方法--支持向量机">
+            
+	            统计学习方法--支持向量机
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/机器学习/">机器学习</a> <a class="tag-link" href="/tags/统计学习/">统计学习</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/07/12</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="支持向量机概述"><a href="#支持向量机概述" class="headerlink" title="支持向量机概述"></a>支持向量机概述</h2><p>支持向量机是一种二类分类模型，它的基本模型是定义在特征空间上的间隔最大的线性分类器。支持向量机由简至繁依次可分为：线性可分支持向量机，线性支持向量机，非线性支持向量机。当数据线性可分时，通过硬间隔最大化的约束来学习一个分类器，称为线性可分支持向量机；当数据近似线性可分时，通过软间隔最大化的约束来学习一个分类器，称为线性支持向量机；当数据线性不可分时通过使用核技巧及软间隔最大化，学习非线性支持向量机。故此，支持向量机可以简化的描述为通过训练数据集来寻找一个能够将数据正确分类的超平面，此分离超平面满足数据集中的数据点距此超平面的间隔（软间隔/硬间隔）最大化。</p>
+<h2 id="基础前提"><a href="#基础前提" class="headerlink" title="基础前提"></a>基础前提</h2><h3 id="函数间隔和几何间隔"><a href="#函数间隔和几何间隔" class="headerlink" title="函数间隔和几何间隔"></a>函数间隔和几何间隔</h3><p>间隔最大化是贯穿于整个支持向量机模型的最核心的部分。一般来说，一个点距离分离超平面的远近可以表示分类预测的确信程度，在分离超平面确定的情况下，若一个点离超平面越远则分类正确的可信度越高。故此，支持向量机寻求间隔最大化的意义在于分离超平面不仅可以正确分类数据点，而且对于最难分的实例（距离超平面最近的点）也有较大的分类可信度，因此该模型再对未知数据分类时应该也具有较好的性能。</p>
+<h4 id="函数间隔"><a href="#函数间隔" class="headerlink" title="函数间隔"></a>函数间隔</h4><blockquote>
+<p>对于给定的训练数据集$T$和超平面$(\omega,b)$，</p>
+<p>定义超平面$(\omega,b)$关于样本点$(x_i,y_i)$的函数间隔为<script type="math/tex">\hat{\gamma_i}=y_i(\omega\cdot x_i+b)</script><br>定义超平面$(\omega,b)$关于训练数据集$T$的函数间隔为超平面$(\omega,b)$关于$T$中所有样本点$(x_i,y_i)$的函数间隔最小值，即<script type="math/tex">\hat{\gamma}=\min_{i=1,2,..,N}\hat{\gamma_i}</script></p>
+</blockquote>
+<h4 id="几何间隔"><a href="#几何间隔" class="headerlink" title="几何间隔"></a>几何间隔</h4><p>由于函数间隔在当$\omega$和$b$成比例的改变时候，得到的分离超平面并没有变化，但是函数间隔却也成比例的改变，故此自然想到应该对其进行规范化处理，令$||\omega||=1$，这样就得到了几何间隔的定义。</p>
+<blockquote>
+<p>对于给定的训练数据集$T$和超平面$(\omega,b)$</p>
+<p>定义超平面$(\omega,b)$关于样本点$(x_i,y_)i$的几何间隔为<script type="math/tex">\gamma_i=y_i(\frac{\omega}{||\omega||}\cdot x_i+\frac{b}{||\omega||})</script><br>定义超平面$(\omega,b)$关于训练数据集$T$的几何间隔为超平面$(\omega,b)$关于$T$中所有样本点$(x_i,y_i)$的几何间隔最小值，即<script type="math/tex">\gamma=\min_{1,2,...,N}\gamma_i</script></p>
+</blockquote>
+<h2 id="线性可分支持向量机与硬间隔最大化"><a href="#线性可分支持向量机与硬间隔最大化" class="headerlink" title="线性可分支持向量机与硬间隔最大化"></a>线性可分支持向量机与硬间隔最大化</h2><p>给定线性可分训练数据集，通过间隔最大化(几何间隔最大化)或等价的求解相应的凸二次规划问题得到的分离超平面为$\omega^<em>\cdot x+b^</em>=0$,相应的分类决策函数为$f(x)=sign(\omega^<em>\cdot x+b^</em>)$。线性可分支持向量机可以表述为下列形式：<script type="math/tex">\max_{\omega,b}\gamma</script> <script type="math/tex">s.t. y_i(\frac{\omega}{||\omega||}\cdot x_i+\frac{b}{||\omega||})\geq\gamma,i=1,2...,N</script>即转化为了一个约束最优化问题。依据函数间隔和几何间隔的关系及约束最优化的求解方式，可以将上述求解最大值的问题转化为求解最小值的问题，即：<script type="math/tex">\min_{\omega,b}\frac{1}{2}||\omega||^2</script> <script type="math/tex">s.t. y_i(\omega\cdot x_i+b)-1\geq 1,i=1,2...,N</script></p>
+<p>故此可以有线性可分支持向量机算法为：</p>
+<blockquote>
+<p>输入：线性可分训练数据集$T=\{(x_1,y_2),(x_2,y_2),…,(x_N,y_N)\}$,其中$x_i\in X=R^n,y_i\in Y=\{+1,-1\},i=1,2,…,N$</p>
+<p>输出：最大间隔分离超平面及分类决策函数</p>
+<p>(1) 构造并求解约束最优化问题：<script type="math/tex">\min_{\omega,b}\frac{1}{2}||\omega||^2</script> <script type="math/tex">s.t. y_i(\omega\cdot x_i+b)-1\geq 1,i=1,2...,N</script>得到最优解$\omega^<em>$,$b^</em>$<br>(2) 由此得到分离超平面：<script type="math/tex">\omega^* \cdot x+b^* = 0</script>,分类决策函数<script type="math/tex">f(x)=sign(\omega^* \cdot x+b^*)</script></p>
+</blockquote>
+<h2 id="线性支持向量机与软间隔最大化"><a href="#线性支持向量机与软间隔最大化" class="headerlink" title="线性支持向量机与软间隔最大化"></a>线性支持向量机与软间隔最大化</h2><p>当数据集线性不可分时表明对于数据集中的一些实例，上述约束方法中的约束不等式不能都成立，即存在一些实例，无法满足函数间隔大于等于1的约束要求。为了解决这个问题，可以对每个样本点引入一个松弛变量$\zeta_i\geq0$,使得函数间隔加上松弛变量大于等于1，即约束条件放宽为:$y_i(\omega\cdot x_i+b)\geq 1-\zeta_i$,同时对每个松弛变量支付一个代价$\zeta_i$。目标函数则变为$\frac{1}{2}||\omega||^2+C \sum_{i=1}^{N}\zeta_i$，这里$C&gt;0$称为惩罚参数，$C$值大时对误分类的惩罚增大，$C$值小时对误分类的惩罚小。故由此可得到线性支持向量机算法的原始表达形式为：<script type="math/tex">\min_{\omega,b,\zeta} \frac{1}{2}||\omega||^2+C\sum_{i=1}^N\zeta_i</script> <script type="math/tex">s.t. y_i(\omega\cdot x_i+b)\geq 1-\zeta_i,i=1,2,...,N</script> <script type="math/tex">\zeta_i\geq 0,i=1,2,...,N</script>这样根据原始问题求解得到$\omega^<em>$,$b^</em>$即可得到分离超平面以及分类决策函数</p>
+<h2 id="非线性支持向量机与核函数"><a href="#非线性支持向量机与核函数" class="headerlink" title="非线性支持向量机与核函数"></a>非线性支持向量机与核函数</h2><p>对于线性分类问题，线性支持向量机是一种非常有效的方法。但是有时要解决的是非线性问题，此时就需要收盘每个非线性支持向量机，其重点在于利用核技巧。核技巧不仅应用于支持向量机，而且也可以应用于其他统计学问题中。核技巧就是通过首先使用一个变换将原空间的数据映射到新的空间，然后在新空间里用线性分类学习方法从训练数据中学习分类模型。</p>
+<p>核技巧的基本想法是通过一个非线性变换将输入空间（欧式空间$R^n$或离散集合）对应于一个特征空间（希尔伯特空间$\mathrm{H}$），使得在输入空间$R^n$中的超曲面模型对应于特征空间$\mathrm{H}$中的超平面模型（支持向量机）。这样，分类问题的学习任务通过在特征空间中求解线性支持向量机就可以完成。</p>
+<h3 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a>核函数</h3><blockquote>
+<p>设$\chi$是输入空间（欧式空间$R^n$的子集或离散集合），又设$\mathrm{H}$为特征空间（希尔伯特空间），如果存在一个从$\chi$到$\mathrm{H}$的映射<script type="math/tex">\phi(x):\chi \to \mathrm{H}</script>使得对所有$x,z\in\chi$,函数$K(x,z)$满足条件<script type="math/tex">K(x,z)=\phi(x)\cdot\phi(z)</script>则称$K(x,z)$为核函数，$\phi(x)$为映射函数，式中$\phi(x)\cdot\phi(z)$为$\phi(x)$和$\phi(z)$的內积</p>
+</blockquote>
+<h3 id="非线性支持向量机"><a href="#非线性支持向量机" class="headerlink" title="非线性支持向量机"></a>非线性支持向量机</h3><p>从非线性分类训练集，通过核函数与软间隔最大化学习得到的分类决策函数<script type="math/tex">f(x)=sign(\sum_{i=1}^N\alpha_i^*y_iK(x,x_i)+b^ *)</script>称为非线性支持向量机，$K(x,z)$是正定核函数</p>
+<blockquote>
+<p>输入：训练数据集$T=\{(x_1,y_1),(x_2,y_2),…,(x_N,y_N)\}$其中$x_i\in\chi=R^n,y_i\in Y=\{-1,+1\},i=1,2,…,N$</p>
+<p>输出：分类决策函数</p>
+<p>(1) 选取适当的核函数$K(x,z)$和适当的参数$C$，构造并求解最优化问题<script type="math/tex">\min_\alpha \frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_j y_iy_jK(x_i,x_j)-\sum_{i=1}^N\alpha_i</script> <script type="math/tex">s.t. \sum_{i=1}^N\alpha_iy_i=0</script> <script type="math/tex">0\leq\alpha_i\leq C,i=1,2,...,N</script>求出最优解$\alpha^<em>=(\alpha_1^</em>,\alpha_2^<em>,…,\alpha_N^</em>)^T$<br>(2) 选择$\alpha^<em>$的一个正分量$0&lt;\alpha_j^</em>&lt;C$，计算<script type="math/tex">b^*=y_j-\sum_{i=1}^N\alpha_i^ *y_iK(x_i,x_j)</script><br>(3) 构造决策函数：<script type="math/tex">f(x)=sign(\sum_{i=1}^N\alpha_i^*y_iK(x,x_i)+b^ *)</script></p>
+</blockquote>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/07/12/《统计学习方法》笔记--最大熵模型/" class="next-post btn btn-default" title="统计学习方法--最大熵模型">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">统计学习方法--最大熵模型</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#支持向量机概述"><span class="toc-text">支持向量机概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础前提"><span class="toc-text">基础前提</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数间隔和几何间隔"><span class="toc-text">函数间隔和几何间隔</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#函数间隔"><span class="toc-text">函数间隔</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#几何间隔"><span class="toc-text">几何间隔</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性可分支持向量机与硬间隔最大化"><span class="toc-text">线性可分支持向量机与硬间隔最大化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性支持向量机与软间隔最大化"><span class="toc-text">线性支持向量机与软间隔最大化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非线性支持向量机与核函数"><span class="toc-text">非线性支持向量机与核函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#核函数"><span class="toc-text">核函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非线性支持向量机"><span class="toc-text">非线性支持向量机</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

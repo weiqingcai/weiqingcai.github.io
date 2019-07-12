@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="统计学习,机器学习">
+
+
+    <meta name="description" content="决策树概述决策树模型呈树形结构，在分类过程中表示基于特征对实例进行分类的过程。决策树模型可以视为if-then规则的集合，也可以视为是定义在特征空间与类别空间上的条件改了分布。主要优点是模型具有...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>统计学习方法--决策树 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="统计学习方法--决策树">
+            
+	            统计学习方法--决策树
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/机器学习/">机器学习</a> <a class="tag-link" href="/tags/统计学习/">统计学习</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/16</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="决策树概述"><a href="#决策树概述" class="headerlink" title="决策树概述"></a>决策树概述</h2><p>决策树模型呈树形结构，在分类过程中表示基于特征对实例进行分类的过程。决策树模型可以视为if-then规则的集合，也可以视为是定义在特征空间与类别空间上的条件改了分布。主要优点是模型具有很好的可解释性，分类速度快，缺点是构建决策树时用的特征序列对分类效果有较大的影响。决策树学习过程通常包括三个步骤：<strong>特征选择</strong>，<strong>决策树的生成</strong>，<strong>决策树的修剪</strong></p>
+<h2 id="决策树模型"><a href="#决策树模型" class="headerlink" title="决策树模型"></a>决策树模型</h2><p>分类决策树模型是一种描述对实例进行分类的树形结构。决策树由节点和有向边组成。节点包括两种类型：内部节点和叶节点。内部节点表示一个特征或属性，叶节点表示一个类。</p>
+<p>决策树学习的本质是从给定的训练数据集中依据属性或特征归纳出一组分类规则。与给定的训练数据集相符合的分类规则可能有多个，决策树模型就是需要从多个符合的分类规则中找到损失最小的，泛化能力最好的一组分类规则。决策树常用的损失函数是正则化的极大似然函数，决策树的学习策略是以损失函数为目标函数的最小化。由于所有可能的决策树组成的解空间较大，从中找到最优的决策树是NP完全问题，因此一般多采用启发式算法来近似求解。</p>
+<p>决策树学习的算法通常是一个递归的选择最优特征的过程。从可选的特征集合中选出最优的特征（即依据该特征能最有效的将训练数据集分类），按照这一特征将数据集分割成子集，该特征作为这些子集的根节点。如果这些子集已经基本可以正确分类，那么构建叶节点，并将这些子集分到所对应的的叶节点中去。如果还有子集不能被正确分类，那么对这些子集选取新的最优特征，继续对其进行分割，直至所有训练数据都被正确分类。至此就构建出来一颗决策树。</p>
+<p>通过上述步骤构建的决策树可以对训练数据集进行很好的分类，但是并不一定有很好的泛化能力，即可能发生过拟合现象。为了增强其泛化能力，我们需要对构建好的决策树进行自底向上的剪枝，即将树变得更简单一点。通过去掉决策树中过于细分的叶节点，使其回退到父节点甚至更高节点，用父节点或更高节点作为新的叶节点。</p>
+<h3 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h3><p>特征选择在于选取对训练数据具有良好分类能力的特征，这样可以提高决策树的学习效率。通常特征选择的准则是信息增益或信息增益比。</p>
+<h4 id="熵"><a href="#熵" class="headerlink" title="熵"></a>熵</h4><p>在信息论和概率统计中，熵是表示随机变量不确定性的度量。设$X$是一个取有限个值得离散随机变量，其概率分布为:<script type="math/tex">P(X=x_i)=p_i, i=1,2,3...,n</script>,则随机变量$X$的熵定义为:<script type="math/tex">H(X)=-\sum_{i=1}^np_i\log p_i</script>或(从定义可知和X的取值无关，只和其分布有关)<script type="math/tex">H(p)=-\sum_{i=1}^np_i\log p_i</script>熵有两种单位：（1）当公式中的对数以2为底时，单位为比特(bit)；（2）当公式中的对数以e为底时，单位为纳特(nat)。<strong>熵越大，随机变量的不确定性就越大。</strong></p>
+<h4 id="条件熵"><a href="#条件熵" class="headerlink" title="条件熵"></a>条件熵</h4><p>设有随机变量$(X,Y)$其联合概率分布为:<script type="math/tex">P(X=x_i,Y=y_j)=p_{ij},i=1,2,...n,j=1,2,...m</script>条件熵$H(Y|X)$表示在已知随机变量$X$的条件下随机变量$Y$的不确定性，定义为$X$给定条件下$Y$的条件概率分布的熵对$X$的数学期望：<script type="math/tex">H(Y|X)=\sum_{i=1}^np_iH(Y|X=x_i)</script> <script type="math/tex">p_i=P(X=x_i),i=1,2,...,n</script></p>
+<h4 id="经验熵和经验条件熵"><a href="#经验熵和经验条件熵" class="headerlink" title="经验熵和经验条件熵"></a>经验熵和经验条件熵</h4><p>当熵和条件熵中的概率由数据估计（特别是极大似然估计）得到时，对应的熵与条件熵分别称为<strong>经验熵</strong>和<strong>经验条件熵</strong>若有概率为0的，则令$0\log0=0$</p>
+<h4 id="信息增益（互信息）"><a href="#信息增益（互信息）" class="headerlink" title="信息增益（互信息）"></a>信息增益（互信息）</h4><p>信息增益（也称为互信息）表示得知特征$X$的信息后特征$Y$的信息不确定性减少的程度，反应了特征$X$对于其他特征不确定性的影响程度。</p>
+<blockquote>
+<p>特征$A$对训练数据集$D$的信息增益$g(D,A)$定义为集合$D$的经验熵$H(D)$与特征$A$在给定条件下$D$的经验条件熵$H(D|A)$之差，即<script type="math/tex">g(D,A)=H(D)-H(D|A)</script></p>
+</blockquote>
+<p><strong>信息增益大的特征具有更强的分类能力（即表示在已知该特征的情况下，整个集合的不确定降低最多）</strong></p>
+<h4 id="信息增益比"><a href="#信息增益比" class="headerlink" title="信息增益比"></a>信息增益比</h4><p>以信息增益作为选择特征的准则，存在偏向于选择取值较多的特征的问题。即当一个特征可能的取值较多时，其计算出来的信息增益可能会较高，但是并不一定就一定是一个更有效的分类特征。采用信息增益比可以对这一问题进行校正，这是特征选择的另一准则。</p>
+<blockquote>
+<p>特征$A$对训练数据集$D$的信息增益比$gR(D,A)$定义为其信息增益$g(D,A)$与训练数据集$D$关于特征$A$的值的熵$H_A(D)$之比，即：<script type="math/tex">gR(D,A)=\frac{g(D,A)}{H_A(D)}</script>,其中,$H_A(D)=-\sum_{i=1}^n\frac{|D_i|}{|D|}\log_2\frac{|D_i|}{|D|},n$是特征$A$取值的个数</p>
+</blockquote>
+<h3 id="决策树生成"><a href="#决策树生成" class="headerlink" title="决策树生成"></a>决策树生成</h3><h4 id="ID3算法-基于信息增益"><a href="#ID3算法-基于信息增益" class="headerlink" title="ID3算法(基于信息增益)"></a>ID3算法(基于信息增益)</h4><p>ID3算法的核心是在决策树各个节点上应用信息增益准则选择特征，递归的构建决策树。</p>
+<blockquote>
+<p>输入：训练数据集$D$，特征集$A$阈值$\epsilon$</p>
+<p>输出：决策树$T$</p>
+<p> (1)若$D$中实例属于同一类$C_k$，则$T$为单节点树。并将类$C_k$作为该节点的类标记，返回$T$<br> (2)若$A=\phi$，则$T$为单节点树，并将$D$中实例数最大的类$C_k$作为该节点的类标记，返回$T$<br> (3)否则，按照求解<strong>信息增益</strong>的算法，计算$A$中各特征对$D$的信息增益，选择<strong>信息增益</strong>最大的特征$A_g$<br> (4)如果$A_g$的<strong>信息增益</strong>小于阈值$\epsilon$,则置$T$为单节点树，并将$D$中实例数最大的类$C_k$作为该节点的类标记，返回$T$<br> (5)否则，对$A_g$的每一可能值$a_i$,依$A_g=a_i$将$D$分割为若干非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子节点，由节点及其子节点构成树$T$,返回$T$<br> (6)对第$i$个子节点，以$D_i$为训练集，以$A-\{A_g\}$为特征集，递归调用步骤(1)~(5)，得到子树$T_i$,返回$T_i$</p>
+</blockquote>
+<h4 id="C4-5算法-基于信息增益比"><a href="#C4-5算法-基于信息增益比" class="headerlink" title="C4.5算法(基于信息增益比)"></a>C4.5算法(基于信息增益比)</h4><p>C4.5算法本质上和ID3算法是一样的，只是采用信息增益比作为特征选择的评价准则。</p>
+<blockquote>
+<p>输入：训练数据集$D$，特征集$A$阈值$\epsilon$</p>
+<p>输出：决策树$T$</p>
+<p> (1)若$D$中实例属于同一类$C_k$，则$T$为单节点树。并将类$C_k$作为该节点的类标记，返回$T$<br> (2)若$A=\phi$，则$T$为单节点树，并将$D$中实例数最大的类$C_k$作为该节点的类标记，返回$T$<br> (3)否则，按照求解<strong>信息增益比</strong>的算法，计算$A$中各特征对$D$的信息增益，选择<strong>信息增益比</strong>最大的特征$A_g$<br> (4)如果$A_g$的<strong>信息增益比</strong>小于阈值$\epsilon$,则置$T$为单节点树，并将$D$中实例数最大的类$C_k$作为该节点的类标记，返回$T$<br> (5)否则，对$A_g$的每一可能值$a_i$,依$A_g=a_i$将$D$分割为若干非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子节点，由节点及其子节点构成树$T$,返回$T$<br> (6)对第$i$个子节点，以$D_i$为训练集，以$A-\{A_g\}$为特征集，递归调用步骤(1)~(5)，得到子树$T_i$,返回$T_i$</p>
+</blockquote>
+<h3 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h3><p>通过前边决策树生成算法的步骤生成的决策树可能对训练数据有很好的拟合效果，但是由于分支过细，可能会包含太多训练集中的信息，导致泛化能力很差，对未知的数据没有准确的分类。解决这个问题的办法是考虑决策树的复杂度，对已生成的决策树进行简化。</p>
+<blockquote>
+<p>输入：生成算法产生的整个决策树$T$,参数$\alpha$</p>
+<p>输出：修剪后的子树$T_\alpha$</p>
+<p>(1)计算每个节点的经验熵<br>(2)递归的从树的叶节点向上回缩。设一组叶节点回缩到其父节点之前与之后的整体树分别为$T_B,T_A$，其对应的损失函数分别是$C_\alpha(T_B)$与$C_\alpha(T_A)$,如果<script type="math/tex">C_\alpha(T_A)\leq C_\alpha(T_B)</script>则进行剪枝，将父节点变为新的叶节点。<br>(3)返回(2)，直至不能继续为止，得到损失函数最小的子树$T_\alpha$</p>
+</blockquote>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/07/12/《统计学习方法》笔记--逻辑斯谛回归与最大熵模型/" class="pre-post btn btn-default" title="统计学习方法--逻辑斯谛回归">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">统计学习方法--逻辑斯谛回归</span>
+        </a>
+    
+    
+        <a href="/2019/06/09/《统计学习方法》笔记--朴素贝叶斯/" class="next-post btn btn-default" title="统计学习方法--朴素贝叶斯">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">统计学习方法--朴素贝叶斯</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#决策树概述"><span class="toc-text">决策树概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#决策树模型"><span class="toc-text">决策树模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#特征选择"><span class="toc-text">特征选择</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#熵"><span class="toc-text">熵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#条件熵"><span class="toc-text">条件熵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#经验熵和经验条件熵"><span class="toc-text">经验熵和经验条件熵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#信息增益（互信息）"><span class="toc-text">信息增益（互信息）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#信息增益比"><span class="toc-text">信息增益比</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#决策树生成"><span class="toc-text">决策树生成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ID3算法-基于信息增益"><span class="toc-text">ID3算法(基于信息增益)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C4-5算法-基于信息增益比"><span class="toc-text">C4.5算法(基于信息增益比)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#决策树的剪枝"><span class="toc-text">决策树的剪枝</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
