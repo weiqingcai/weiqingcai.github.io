@@ -30,7 +30,7 @@ before_script:
   - export TZ='Asia/Shanghai'
   - npm install -g gulp
   - chmod +777 _travis.sh
-
+  - npm install hexo
 script:
   - sudo hexo g && hexo d
 
