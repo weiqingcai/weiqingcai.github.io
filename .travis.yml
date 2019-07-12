@@ -32,7 +32,7 @@ before_script:
   - chmod +777 _travis.sh
   - npm install hexo
 script:
-  - sudo hexo g && hexo d
+  - hexo g && hexo d
 
 after_success:
  # - LAST_BUILD_NUMBER=68
