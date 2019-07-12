@@ -1,7 +1,7 @@
 language: node_js
 node_js: stable
 
-sudo: true
+sudo: false
 
 #cache
 cache:
@@ -29,10 +29,10 @@ install:
 before_script:
   - export TZ='Asia/Shanghai'
   - npm install -g gulp
-  - chmod +777 _travis.sh
-  - npm install hexo
+  - chmod +x _travis.sh
 script:
-  - hexo g && hexo d
+  - hexo clean && hexo g
+  - gulp
 
 after_success:
  # - LAST_BUILD_NUMBER=68
