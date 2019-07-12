@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="统计学习,机器学习">
+
+
+    <meta name="description" content="逻辑斯谛回归概述逻辑斯谛回归的主要思想是：根据现有数据对分类边界线建立回归公式，以此进行分类。这里的“回归”一词源于最佳拟合，表示要找到最佳拟合参数。而最佳拟合参数就是在训练分类器时，通过最优化...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>统计学习方法--逻辑斯谛回归 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="统计学习方法--逻辑斯谛回归">
+            
+	            统计学习方法--逻辑斯谛回归
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/机器学习/">机器学习</a> <a class="tag-link" href="/tags/统计学习/">统计学习</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/07/12</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="逻辑斯谛回归概述"><a href="#逻辑斯谛回归概述" class="headerlink" title="逻辑斯谛回归概述"></a>逻辑斯谛回归概述</h2><p>逻辑斯谛回归的主要思想是：根据现有数据对分类边界线建立回归公式，以此进行分类。这里的“回归”一词源于最佳拟合，表示要找到最佳拟合参数。而最佳拟合参数就是在训练分类器时，通过最优化算法获得。</p>
+<h3 id="逻辑斯谛分布"><a href="#逻辑斯谛分布" class="headerlink" title="逻辑斯谛分布"></a>逻辑斯谛分布</h3><blockquote>
+<p>设$X$是连续随机变量，$X$服从逻辑斯谛分布是指$X$具有以下分布函数和概率密度函数：<script type="math/tex">F(x)=P(X\leq x)=\frac{1}{1+e^{-(x-\mu)/\gamma}}</script> <script type="math/tex">f(x)=F'(x)=\frac{e^{-(x-\mu)/\gamma}}{\gamma(1+e^{-(x-\mu)/\gamma})^2}</script>其中$\mu$为位置参数，$\gamma \gt 0$为形状参数</p>
+</blockquote>
+<h3 id="二项式逻辑斯谛回归模型"><a href="#二项式逻辑斯谛回归模型" class="headerlink" title="二项式逻辑斯谛回归模型"></a>二项式逻辑斯谛回归模型</h3><blockquote>
+<script type="math/tex; mode=display">P(Y=1|x) = \frac{exp(\omega\cdot x+b)}{1+exp(\omega\cdot x+b)}$$$$P(Y=0|x) = \frac{1}{1+exp(\omega\cdot x+b)}</script><p>这里$x\in R^n$是输入，$Y\in\{0,1\}$是输出，$\omega\in R^n$和$b\in R^n$是参数，$\omega$称为权值向量，$b$称为偏置，$\omega\cdot x$是$\omega$和$X$的內积</p>
+<p>对于给定的输入实例$X$，按照上式可以求得实例属于两种类别的概率，逻辑斯谛回归模型比较两个概率的大小，将实例归入概率较大的那一类中。</p>
+</blockquote>
+<h3 id="模型参数估计"><a href="#模型参数估计" class="headerlink" title="模型参数估计"></a>模型参数估计</h3><blockquote>
+<p>对于给定的训练数据集$T=\{(x_1,y_1),(x_2,y_2)…(x_N,y_N)\}$其中$x_i\in R^n,y_i\in \{0,1\}$可以应用<code>极大似然估计</code>来得到模型的参数，从而得到逻辑斯谛回归模型。</p>
+<p>设<script type="math/tex">P(Y=1|x)=\pi(x),P(Y=0|x)=1-\pi(x)</script>则可得似然函数<script type="math/tex">\prod_{i=1}^N[\pi(x_i)]^{y_i}[1-\pi(x_i)]^{1-y_i}</script>对数似然函数为：<script type="math/tex">L(\omega)=\sum_{i=1}^N[y_i\log\pi(x)+(1-y_i\log(1-\pi(x_i)))]</script>即最终变成求解$L(\omega)$极大值的问题。一般可以采用<code>梯度下降</code>或者是<code>拟牛顿法</code>求解</p>
+<p>最后求出$\omega$的极大似然估计值即可得到逻辑斯谛回归模型。</p>
+</blockquote>
+<h3 id="多项式逻辑斯谛回归"><a href="#多项式逻辑斯谛回归" class="headerlink" title="多项式逻辑斯谛回归"></a>多项式逻辑斯谛回归</h3><p>二项式逻辑斯谛回归应用于二类分类问题，将其推广到多项式逻辑斯谛回归就可以应用于多类分类问题。</p>
+<blockquote>
+<p>假设离散型随机变量$Y$的取值集合是$\{1,2,…,K\}$则多项式逻辑斯谛回归模型是<script type="math/tex">P(Y=k|x)=\frac{\exp(\omega_k\cdot x)}{1+\sum_{k=1}^{K-1}\exp(\omega_k \cdot x)},  k=1,2,3...,K-1</script> <script type="math/tex">P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}\exp(\omega_k \cdot x)}</script>这里$x\in R^{n+1},\omega_k\in R^{n+1}$这是将偏置项拓展到权值向量$\omega$和输入向量$x$中。</p>
+</blockquote>
+<h3 id="逻辑斯谛回归模型和线性回归模型，SVM模型的异同"><a href="#逻辑斯谛回归模型和线性回归模型，SVM模型的异同" class="headerlink" title="逻辑斯谛回归模型和线性回归模型，SVM模型的异同"></a>逻辑斯谛回归模型和线性回归模型，SVM模型的异同</h3><p>总体而言，三者都属于线性模型，只是通过计算得到的线性平面的用法不同。逻辑斯谛回归和SVM是分类模型，线性回归属于回归模型。</p>
+<h4 id="关于三种模型异同的相关文章："><a href="#关于三种模型异同的相关文章：" class="headerlink" title="关于三种模型异同的相关文章："></a>关于三种模型异同的相关文章：</h4><ul>
+<li><a href="https://blog.csdn.net/weixin_34032792/article/details/87134490" target="_blank" rel="noopener">线性模型（线性回归、感知机和逻辑斯谛回归）</a></li>
+<li><a href="https://blog.csdn.net/sunflower_sara/article/details/81713449" target="_blank" rel="noopener">SVM简介、SVM与感知机、逻辑回归LR的区别</a></li>
+<li><a href="https://blog.csdn.net/zrh_CSDN/article/details/80920329" target="_blank" rel="noopener">逻辑斯蒂回归和感知机模型、支持向量机模型对比</a></li>
+</ul>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/07/12/《统计学习方法》笔记--最大熵模型/" class="pre-post btn btn-default" title="统计学习方法--最大熵模型">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">统计学习方法--最大熵模型</span>
+        </a>
+    
+    
+        <a href="/2019/06/16/《统计学习方法》笔记--决策树/" class="next-post btn btn-default" title="统计学习方法--决策树">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">统计学习方法--决策树</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑斯谛回归概述"><span class="toc-text">逻辑斯谛回归概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑斯谛分布"><span class="toc-text">逻辑斯谛分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二项式逻辑斯谛回归模型"><span class="toc-text">二项式逻辑斯谛回归模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型参数估计"><span class="toc-text">模型参数估计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多项式逻辑斯谛回归"><span class="toc-text">多项式逻辑斯谛回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑斯谛回归模型和线性回归模型，SVM模型的异同"><span class="toc-text">逻辑斯谛回归模型和线性回归模型，SVM模型的异同</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关于三种模型异同的相关文章："><span class="toc-text">关于三种模型异同的相关文章：</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
