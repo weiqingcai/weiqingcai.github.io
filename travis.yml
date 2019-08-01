@@ -31,8 +31,8 @@ before_script:
   - npm install -g gulp
   - chmod +x _travis.sh
 script:
-  - hexo g
-#   - gulp
+  - hexo clean && hexo g
+  - gulp
 
 after_success:
  # - LAST_BUILD_NUMBER=68
