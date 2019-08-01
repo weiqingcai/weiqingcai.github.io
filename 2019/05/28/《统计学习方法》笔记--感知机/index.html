@@ -1,0 +1,389 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="统计学习,机器学习">
+
+
+    <meta name="description" content="感知机概述感知机是二类分类的线性模型，输入为实例的特征向量，输出为实例的类别，取+1和-1两个值。感知机本质对应于输入空间的一个超平面，通过将正负两类通过一个超平面划分开来，属于判别式模型。
+感...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>统计学习方法--感知机 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="统计学习方法--感知机">
+            
+	            统计学习方法--感知机
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/机器学习/">机器学习</a> <a class="tag-link" href="/tags/统计学习/">统计学习</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/05/28</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="感知机概述"><a href="#感知机概述" class="headerlink" title="感知机概述"></a>感知机概述</h2><p>感知机是二类分类的线性模型，输入为实例的特征向量，输出为实例的类别，取+1和-1两个值。感知机本质对应于输入空间的一个超平面，通过将正负两类通过一个超平面划分开来，属于判别式模型。</p>
+<h2 id="感知机模型"><a href="#感知机模型" class="headerlink" title="感知机模型"></a>感知机模型</h2><blockquote>
+<p>假设输入空间（特征空间）是 $\chi \subseteqq R^n$ 输出空间是 $y=\{+1,-1\}$ 。输入$x\in \chi$表示实例的特征向量，对应于输入空间的点；输出$ y \in Y$表示实例的类别。由输入空间到输出空间的如下函数 <script type="math/tex">f(x)=sign(w \cdot x +b)</script> 称为感知机。其中 $w$ 和$b$称为感知机模型参数， $w\in R^n$ 叫做权值或者权重向量，$b\in R$ 叫做偏置，$w\cdot x$ 表示$w$和$x$的内积，$sign$是符号函数,即<script type="math/tex">sign(x)=\left\{\begin{array}{cc}+1, & x \geqslant0 \\-1, & \ x<0\end{array}\right.</script></p>
+</blockquote>
+<h2 id="感知机学习策略"><a href="#感知机学习策略" class="headerlink" title="感知机学习策略"></a>感知机学习策略</h2><h3 id="数据集的要求"><a href="#数据集的要求" class="headerlink" title="数据集的要求"></a>数据集的要求</h3><p>运用感知机模型首先要求数据集是线性可分的，即通俗的说就是对于给定的数据集，存在这样一个超平面，能够将数据集的正实例点(y=+1)和负实例点(y=-1)完全正确的划分到超平面的两侧，这样就称为数据集是线性可分的。</p>
+<h4 id="形式化定义："><a href="#形式化定义：" class="headerlink" title="形式化定义："></a>形式化定义：</h4><blockquote>
+<p>给定一个数据集，<script type="math/tex">T=\{(x_1,y_1),(x_2,y_2)...(x_N,y_N)\}</script>其中 $x_i \in \chi=R^n,y_i \in \gamma=\{ +1,-1\},i=1,2,…N,$如果存在某个超平面S,对所有$y_i=+1$的实例$i$有$w \cdot x_i+b&gt;0$,对所有$y_i=-1$的实例$i$有$w \cdot x_i+b&lt;0$。则称数据集T为线性可分数据集，否则为线性不可分。</p>
+</blockquote>
+<h3 id="学习策略（损失函数最小化策略）"><a href="#学习策略（损失函数最小化策略）" class="headerlink" title="学习策略（损失函数最小化策略）"></a>学习策略（损失函数最小化策略）</h3><p>感知机$sign(w\cdot x+b)$学习的损失函数定义为：<script type="math/tex">L(w,b)=-\sum_{x_i \in M}y_i(w\cdot x+b)</script>其中$M$为误分类点的集合。</p>
+<p>这个损失函数的基本思想就是通过衡量误分类点距离超平面的总距离来计算，实际上计算了感知机器学习的经验风险函数。直观来看，如果没有误分类点，损失函数就是0，而且误分类点越少，离超平面越近。损失函数值就越少。</p>
+<blockquote>
+<p>注：任意一点到超平面的距离公式为<script type="math/tex">\frac{1}{||w||}|w\cdot x+b|</script>这里$||w||$是$w$的$L_2$范数。在构造感知机学习损失函数时不考虑$\frac{1}{||w||}$</p>
+</blockquote>
+<h2 id="感知机学习算法"><a href="#感知机学习算法" class="headerlink" title="感知机学习算法"></a>感知机学习算法</h2><p>感知机学习算法有一个直观的理解，当一个实例被误分类时其位于分离超平面错误的一侧，我们通过调整$w，b$的值使得超平面向该误分类点的一侧移动，以减少该误分类点与超平面的距离，直到超平面越过该点，使其被正确分类。</p>
+<h3 id="原始形式"><a href="#原始形式" class="headerlink" title="原始形式"></a>原始形式</h3><blockquote>
+<p>输入：训练数据集$T=\{(x_1,y_1),(x_2,y_2)…(x_N,y_N)\};$其中 $x_i \in \chi=R^n,y_i \in \gamma=\{ +1,-1\},i=1,2,…N$;学习率$\eta(0&lt;\eta\leqslant1)$</p>
+<p>输出：$w,b;$感知机模型$f(x)=sign(w\cdot x+b)$</p>
+<p>(1)选取初始值$w_0,b_0$<br>(2)在训练集中选取数据$(x_i,y_i)$<br>(3)如果$y_i(w\cdot x_i+b)\leqslant0$,<script type="math/tex">w\gets w+\eta y_ix_i</script> <script type="math/tex">b\gets b+\eta y_i</script><br>(4)转至(2)，直至训练集中没有误分类点</p>
+</blockquote>
+<h3 id="对偶形式"><a href="#对偶形式" class="headerlink" title="对偶形式"></a>对偶形式</h3><blockquote>
+<p>输入：线性可分数据集$T=\{(x_1,y_1),(x_2,y_2)…(x_N,y_N)\};$其中 $x_i \in \chi=R^n,y_i \in \gamma=\{ +1,-1\},i=1,2,…N$;学习率$\eta(0&lt;\eta\leqslant1)$</p>
+<p>输出：$\alpha,b;$感知机模型$f(x)=sign(\sum_{j=i}^{N}\alpha_jy_jx_j\cdot x+b)$,其中$\alpha = (\alpha_1,\alpha_2,…\alpha_N)^T$</p>
+<p>(1)$\alpha\gets0,b\gets0$<br>(2)在训练数据集中选取数据$(x_i,y_i)$<br>(3)如果$y_i(\sum_{j=1}^{N}\alpha_jy_jx_j\cdot x_i+b)\leqslant0$,<script type="math/tex">\alpha_i\gets\alpha_i+\eta</script> <script type="math/tex">b\gets b+\eta y_i</script><br>(4)转至(2)直至没有误分类数据</p>
+</blockquote>
+<h3 id="联系与区别"><a href="#联系与区别" class="headerlink" title="联系与区别"></a>联系与区别</h3><p>在最开始看到两种形式的感知机学习算法时有点不明白为什么会在原始形式上发展出对偶形式，因为虽然对偶形式的算法可以通过提前计算一些变量来获得一定的加速，但是本质上还是要迭代更新权重来进行训练。</p>
+<p>后来明白这是由于从不同的角度去解决问题而给出的算法，对偶通俗理解即从不同角度去解答相似问题，但问题的解是相通的，甚至是一样的。另外感知机的对偶算法在特征维度很高时提升性能的效果很明显，由于可以提前计算出$x_j\cdot y_j$这样每次在判断误分类时可以直接查找表中数据，不用重新计算两者内积。例如对于特征向量维度为N的数据集，可以把每次的$N\cdot N$运算降低到$N$<br>详细可以阅读知乎回答<a href="https://www.zhihu.com/question/26526858/answer/131591887" target="_blank" rel="noopener">如何理解感知机学习算法的对偶形式？</a></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/06/02/《统计学习方法》笔记-K近邻/" class="pre-post btn btn-default" title="统计学习方法--K近邻">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">统计学习方法--K近邻</span>
+        </a>
+    
+    
+        <a href="/2019/05/28/《统计学习方法》笔记--概述/" class="next-post btn btn-default" title="统计学习方法--概述">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">统计学习方法--概述</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#感知机概述"><span class="toc-text">感知机概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感知机模型"><span class="toc-text">感知机模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感知机学习策略"><span class="toc-text">感知机学习策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据集的要求"><span class="toc-text">数据集的要求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#形式化定义："><span class="toc-text">形式化定义：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#学习策略（损失函数最小化策略）"><span class="toc-text">学习策略（损失函数最小化策略）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感知机学习算法"><span class="toc-text">感知机学习算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原始形式"><span class="toc-text">原始形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对偶形式"><span class="toc-text">对偶形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#联系与区别"><span class="toc-text">联系与区别</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
