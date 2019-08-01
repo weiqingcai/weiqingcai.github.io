@@ -1,0 +1,428 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="统计学习,机器学习">
+
+
+    <meta name="description" content="统计学习概述统计学习是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测与分析的学科。目的是使得计算机系统通过运用数据及统计学习方法提高系统性能。
+统计学习方法可以概述如下：
+
+从给定的...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>统计学习方法--概述 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(/img/start.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='WeiQingcai'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="统计学习方法--概述">
+            
+	            统计学习方法--概述
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/机器学习/">机器学习</a> <a class="tag-link" href="/tags/统计学习/">统计学习</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/05/28</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="统计学习概述"><a href="#统计学习概述" class="headerlink" title="统计学习概述"></a>统计学习概述</h2><p>统计学习是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测与分析的学科。目的是使得计算机系统通过运用数据及统计学习方法提高系统性能。</p>
+<p>统计学习方法可以概述如下：</p>
+<blockquote>
+<p>从给定的，有限的用于训练的数据集合出发，假设数据是独立同分布产生的；并且假设要学习的模型属于某个函数的集合，称为假设空间；应用某个评价准则，从假设模型中选取一个最优模型，使它对已知的训练数据及未知的测试数据在给定的评定准则下有最优的预测；最优模型的选取由算法实现。</p>
+</blockquote>
+<h2 id="统计学习分类"><a href="#统计学习分类" class="headerlink" title="统计学习分类"></a>统计学习分类</h2><h3 id="基本分类"><a href="#基本分类" class="headerlink" title="基本分类"></a>基本分类</h3><ol>
+<li><p>监督学习：从标注数据中学习预测模型的机器学习问题，本质是学习输入到输出的映射统计规律</p>
+</li>
+<li><p>无监督学习：从无标注的数据中学习预测模型的机器学习问题，本质是学习数据中的统计规律或潜在结构</p>
+</li>
+<li><p>强化学习：智能系统在与环境的连续交互中学习最后最优行为策略的机器学习问题，本质是学习最优的序贯决策。智能系统的目的不是短期奖励的最大化，二十长期累积奖励的最大化。</p>
+</li>
+<li><p>半监督学习：指利用标注数据和未标注数据学习预测模型的机器学习问题。主要是通过未标注的数据中的信息，辅助标注数据进行监督学习。</p>
+</li>
+<li><p>主动学习：指机器不断主动给出具有较高区分度的实例进行标注，然后利用标注数据学习预测模型的机器学习问题。</p>
+</li>
+</ol>
+<h3 id="按照模型分类"><a href="#按照模型分类" class="headerlink" title="按照模型分类"></a>按照模型分类</h3><ol>
+<li>概率模型/非概率模型：两者的区别不在于输入和输出之间的映射，而在于模型的内在结构。概率模型一定可以表示为联合概率分布的形式，而非概率模型则不一定存在这样的联合概率分布。</li>
+<li>线性模型/非线性模型：根据模型的函数表达形式是否是线性函数分为线性模型和非线性模型。</li>
+<li>参数化模型/非参数化模型：参数化模型假设模型参数的维度固定，模型可以由有限维参数完全刻画，非参数化模型假设模型参数的维度不固定，随着训练数据量的增加而不断增大。</li>
+</ol>
+<h3 id="按照算法分类"><a href="#按照算法分类" class="headerlink" title="按照算法分类"></a>按照算法分类</h3><ol>
+<li>在线学习：每次接受一个样本，进行预测，之后学习模型，并不断重复该循环步骤的机器学习问题。</li>
+<li>批量学习：一次接受全部的数据，学习模型之后进行预测。</li>
+</ol>
+<h3 id="按照技巧分类"><a href="#按照技巧分类" class="headerlink" title="按照技巧分类"></a>按照技巧分类</h3><ol>
+<li>贝叶斯学习：在概率模型的学习和推理中，利用贝叶斯定理，计算在给定数据条件下模型的条件概率，并应用这个定理进行模型的估计以及数据的预测。</li>
+<li>核方法：使用核函数表示和学习非线性模型的一种机器学习方法。</li>
+</ol>
+<h2 id="统计学习方法三要素"><a href="#统计学习方法三要素" class="headerlink" title="统计学习方法三要素"></a>统计学习方法三要素</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>模型就是要学习的条件概率分布或者决策函数</p>
+<h3 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h3><p>策略就是学习或者选择模型的准则</p>
+<ol>
+<li>损失函数度量模型一次预测的好坏</li>
+<li>风险函数度量平均意义下模型预测的好坏，也称为期望损失</li>
+<li>期望风险是模型关于联合分布的的期望损失</li>
+<li>经验风险是模型关于训练样本集的平均损失</li>
+<li>结构风险是在经验风险上加上表示模型复杂度的正则化项或罚项</li>
+<li>训练误差是指模型关于训练集的平均损失</li>
+<li>测试误差是指模型关于测试集的平均损失</li>
+<li>过拟合是指学习时选择的模型所包含的参数过多，以至于模型对已知的数据预测的很好，而对未知的数据预测的很差的现象。</li>
+<li>交叉验证：<ul>
+<li>简单交叉验证（流出交叉验证）：        <ul>
+<li>随机将数据分为两部分，一部分用于训练集，一部分用于验证集。</li>
+</ul>
+</li>
+<li>K折交叉验证：<ul>
+<li>随机将数据切分为K个互不交互，大小相等的数据集，每次用其中的K-1个数据集进行训练，用余下的子集测试模型，这样进行K次，用K次的平均值作为模型评价指标</li>
+</ul>
+</li>
+<li>留一交叉验证：<ul>
+<li>K折交叉验证的特例，取K折数等于数据集容量N</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>泛化误差：模型对未知数据预测的误差的期望</li>
+<li>生成模型/判别模型：<ul>
+<li>生成模型通过数据学习联合概率分布 $P(X,Y)$ 然后求出条件概率分布 $P(X|Y)$ 作为预测的模型。它表示了给定输入$X$输出 $Y$的生成关系。</li>
+<li>判别模型通过数据直接学习决策函数 $f(X)$ 或者条件概率分布 $P(X|Y)$ 作为预测模型。它关心的是对给定的输入$X$，应该预测什么样的输出$Y$<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3>算法就是学习模型的具体计算方法</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/05/28/《统计学习方法》笔记--感知机/" class="pre-post btn btn-default" title='统计学习方法--感知机'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">统计学习方法--感知机</span>
+        </a>
+    
+    
+        <a href="/2019/05/09/社会工程学简述/" class="next-post btn btn-default" title='社会工程学学习笔记概述'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">社会工程学学习笔记概述</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习概述"><span class="toc-text">统计学习概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习分类"><span class="toc-text">统计学习分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本分类"><span class="toc-text">基本分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按照模型分类"><span class="toc-text">按照模型分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按照算法分类"><span class="toc-text">按照算法分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按照技巧分类"><span class="toc-text">按照技巧分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计学习方法三要素"><span class="toc-text">统计学习方法三要素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#模型"><span class="toc-text">模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#策略"><span class="toc-text">策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法"><span class="toc-text">算法</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
