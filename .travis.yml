@@ -20,7 +20,7 @@ before_install:
   - sudo apt-get install libnotify-bin
 
 install:
-  - npm install hexo
+  - npm install
 #   - gem install travis
 #   - travis login --pro --github-token ${GH_TOKEN}
 
@@ -29,7 +29,7 @@ before_script:
   - npm install -g gulp
   - chmod +x _travis.sh
 script:
-  - hexo clean && hexo g
+  - hexo g
 #   - gulp
 
 after_success:
