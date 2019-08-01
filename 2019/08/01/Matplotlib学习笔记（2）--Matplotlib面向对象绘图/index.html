@@ -1,0 +1,406 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据可视化,Matplotlib">
+
+
+    <meta name="description" content="Matplotlib面向对象简介Matplotlib面向对象主要是可以实现更加定制化的绘图，但相比于通过直接使用pyplot而言使用也更加复杂。Matplotlib中大的对象主要分为三个，Fig...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Matplotlib学习笔记（二） | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Matplotlib学习笔记（二）">
+            
+	            Matplotlib学习笔记（二）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Matplotlib/">Matplotlib</a> <a class="tag-link" href="/tags/数据可视化/">数据可视化</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/01</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Matplotlib面向对象简介"><a href="#Matplotlib面向对象简介" class="headerlink" title="Matplotlib面向对象简介"></a>Matplotlib面向对象简介</h2><p>Matplotlib面向对象主要是可以实现更加定制化的绘图，但相比于通过直接使用pyplot而言使用也更加复杂。Matplotlib中大的对象主要分为三个，FigureCanvas（画布），Figure（图），Axes（绘制的坐标轴）。</p>
+<h2 id="一张图中绘制多个子图"><a href="#一张图中绘制多个子图" class="headerlink" title="一张图中绘制多个子图"></a>一张图中绘制多个子图</h2><p><img src="https://img-blog.csdn.net/20180524094217309?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="绘制多个子图"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x = np.arange(1, 100)</span><br><span class="line"></span><br><span class="line"># 创建一个图</span><br><span class="line">fig = plt.figure()</span><br><span class="line">#331表示，将这个图分为3*3的格式(即一共可以添加9个子图)，并添加一号子图</span><br><span class="line">ax1 = fig.add_subplot(331)</span><br><span class="line">ax1.plot(x,x)</span><br><span class="line">#334表示向这个3*3的图中添加四号子图</span><br><span class="line">ax2 = fig.add_subplot(334)</span><br><span class="line">ax2.plot(x,np.log(x))</span><br><span class="line"></span><br><span class="line"># 对于同一个figure而言，划分成的格式应该一样</span><br><span class="line"># 例如对于上边的figure而言，fig.add_subplot()中的参数只能是“33X”</span><br><span class="line"># 33表示的是将一个figure按照3*3划分，X表示要操作的子图，取值范围为1-9</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="生成多张图"><a href="#生成多张图" class="headerlink" title="生成多张图"></a>生成多张图</h2><p>生成多张图可以通过创建多个Figure对象来实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x = np.arange(0, 100)</span><br><span class="line"></span><br><span class="line">fig1 = plt.figure()</span><br><span class="line">ax1 = fig1.add_subplot(111)</span><br><span class="line"></span><br><span class="line">ax1.plot(x,x)</span><br><span class="line"></span><br><span class="line">fig2 = plt.figure()</span><br><span class="line">ax2 = fig2.add_subplot(111)</span><br><span class="line"></span><br><span class="line">ax2.plot(x,-x)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="网格背景及图例的显示"><a href="#网格背景及图例的显示" class="headerlink" title="网格背景及图例的显示"></a>网格背景及图例的显示</h2><p><img src="https://img-blog.csdn.net/20180524102934730?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="网格及图例显示"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x = np.arange(1,10,1)</span><br><span class="line"></span><br><span class="line">plt.plot(x,x*2,label=&quot;Normal&quot;)</span><br><span class="line">plt.plot(x,x*3,label=&quot;Fast&quot;)</span><br><span class="line">plt.plot(x,x*4,label=&quot;Faster&quot;)</span><br><span class="line"></span><br><span class="line">#网格的显示可以通过plt.grid(True)来显示</span><br><span class="line">plt.grid(True)</span><br><span class="line">#图例的显示可以通过plt.legend()来显示，需要提前给要绘制的图形添加上label</span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html?highlight=legend#matplotlib.pyplot.legend" target="_blank" rel="noopener">官网对于legend的参数的详解</a></strong></p>
+<p><strong><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.grid.html?highlight=grid#matplotlib.pyplot.grid" target="_blank" rel="noopener">官网对于grid的参数的详解</a></strong></p>
+<p>在使用面向对象的绘图中可以通过对Axes的操作来实现图例的显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(1,10,1)</span><br><span class="line"></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax1 = fig.add_subplot(111)</span><br><span class="line">ax1.plot(x,x*2,label=&quot;Normal&quot;)</span><br><span class="line">ax1.legend()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="调整坐标轴范围"><a href="#调整坐标轴范围" class="headerlink" title="调整坐标轴范围"></a>调整坐标轴范围</h2><p>调整坐标轴范围可以有多种方式，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x = np.arange(1,11,1)</span><br><span class="line"></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax1 = fig.add_subplot(111)</span><br><span class="line">ax1.plot(x,x)</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p><strong>方式一</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#使用plt.axis()函数，四个值分别对应着x轴的起点，终点，y轴的起点，终点</span><br><span class="line">plt.axis([5,10,4,8])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>方式二</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#使用plt.xlim()函数</span><br><span class="line">plt.xlim(xmin=2,xmax=8)</span><br><span class="line">plt.ylim(ymin=2,ymax=8)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="调整坐标轴的刻度"><a href="#调整坐标轴的刻度" class="headerlink" title="调整坐标轴的刻度"></a>调整坐标轴的刻度</h2><p><img src="https://img-blog.csdn.net/20180524162315535?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="调整坐标轴刻度"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">x = np.arange(1,11,1)</span><br><span class="line"></span><br><span class="line">plt.plot(x,x)</span><br><span class="line"></span><br><span class="line">ax = plt.gca()</span><br><span class="line">#只调整x轴刻度</span><br><span class="line">ax.locator_params(&apos;x&apos;,nbins=20)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>调整坐标轴的刻度有两种方式：</p>
+<ol>
+<li><p>通过Axes对象的locator_params()函数（面向对象的方式）</p>
+</li>
+<li><p>通过matplotlib.pyplot的locator_params()函数</p>
+</li>
+</ol>
+<p>两种方式其实使用的都是locator_params()，其有多个参数可供选择</p>
+<p><strong>常用参数有：</strong></p>
+<ul>
+<li><p>nbins：划分成多少份刻度</p>
+</li>
+<li><p>x：表示调整的是x轴刻度</p>
+</li>
+<li><p>y：表示调整的是y轴刻度</p>
+</li>
+<li><p>注：若x，y都不填则默认参数为both，即两个轴都会调整</p>
+</li>
+</ul>
+<p><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.locator_params.html?highlight=locator_params#matplotlib.pyplot.locator_params" target="_blank" rel="noopener">locator_params()官网参数详解</a></p>
+<h2 id="绘制样式的美化"><a href="#绘制样式的美化" class="headerlink" title="绘制样式的美化"></a>绘制样式的美化</h2><p>之前的绘制都是直接使用原生的样式来绘制，而Matplotlib内建的提供了更多的多种样式可供我们选择。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#通过使用该方法可以美化我们绘制出的图形</span><br><span class="line">plt.style.use(&apos;ggplot&apos;)</span><br><span class="line"></span><br><span class="line">#该方法可以查看当前可供选择的style</span><br><span class="line">plt.style.available</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/08/01/Matplotlib学习笔记/" class="pre-post btn btn-default" title="Matplotlib学习笔记">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Matplotlib学习笔记</span>
+        </a>
+    
+    
+        <a href="/2019/08/01/Python小知识汇总/" class="next-post btn btn-default" title="Python小知识汇总">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Python小知识汇总</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Matplotlib面向对象简介"><span class="toc-text">Matplotlib面向对象简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图中绘制多个子图"><span class="toc-text">一张图中绘制多个子图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成多张图"><span class="toc-text">生成多张图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网格背景及图例的显示"><span class="toc-text">网格背景及图例的显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调整坐标轴范围"><span class="toc-text">调整坐标轴范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调整坐标轴的刻度"><span class="toc-text">调整坐标轴的刻度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制样式的美化"><span class="toc-text">绘制样式的美化</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

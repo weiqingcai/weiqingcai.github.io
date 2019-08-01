@@ -1,0 +1,416 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据可视化,Seaborn">
+
+
+    <meta name="description" content="Seaborn简介Seaborn是基于matplotlib的Python可视化库。它提供了一个高级界面来绘制有吸引力的统计图形。可以使得数据可视化更加的方便，美观。关于Seaborn的学习，推荐...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Seaborn学习笔记 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Seaborn学习笔记">
+            
+	            Seaborn学习笔记
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Seaborn/">Seaborn</a> <a class="tag-link" href="/tags/数据可视化/">数据可视化</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/01</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Seaborn简介"><a href="#Seaborn简介" class="headerlink" title="Seaborn简介"></a>Seaborn简介</h2><p>Seaborn是基于matplotlib的Python可视化库。它提供了一个高级界面来绘制有吸引力的统计图形。可以使得数据可视化更加的方便，美观。关于Seaborn的学习，推荐去官网，里边有详细的教程和示例。</p>
+<h2 id="Seaborn常用功能简介"><a href="#Seaborn常用功能简介" class="headerlink" title="Seaborn常用功能简介"></a>Seaborn常用功能简介</h2><h3 id="直接使用Seaborn的美化功能"><a href="#直接使用Seaborn的美化功能" class="headerlink" title="直接使用Seaborn的美化功能"></a>直接使用Seaborn的美化功能</h3><p>Seaborn直接提供了多种对matplotlib绘制的图形的美化功能，可以直接使用。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>使用matplotlib绘制图形，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#定义一个简单的绘图函数</span><br><span class="line">def sinplot(flip=1):</span><br><span class="line">    x = np.linspace(0, 14, 100)</span><br><span class="line">    for i in range(1, 7):</span><br><span class="line">        plt.plot(x, np.sin(x + i * .5) * (7 - i) * flip)</span><br></pre></td></tr></table></figure>
+<p><strong>直接使用matplotlib绘图效果</strong><br><img src="https://img-blog.csdn.net/20180531092416691?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="直接使用matplotlib绘图"></p>
+<p>使用Seaborn提供的默认主题美化图形绘制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#只需要在绘制图形之前调用Seaborn的set()函数就可以直接使用其设定好的默认主题进行美化</span><br><span class="line">sns.set()</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p><strong>使用Seaborn默认主题绘制效果</strong><br><img src="https://img-blog.csdn.net/20180531092541541?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="使用Seaborn默认主题绘制效果"></p>
+<p>Seaborn提供了多种风格的主题以供使用，可以通过sns.set_style()来直接使用。</p>
+<blockquote>
+<p>提供的直接使用的主题：<br>darkgrid，whitegrid，dark，white，和ticks<br>默认为darkgrid</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#使用Seaborn提供的主题绘制</span><br><span class="line">sns.set_style(&quot;ticks&quot;)</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p><strong>使用提供的主题‘ticks’绘制效果</strong><br><img src="https://img-blog.csdn.net/20180531092820181?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="使用提供的主题绘制"></p>
+<p>我们可以使用sns.despine()函数来去除图片顶部和右侧的坐标轴线，使得图片更加美观</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(&apos;ticks&apos;)</span><br><span class="line">sinplot()</span><br><span class="line">sns.despine()</span><br></pre></td></tr></table></figure>
+<p><strong>去除顶部和右侧轴线效果</strong><br><img src="https://img-blog.csdn.net/20180531093211224?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="去除轴线"></p>
+<p>Seaborn还提供了更为友好的with用法，可以让我们在一张图片中采用多种的绘图风格，所有在with域中的绘制采用一种风格，而不在with域中的则可以使用另一种风格。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#在with中使用一种风格</span><br><span class="line">with sns.axes_style(&quot;darkgrid&quot;):</span><br><span class="line">    plt.subplot(211)</span><br><span class="line">    sinplot()</span><br><span class="line">#不在with中的使用另一种风格，我们也可以使用多个with域来使用多种风格</span><br><span class="line">plt.subplot(212)</span><br><span class="line">sinplot(-1)</span><br></pre></td></tr></table></figure>
+<p><strong>一张图中使用多种风格效果</strong><br><img src="https://img-blog.csdn.net/20180531093922383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="一张图中使用多种风格效果"></p>
+<p>当然了，除了默认的提供的这些主题，我们也可以自己定义一些绘图的风格。通过向axes_style()和set_style()传递参数，可以定义自己的绘图主题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#通过传入字典的方式来定制自己的绘图风格</span><br><span class="line">sns.set_style(&quot;darkgrid&quot;, &#123;&quot;axes.facecolor&quot;: &quot;.9&quot;&#125;)</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p>我们可以通过直接调用set_style()函数来查看全部可以使用的参数。</p>
+<p><strong>set_style()可用参数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;axes.axisbelow&apos;: True,</span><br><span class="line"> &apos;axes.edgecolor&apos;: &apos;.15&apos;,</span><br><span class="line"> &apos;axes.facecolor&apos;: &apos;white&apos;,</span><br><span class="line"> &apos;axes.grid&apos;: False,</span><br><span class="line"> &apos;axes.labelcolor&apos;: &apos;.15&apos;,</span><br><span class="line"> &apos;axes.linewidth&apos;: 1.25,</span><br><span class="line"> &apos;figure.facecolor&apos;: &apos;white&apos;,</span><br><span class="line"> &apos;font.family&apos;: [&apos;sans-serif&apos;],</span><br><span class="line"> &apos;font.sans-serif&apos;: [&apos;Arial&apos;,</span><br><span class="line">  &apos;DejaVu Sans&apos;,</span><br><span class="line">  &apos;Liberation Sans&apos;,</span><br><span class="line">  &apos;Bitstream Vera Sans&apos;,</span><br><span class="line">  &apos;sans-serif&apos;],</span><br><span class="line"> &apos;grid.color&apos;: &apos;.8&apos;,</span><br><span class="line"> &apos;grid.linestyle&apos;: &apos;-&apos;,</span><br><span class="line"> &apos;image.cmap&apos;: &apos;rocket&apos;,</span><br><span class="line"> &apos;legend.frameon&apos;: False,</span><br><span class="line"> &apos;legend.numpoints&apos;: 1,</span><br><span class="line"> &apos;legend.scatterpoints&apos;: 1,</span><br><span class="line"> &apos;lines.solid_capstyle&apos;: &apos;round&apos;,</span><br><span class="line"> &apos;text.color&apos;: &apos;.15&apos;,</span><br><span class="line"> &apos;xtick.color&apos;: &apos;.15&apos;,</span><br><span class="line"> &apos;xtick.direction&apos;: &apos;out&apos;,</span><br><span class="line"> &apos;xtick.major.size&apos;: 6.0,</span><br><span class="line"> &apos;xtick.minor.size&apos;: 3.0,</span><br><span class="line"> &apos;ytick.color&apos;: &apos;.15&apos;,</span><br><span class="line"> &apos;ytick.direction&apos;: &apos;out&apos;,</span><br><span class="line"> &apos;ytick.major.size&apos;: 6.0,</span><br><span class="line"> &apos;ytick.minor.size&apos;: 3.0&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们还可以通过修改context参数来缩放图片中的元素。</p>
+<blockquote>
+<p>Seaborn内置了多种context风格 : paper, notebook, talk, and poster<br>默认使用的是notebook</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(&quot;poster&quot;)</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p><strong>设置context效果为poster</strong><br><img src="https://img-blog.csdn.net/2018053110001674?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="设置context效果"></p>
+<h3 id="使用Seaborn的调色板"><a href="#使用Seaborn的调色板" class="headerlink" title="使用Seaborn的调色板"></a>使用Seaborn的调色板</h3><p>Seaborn提供了可以便于使用的调色板，可以方便的作用于数据的可视化。</p>
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><p><strong>定性（或分类）调色板最适合用于区分不具有固有排序的离散数据块。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#可以使用color_palette()来调用生成一个色板</span><br><span class="line">current_palette = sns.color_palette()</span><br><span class="line">sns.palplot(current_palette)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531102235644?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="分类色板"></p>
+<p>我们也可以根据需要来定制一个循环的色板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#使用hls的颜色空间，分割成8个颜色</span><br><span class="line">sns.palplot(sns.color_palette(&quot;hls&quot;, 8))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531102839870?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="分割颜色空间"></p>
+<p>Seaborn还提供了一个提取配对颜色的方法，可以获得两个颜色相近的颜色对</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(&quot;Paired&quot;,10))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531103223177?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="配对颜色效果"></p>
+<p><strong>第二大类调色板被称为“顺序”。当数据范围从相对较低或不中断的值到相对较高或有趣的值时，这种颜色映射是适当的</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#逐渐变深色板</span><br><span class="line">sns.palplot(sns.color_palette(&quot;Blues&quot;))</span><br><span class="line">#若要是使得逐渐变浅，只需要在颜色后边加上‘_r’即可</span><br><span class="line"></span><br><span class="line">#由深变浅色板</span><br><span class="line">sns.palplot(sns.color_palette(&quot;Blues_r&quot;))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531104733555?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="渐变深色板"></p>
+<p><strong>第三类调色板被称为“发散”。这些数据用于大数值低值和高值有趣的数据。数据中通常也有明确的中点。例如，如果从某个基准时间点绘制温度变化，最好使用分散的色彩映射来显示相对减少的区域和相对增加的区域。</strong></p>
+<p>用于区分的色板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(&quot;BrBG&quot;, 7))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531143916680?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+<p>我们也可以自定义这种发散的调色板</p>
+<p><strong>中心颜色为浅色调的色板</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#sep控制中间浅色调的宽度</span><br><span class="line">sns.palplot(sns.diverging_palette(10, 220, sep=90, n=7))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531144957111?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="中心颜色为浅色调的色板"></p>
+<p><strong>中心颜色为深色调的色板</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.diverging_palette(255, 133, l=60, n=7, center=&quot;dark&quot;))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/2018053114505044?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="中心颜色为深色调的色板"></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/08/01/Python小知识汇总/" class="pre-post btn btn-default" title="Python小知识汇总">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Python小知识汇总</span>
+        </a>
+    
+    
+        <a href="/2019/08/01/Seaborn学习笔记（三）/" class="next-post btn btn-default" title="Seaborn学习笔记（三）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Seaborn学习笔记（三）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Seaborn简介"><span class="toc-text">Seaborn简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seaborn常用功能简介"><span class="toc-text">Seaborn常用功能简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#直接使用Seaborn的美化功能"><span class="toc-text">直接使用Seaborn的美化功能</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Seaborn的调色板"><span class="toc-text">使用Seaborn的调色板</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-1"><span class="toc-text">示例</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

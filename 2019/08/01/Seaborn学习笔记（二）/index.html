@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据可视化,Seaborn">
+
+
+    <meta name="description" content="之前学习了解的都是Seaborn的数据绘制时候的美化功能，只是为了使得绘制出的图形更加好看，Seaborn同样提供了许多的用于展示数据相互关系的绘图函数。
+Seaborn绘制数据集的分布1.  ...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Seaborn学习笔记（二） | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Seaborn学习笔记（二）">
+            
+	            Seaborn学习笔记（二）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Seaborn/">Seaborn</a> <a class="tag-link" href="/tags/数据可视化/">数据可视化</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/01</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>之前学习了解的都是Seaborn的数据绘制时候的美化功能，只是为了使得绘制出的图形更加好看，Seaborn同样提供了许多的用于展示数据相互关系的绘图函数。</p>
+<h4 id="Seaborn绘制数据集的分布"><a href="#Seaborn绘制数据集的分布" class="headerlink" title="Seaborn绘制数据集的分布"></a>Seaborn绘制数据集的分布</h4><p><strong>1.  绘制单变量分布</strong><br>最简便快速查看seaborn中单变量分布的是distplot()方法。默认情况下，这将绘制数据的直方图并拟合核心密度估计值（KDE）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = np.random.normal(size=100)</span><br><span class="line">sns.distplot(x);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531163739976?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="绘制单变量分布图"></p>
+<p>上边是使用distplot()绘制了一个变量分布的总体密度估计图，我们也可以选择在直方图中显示出具体每个数据在直方图区间的位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#还是使用随机生成的数据，但是设置rug为true</span><br><span class="line">x = np.random.normal(size=100)</span><br><span class="line">sns.distplot(x, kde=False, rug=True);</span><br></pre></td></tr></table></figure>
+<p>我们可以看到具体的数据的密度分布情况，而不是拟合的曲线<br><img src="https://img-blog.csdn.net/20180531165038920?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="具体的密度分布"></p>
+<p>同样的，我们也可以只显示具体数据的密度分布和他的对应拟合曲线</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = np.random.normal(size=100)</span><br><span class="line">sns.distplot(x, hist=False, rug=True);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531165356769?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="密度分布及拟合曲线"></p>
+<p>若是我们只是需要绘制数据分布密度的概览，而不是需要绘制直方图，我们可以直接使用Seaborn中提供的kdeplot()函数，上边的distplot()也是通过调用它来显示密度分布拟合曲线的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#直接显示密度分布的拟合曲线，而不是绘制直方图</span><br><span class="line">sns.kdeplot(x, shade=True);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/2018053117105578?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="概率密度拟合曲线"></p>
+<p>我们可以通过bw参数来控制拟合曲线的精细程度，就类似于绘制直方图时的bins参数一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#使用默认的bw参数</span><br><span class="line">sns.kdeplot(x)</span><br><span class="line">#调整bw参数，使得显示出来的密度分布拟合曲线更加接近数据</span><br><span class="line">sns.kdeplot(x, bw=.2, label=&quot;bw: 0.2&quot;)</span><br><span class="line">sns.kdeplot(x, bw=2, label=&quot;bw: 2&quot;)</span><br><span class="line">plt.legend();</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531171424811?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="调整拟合的精细程度"></p>
+<p><strong>2.  绘制双变量分布</strong><br>Seaborn提供了用于描述双变量分布情况的绘图函数，可以直观的查看双变量的分布情况。该函数创建一个多面板图形，显示两个变量之间的二元（或关节）关系以及每个单独轴上的单变量（或边际）分布。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(x=&quot;x&quot;, y=&quot;y&quot;, data=df);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531172607660?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="双变量的散点图"></p>
+<p>此外Seaborn还提供了直方图中的二元关系图，也常被称为“六边形图”，该图对于较大的数据集效果最好。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x, y = np.random.multivariate_normal(mean, cov, 1000).T</span><br><span class="line">with sns.axes_style(&quot;white&quot;):</span><br><span class="line">    sns.jointplot(x=x, y=y, kind=&quot;hex&quot;, color=&quot;k&quot;);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531173025214?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="六边形图"></p>
+<p>也可以使用核密度图来估计二元变量的关系，在Seaborn中会以轮廓图的形式显示出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(x=&quot;x&quot;, y=&quot;y&quot;, data=df, kind=&quot;kde&quot;);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531173254855?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="核密度图表示二元关系"></p>
+<p>Seaborn也允许将这类型的图绘制到已经用matplotlib绘制出来的轴上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#先用matplotlib绘制出坐标轴</span><br><span class="line">f, ax = plt.subplots(figsize=(6, 6))</span><br><span class="line">#用Seaborn将需要展示的图绘制到matplotlib轴上</span><br><span class="line">sns.kdeplot(df.x, df.y, ax=ax)</span><br><span class="line">sns.rugplot(df.x, color=&quot;g&quot;, ax=ax)</span><br><span class="line">sns.rugplot(df.y, vertical=True, ax=ax);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531193722663?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图展示"></p>
+<p>可以使用kdeplot()中的n_levels参数来控制轮廓的数量，使得图片显示的更加连续或者是稀疏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f, ax = plt.subplots(figsize=(6, 6))</span><br><span class="line">#用n_levels参数控制显示的疏密程度</span><br><span class="line">sns.kdeplot(df.x, df.y, ax=ax,n_levels=100)</span><br><span class="line">sns.rugplot(df.x, color=&quot;g&quot;, ax=ax)</span><br><span class="line">sns.rugplot(df.y, vertical=True, ax=ax);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531194515226?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+<p><strong>3.  展示数据集中的成对关系</strong><br>要在数据集中绘制多个成对的双变量分布，可以使用该pairplot()函数。这将创建一个轴矩阵并显示DataFrame中每对列的关系。默认情况下，它也绘制每个变量在对角轴上的单变量分布。</p>
+<p>一下使用的是鸢尾花数据集来展示这一效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iris = sns.load_dataset(&quot;iris&quot;)</span><br><span class="line">sns.pairplot(iris);</span><br></pre></td></tr></table></figure>
+<p>可以看到起使用多个子图来展示两个特征的数据之间的相互关系，同时也在对角线上绘制了每个单变量的分布情况。<br><img src="https://img-blog.csdn.net/20180531195058496?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/08/01/Seaborn学习笔记（三）/" class="pre-post btn btn-default" title="Seaborn学习笔记（三）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Seaborn学习笔记（三）</span>
+        </a>
+    
+    
+        <a href="/2019/08/01/学习用Python制作一个简易爬虫并做初步的数据可视化/" class="next-post btn btn-default" title="学习用Python制作一个简易爬虫并作初步的数据可视化">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">学习用Python制作一个简易爬虫并作初步的数据可视化</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Seaborn绘制数据集的分布"><span class="toc-text">Seaborn绘制数据集的分布</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

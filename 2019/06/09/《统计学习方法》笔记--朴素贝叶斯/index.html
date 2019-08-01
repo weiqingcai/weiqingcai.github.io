@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="统计学习,机器学习">
+
+
+    <meta name="description" content="朴素贝叶斯概述朴素贝叶斯法是基于贝叶斯定理与特征条件独立假设的分类方法。通过给定的训练数据集，首先基于特征条件独立的假设学习输入输出的联合概率分布，然后基于此模型，对于给定的$x$，利用贝叶斯定...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>统计学习方法--朴素贝叶斯 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="统计学习方法--朴素贝叶斯">
+            
+	            统计学习方法--朴素贝叶斯
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/机器学习/">机器学习</a> <a class="tag-link" href="/tags/统计学习/">统计学习</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/09</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="朴素贝叶斯概述"><a href="#朴素贝叶斯概述" class="headerlink" title="朴素贝叶斯概述"></a>朴素贝叶斯概述</h2><p>朴素贝叶斯法是基于贝叶斯定理与特征条件独立假设的分类方法。通过给定的训练数据集，首先基于特征条件独立的假设学习输入输出的联合概率分布，然后基于此模型，对于给定的$x$，利用贝叶斯定理求出后验概率最大的输出$y$</p>
+<h2 id="朴素贝叶斯法"><a href="#朴素贝叶斯法" class="headerlink" title="朴素贝叶斯法"></a>朴素贝叶斯法</h2><blockquote>
+<p>输入：训练数据$T=\{(x_1,y_1),(x_2,y_2)…(x_N,y_N)\};$其中$x_i=(x_i^{(1)},x_i^{2)},…,x_i^{(n)})^T;$$x_i{(j)}是第i个样本的第j个特征，x_i{(j)}\in \{a_{j1},a_{j2},…,a_{jS_j}\},a_{jl}是第j个特征可能取得第l个值，j=1,2,3…,n;l=1,2,…S_j;y_i\in\{c_1,c_2,…,c_K\};实例x$</p>
+<p>输出：实例$x$的分类</p>
+<p>(1) 根据给出的训练集计算先验概率和条件概率<script type="math/tex">P(Y=c_k)=\frac{\sum_{i=1}^{N}I(y_i=c_k)}{N},k=1,2,...,K----在给定训练集中c_k类的概率</script> <script type="math/tex">P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^{N}I(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^NI(y_i=c_k)}----在给定训练集中，已知为c_k类时，第j个特征取值为a_{jl}的概率</script> <script type="math/tex">j=1,2,...,n;l=1,2,...,S_j;k=1,2...,K</script><br>(2) 对于给定实例$x=(x^{(1)},x^{(2)},…,x^{(n)})^T,$计算<script type="math/tex">P(Y=c_k)\prod_{j=1}^nP(X^{(j)}=x^{(j)}|Y=c_k),k=1,2,...,K----对于给定的实例，计算在不同类别下其特征序列(x^{(1)},x^{(2)},...,x^{(n)})出现的概率</script><br>(3)确定实例$x$所属的类<script type="math/tex">y=\arg\max_{c_k}P(Y=c_k)\prod_{j=1}^nP(X^{(j)}=x^{(j)}|Y=c_k)----将实例x归入特征序列出现概率最大的那一类</script></p>
+</blockquote>
+<h3 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h3><p>朴素贝叶斯法主要是通过训练集计算出每个类别$c_k$的先验概率，然后通过贝叶斯公式，计算出相应特征的条件概率，即在已知类别$c_k$的条件下各个特征出现的概率，最后通过求出在给定类别时出现概率最大的类别作为实例的类别。</p>
+<h4 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h4><p>在朴素贝叶斯法中，学习意味着估计$P(Y=c_k)$和$P(X^{j}=x^{(j)}|Y=c_k)$由于前提假设是特征条件相互，因此可以用极大似然估计法来估计相应的概率。</p>
+<p>先验概率$P(Y=c_k)$的极大似然估计是<script type="math/tex">P(Y=c_k)=\frac{\sum_{i=1}^{N}I(y_i=c_k)}{N},k=1,2,...,K</script></p>
+<p>条件概率$P(X^{(j)}=a_{jl}|Y=c_k)$的极大似然估计是<script type="math/tex">P(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^{N}I(x_i^{(j)}=a_{jl},y_i=c_k)}{\sum_{i=1}^NI(y_i=c_k)}----在给定训练集中，已知为c_k类时，第j个特征取值为a_{jl}的概率</script> <script type="math/tex">j=1,2,...,n;l=1,2,...,S_j;k=1,2...,K</script></p>
+<h4 id="贝叶斯估计"><a href="#贝叶斯估计" class="headerlink" title="贝叶斯估计"></a>贝叶斯估计</h4><p>考虑到用极大似然估计可能会出现会估计的概率值为0的情况，可以采用贝叶斯估计来代替极大似然估计。具体的，</p>
+<p>先验概率的贝叶斯估计为<script type="math/tex">P_\lambda(Y=c_k)=\frac{\sum_{i=1}^{N}I(y_i=c_k)+\lambda}{N+K\lambda}</script></p>
+<p>条件概率的贝叶斯估计为<script type="math/tex">P_\lambda(X^{(j)}=a_{jl}|Y=c_k)=\frac{\sum_{i=1}^NI(x_i^{(j)=a_{jl}},y_i=c_k)+\lambda}{\sum_{i=1}^NI(y_i=c_k)+S_j\lambda}</script></p>
+<p>上式中$\lambda\geq0$等价于在随机变量各个取值的频数上赋予一个正数$\lambda&gt;0$,当$\lambda=0$时就是极大似然估计。常取$\lambda=1$，这时称为拉普拉斯平滑。显然对于任何的$l=1,2,…S_j;k=1,2,…,K$有：<script type="math/tex">P_\lambda(X^{(j)}=a_{jl}|Y=c_k)>0</script> <script type="math/tex">\sum_{l=1}^{S_j}P_\lambda(X^{(j)}=a_{jl}|Y=c_k)=1</script></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/06/16/《统计学习方法》笔记--决策树/" class="pre-post btn btn-default" title="统计学习方法--决策树">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">统计学习方法--决策树</span>
+        </a>
+    
+    
+        <a href="/2019/06/02/《统计学习方法》笔记-K近邻/" class="next-post btn btn-default" title="统计学习方法--K近邻">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">统计学习方法--K近邻</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#朴素贝叶斯概述"><span class="toc-text">朴素贝叶斯概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#朴素贝叶斯法"><span class="toc-text">朴素贝叶斯法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参数估计"><span class="toc-text">参数估计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#极大似然估计"><span class="toc-text">极大似然估计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#贝叶斯估计"><span class="toc-text">贝叶斯估计</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
