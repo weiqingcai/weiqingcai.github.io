@@ -31,7 +31,7 @@ before_script:
   - npm install -g gulp
   - chmod +x _travis.sh
 script:
-  - sudo hexo clean && hexo g
+  - hexo clean && hexo g
 #   - gulp
 
 after_success:
