@@ -1,0 +1,375 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="统计学习,机器学习">
+
+
+    <meta name="description" content="提升方法概述提升方法基于这样一种思想：对于任何一个复杂任务而言，将多个专家的判断进行合适的综合得到的判断，要比任何单独一位专家做出的单独判断要好。基于这种思想，提升方法在分类问题中通过改变训练样...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>统计学习方法--提升方法 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="统计学习方法--提升方法">
+            
+	            统计学习方法--提升方法
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/机器学习/">机器学习</a> <a class="tag-link" href="/tags/统计学习/">统计学习</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/01</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="提升方法概述"><a href="#提升方法概述" class="headerlink" title="提升方法概述"></a>提升方法概述</h2><p>提升方法基于这样一种思想：对于任何一个复杂任务而言，将多个专家的判断进行合适的综合得到的判断，要比任何单独一位专家做出的单独判断要好。基于这种思想，提升方法在分类问题中通过改变训练样本权重，学习多个分类器，并将这些分类器合理组合来提高性能。这样对于提升方法来说有两个主要的问题需要解决：（1）如何在每一轮中改变训练数据的权值或者概率分布（2）如何将弱分类器组合成一个强分类器。</p>
+<h2 id="AdaBoost算法"><a href="#AdaBoost算法" class="headerlink" title="AdaBoost算法"></a>AdaBoost算法</h2><p>AdaBoost算法是代表性的提升算法。针对提升方法中的两个主要问题，AdaBoost采用的解决办法是：（1）对于第一个问题，AdaBoost提高前一轮弱分类器错误分类样本的权值，而降低那些被正确分类样本的权值。这样一来，前一轮中错误分类样本在后一轮的训练中能得到更大的关注。（2）对于第二个问题，AdaBoost采用加权多数表决的方式来组合各个弱分类器。即加大分类误差率小的分类器的投票权重，使其在表决中起较大作用，减小分类误差率大的分类器的投票权重，使其在表决中其较小作用。</p>
+<blockquote>
+<p>输入：训练数据集$T=\{(x_1,y_1),(x_2,y_2)…(x_N,y_N)\}$，其中$x_i\in\chi\subseteq R^n,y_i\in Y=\{-1,+1\}$;弱学习算法</p>
+<p>输出：最终分类器$G(x)$</p>
+<p>(1) 初始化训练数据的权值分布<script type="math/tex">D_1 = (\omega_{11},...,\omega_{1i},...,\omega_{1N}), \omega_{1i}=\frac{1}{N},i=1,2,...N</script><br>(2) 对$m=1,2,…,M$</p>
+<ul>
+<li>(a) 使用具有权值分布$D_m$的训练数据学习，得到基本分类器$G_m(x):\chi\rightarrow\{-1,+1\}$</li>
+<li>(b) 计算$G_m(x)$在训练数据集上的分类误差率<script type="math/tex">e_m=\sum_{i=1}^{N}P(G_m(x_i)\not ={y_i})=\sum_{i=1}^{N}\omega_{mi}I(G_m(x_i)\not ={y_i})=\sum_{G_m(x_i)\not ={y_i}}\omega_{mi}</script>其中$\omega_{mi}$表示第$m$轮中第$i$个实例的权值</li>
+<li>(c) 计算$G_m(x)$的系数<script type="math/tex">\alpha_m=\frac{1}{2}\log\frac{1-e_m}{e_m}</script></li>
+<li>(d) 更新训练数据的权值分布<script type="math/tex">D_{m+1}=(\omega_{(m+1,1)},...,\omega_{(m+1,i)},...,\omega_{(m+1,N)})</script> <script type="math/tex">\omega_{(m+1,i)}=\frac{\omega_{mi}}{Z_m}\exp(-\alpha_m y_i G_m(x_i)),i=1,2,...,N;</script> $Z_m$为规范化因子 <script type="math/tex">Z_m=\sum_{i=1}^{N}\omega_{mi}\exp(-\alpha_m y_i G_m(x_i)</script><br>(3) 构建基本分类器的线性组合<script type="math/tex">f(x)=\sum_{m=1}^{M}\alpha_m G_m(x)</script>得到最终的分类器<script type="math/tex">G(x)=sign(f(x))=sign(\sum_{m=1}^{M}\alpha_m G_m(x))</script></li>
+</ul>
+</blockquote>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">码字不易</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/08/01/学习用Python制作一个简易爬虫并做初步的数据可视化/" class="pre-post btn btn-default" title="学习用Python制作一个简易爬虫并作初步的数据可视化">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">学习用Python制作一个简易爬虫并作初步的数据可视化</span>
+        </a>
+    
+    
+        <a href="/2019/07/12/《统计学习方法》笔记--支持向量机/" class="next-post btn btn-default" title="统计学习方法--支持向量机">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">统计学习方法--支持向量机</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#提升方法概述"><span class="toc-text">提升方法概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AdaBoost算法"><span class="toc-text">AdaBoost算法</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

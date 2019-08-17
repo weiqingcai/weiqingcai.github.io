@@ -1,0 +1,447 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="渗透测试,信息收集">
+
+
+    <meta name="description" content="渗透测试—-信息搜集初识一. 外围信息搜集方式
+使用whois 进行域名注册信息查询
+
+1whois [域名]
+注：使用whois查询时需要去掉www，ftp等前缀
+
+使用nslookup与di...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>渗透测试---信息搜集初识 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="渗透测试---信息搜集初识">
+            
+	            渗透测试---信息搜集初识
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/信息收集/">信息收集</a> <a class="tag-link" href="/tags/渗透测试/">渗透测试</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/11/09</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="渗透测试—-信息搜集初识"><a href="#渗透测试—-信息搜集初识" class="headerlink" title="渗透测试—-信息搜集初识"></a>渗透测试—-信息搜集初识</h2><h3 id="一-外围信息搜集方式"><a href="#一-外围信息搜集方式" class="headerlink" title="一. 外围信息搜集方式"></a><strong>一. 外围信息搜集方式</strong></h3><ol>
+<li><strong>使用whois 进行域名注册信息查询</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois [域名]</span><br></pre></td></tr></table></figure>
+<p>注：使用whois查询时需要去掉www，ftp等前缀</p>
+<ol>
+<li><strong>使用nslookup与dig查询域名注册信息</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.  nslookup</span><br><span class="line">2.  set type=A           //（参数A表示查询IP地址，MX表示邮件转发）</span><br><span class="line">	set [域名]</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.  dig @[DNS服务器][待查询域名]</span><br></pre></td></tr></table></figure>
+<p>注：nslookup和dig的区别在于：nslookup得到的是DNS解析服务器保存在Cache中的非权威解答，而dig则是可以指定DNS解析服务器向官方权威DNS服务器进行查询</p>
+<ol>
+<li><strong>使用IP2Location进行地理位置查询，网站信息查询，反查域名等</strong></li>
+</ol>
+<p>一些网站提供IP地址到地理位置的查询服务，网站的信息查询等服务，可以进行信息的搜集。对于一些虚拟主机，可以通过域名反查来获取信息。</p>
+<ol>
+<li><strong>使用搜索引擎进行信息搜集</strong><ol>
+<li>使用Google Hacking技术，以及一些自动化工具来进行查询，如SiteDigger和Search Diggity</li>
+<li>通过在Google中输入parent directory site：[域名]来查询网站的目录</li>
+<li>通过在Google中输入site：[域名] filetype：[文件类型名]来查询特定的文件</li>
+<li>通过使用Metasploit中的辅助模块search_email_collector来进行邮件地址搜集</li>
+<li>通过在Google中输入site:[域名] inurl:[关键字]来查询易存在SQL注入点的页面</li>
+</ol>
+</li>
+</ol>
+<h3 id="二-主机探测与端口扫描"><a href="#二-主机探测与端口扫描" class="headerlink" title="二.  主机探测与端口扫描"></a><strong>二.  主机探测与端口扫描</strong></h3><ol>
+<li><strong>ICMP Ping命令</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping [域名或IP地址]</span><br></pre></td></tr></table></figure>
+<ol>
+<li><strong>Metasploit的主机发现模块</strong></li>
+</ol>
+<p>Metasploit中提供了一些辅助模块用于发现活跃的主机，位于Metasploit的modules/auxiliary/scanner/discovery/目录下。其中arp_sweep与udp_sweep两个模块最常用</p>
+<ol>
+<li><strong>使用Nmap进行主机探测及系统识别</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap [扫描选项][扫描目标地址] //可以扫描单个地址或者是一个地址段</span><br><span class="line">nmap -o [目标IP地址] -A     //-o参数可以识别目标地址的系统类型，-A可以得到更加详细信息</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p><strong>端口扫描与服务类型探测</strong></p>
+<ol>
+<li>Metasploit中的端口扫描器，Metasploit中的auxiliary/scanner/portscan/中提供了多种端口扫描器</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. ack: 通过ack扫描的方式对防火墙上未被屏蔽的端口进行探测</span><br><span class="line">2. ftpbounce： 通过ftp bounce攻击的原理对TCP服务进行枚举</span><br><span class="line">3. syn： 使用发送TCP SYN标志的方式探测开放端口</span><br><span class="line">4. tcp： 通过一次完整的TCP链接过程来探测端口是否开放，准确度最高，但速			度很慢</span><br><span class="line">5. xmans： 一种更为隐秘的扫描方式，通过发送FIN，PSH和URG标志，能够躲				避一些TCP标记检测器的过滤</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<ol>
+<li>nmap端口扫描：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nmap [扫描参数] [扫描选项] [扫描地址]</span><br><span class="line">1）常见扫描参数：</span><br><span class="line">	 	1.  -sT:Tcp connect 扫描，类似于Metasploit中的tcp扫描模块</span><br><span class="line">	 	2.  -sS:TCP SYN扫描，类似于Metasploit中的syn扫描模块</span><br><span class="line">	 	3.  -sF/-sX/-sN:通过发送一些特殊的标记位来避开一些设备或者软件的监测</span><br><span class="line">	 	4.  -sP：通过发送ICMP echo请求探测主机是否存活，原理同ping</span><br><span class="line">	 	5.  -sU：探测目标主机开放了哪些UDP端口</span><br><span class="line">	 	6.  -sA：TCP ACK扫描，类似于Metasploit中的ack扫描模块</span><br><span class="line">	 	7.  -sV：获取更加详细的服务版本等信息</span><br><span class="line">2）常见扫描选项：</span><br><span class="line">		-Pn：在扫描之前不发送ICMP echo测试目标是否活跃</span><br><span class="line">		-O：启用对于TCP/IP协议栈的指纹特征扫描以获得远程主机的操作系统类型等信息</span><br><span class="line">		-F：快速扫描模式，只扫描在nmap-services中列出的端口</span><br><span class="line">		-p[端口范围]：可以使用这个参数指定希望扫描的端口</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="三-服务扫描与查点"><a href="#三-服务扫描与查点" class="headerlink" title="三. 服务扫描与查点"></a><strong>三. 服务扫描与查点</strong></h3><ol>
+<li><strong>Telnet服务扫描</strong></li>
+</ol>
+<p>Metasploit中提供了Telnet服务扫描的模块，该模块位于auxiliary/scanner/telnet/telnet_version，可以通过该模块探查目标主机的telnet版本</p>
+<ol>
+<li><strong>SHH服务扫描</strong></li>
+</ol>
+<p>Metasploit同样提供了对于SSH服务的扫描木块，该模块位于auxiliary/scanner/ssh/ssh_version。</p>
+<ol>
+<li><strong>Oracle数据库查点</strong></li>
+</ol>
+<p>Metasploit提供对于Oracle数据库的扫描，该模块位于auxiliary/scanner/oracle/tnslsnr_version。</p>
+<ol>
+<li><strong>开放代理与利用</strong></li>
+</ol>
+<p>Metasploit提供用于隐藏自己地址的代理服务，该模块位于auxiliary/scanner/http/open_proxy，可以使用该模块设置自己的代理服务</p>
+<ol>
+<li><strong>口令猜测和嗅探</strong><ol>
+<li>SSH口令猜测：Metasploit提供了用于猜测SSH口令的模块，通过设置高质量的密码字典可以有效的破解弱口令密码，该模块位于auxiliary/scanner/ssh/ssh_login</li>
+<li>psnuffle口令嗅探：Metasploit提供了一个用于口令嗅探的工具，可以截获常见协议的身份认证过程，并记录用户名和口令，该模块位于auxiliary/sniffer/psnuffle</li>
+</ol>
+</li>
+</ol>
+<h3 id="三-网络漏洞扫描"><a href="#三-网络漏洞扫描" class="headerlink" title="三. 网络漏洞扫描"></a><strong>三. 网络漏洞扫描</strong></h3><p><strong>1.  使用Nessus</strong></p>
+<p>Nessus提供完整的电脑端漏洞扫描服务，并会及时更新漏洞数据库。同时不同于传统的漏洞扫描工具，Nessus提供同时在本机和远程端上得控制，在命令行的基础上也提供图形化操作界面。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.  启动Nessus</span><br><span class="line">	nessusd start</span><br><span class="line">2.  激活Nessus</span><br><span class="line">	nessus -fetch --register [激活码]</span><br><span class="line">3.  添加用户</span><br><span class="line">	nessus -add user</span><br></pre></td></tr></table></figure>
+<p><strong>2.  使用OpenVAS</strong></p>
+<p>OpenVAS常用来评估目标主机上得漏洞，是Nessus项目的一个分支，提供完全免费的服务。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.  配置OpenVAS</span><br><span class="line">	openvas-mkcert</span><br><span class="line">2.  同步OpenVAS NVT数据库</span><br><span class="line">	openvas-nvt-sync</span><br><span class="line">3.  创建客户端证书库</span><br><span class="line">	openvas-mkcert-client -n [用户名] -i</span><br><span class="line">4.  重建数据库</span><br><span class="line">	openvasmd -rebuild</span><br><span class="line">5.  启动openvas并加载插件</span><br><span class="line">	openvassd</span><br><span class="line">6.  创建数据库备份</span><br><span class="line">	openvasmd -backup</span><br><span class="line">7.  创建管理账户</span><br><span class="line">	openvasad -c 'add_user' -n [账户名] -r Admin</span><br><span class="line">8.  创建普通账户</span><br><span class="line">	openvasad -adduser</span><br><span class="line">9.  为openvas配置端口</span><br><span class="line">	openvasmd -p [端口号] -a [IP地址]</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">码字不易</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/11/09/树及其操作（C语言版）/" class="pre-post btn btn-default" title="树及其操作（C语言版）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">树及其操作（C语言版）</span>
+        </a>
+    
+    
+        <a href="/2018/11/09/渗透测试--密码攻击初识/" class="next-post btn btn-default" title="渗透测试--密码攻击初识">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">渗透测试--密码攻击初识</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#渗透测试—-信息搜集初识"><span class="toc-text">渗透测试—-信息搜集初识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-外围信息搜集方式"><span class="toc-text">一. 外围信息搜集方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-主机探测与端口扫描"><span class="toc-text">二.  主机探测与端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-服务扫描与查点"><span class="toc-text">三. 服务扫描与查点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-网络漏洞扫描"><span class="toc-text">三. 网络漏洞扫描</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
