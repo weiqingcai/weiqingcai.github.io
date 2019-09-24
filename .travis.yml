@@ -27,10 +27,10 @@ install:
 before_script:
   - export TZ='Asia/Shanghai'
   - npm install -g gulp
-  - chmod +x _travis.sh
+  - chmod +777 _travis.sh
 script:
-  - sudo hexo g
-  - gulp
+  - hexo g
+#   - gulp
 
 after_success:
  # - LAST_BUILD_NUMBER=68
