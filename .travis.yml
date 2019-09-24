@@ -2,9 +2,9 @@ language: node_js
 node_js: stable
 
 #cache
-# cache:
-#   directories:
-#     - "node_modules"
+cache:
+  directories:
+    - "node_modules"
 
 notifications:
 
@@ -20,7 +20,7 @@ before_install:
   - sudo apt-get install libnotify-bin
 
 install:
-  - npm install
+  - sudo npm install
 #   - gem install travis
 #   - travis login --pro --github-token ${GH_TOKEN}
 
@@ -29,7 +29,7 @@ before_script:
   - npm install -g gulp
   - chmod +x _travis.sh
 script:
-  - hexo g
+  - sudo hexo g
 #   - gulp
 
 after_success:
