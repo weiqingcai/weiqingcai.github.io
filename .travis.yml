@@ -20,7 +20,7 @@ before_install:
   - sudo apt-get install libnotify-bin
 
 install:
-  - sudo npm install
+  - npm install
 #   - gem install travis
 #   - travis login --pro --github-token ${GH_TOKEN}
 
