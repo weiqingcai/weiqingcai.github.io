@@ -1,0 +1,438 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构,图">
+
+
+    <meta name="description" content="图及其操作（C语言版）图的定义和性质：
+定义: 图是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为：G(V,R)，其中，G表示一个图，V是图G中顶点的集合，R是图G中边的集合。
+
+顶点：...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>图及其操作（C语言版） | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="图及其操作（C语言版）">
+            
+	            图及其操作（C语言版）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/图/">图</a> <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/11/09</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="图及其操作（C语言版）"><a href="#图及其操作（C语言版）" class="headerlink" title="图及其操作（C语言版）"></a>图及其操作（C语言版）</h1><h3 id="图的定义和性质："><a href="#图的定义和性质：" class="headerlink" title="图的定义和性质："></a><strong>图的定义和性质：</strong></h3><ol>
+<li><p><strong>定义:</strong> 图是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为：G(V,R)，其中，G表示一个图，V是图G中顶点的集合，R是图G中边的集合。</p>
+</li>
+<li><p><strong>顶点：</strong> 在图中的数据元素通常叫做顶点。</p>
+</li>
+<li><p><strong>弧头/弧尾：</strong> 若$<v,w>\in VR$则$<v,w>$表示从$v$到 $w$的一条弧，且称$v$为弧尾或初始点，称$w$为弧头或终端点。</v,w></v,w></p>
+</li>
+<li><p><strong>有向图：</strong> 若图中的边是有向的，即$<v,w>\in VR \neq <w,v>\in VR$此时的图称为有向图。  </w,v></v,w></p>
+</li>
+<li><p><strong>无向图：</strong> 若$<v,w>\in VR$ 必有 $<w,v>\in VR$,即$VR$是对称的，则以无序对$(v,w)$代替两个有序对，表示v,w之间的一条边，此时的图称为无向图。</w,v></v,w></p>
+</li>
+<li><p><strong>完全图：</strong> 若用n表示图中的顶点数，用e表示图中弧或者边的数目，在下边的讨论中，我们不考虑顶点到其自身的边或者弧。</p>
+<ul>
+<li>对于无向图来说：$0\le e \le \frac{1}{2}n(n-1) $,有$\frac{1}{2}n(n-1)$条边的无向图称为完全图</li>
+<li>对于有向图来说：$0\le e \le n(n-1) $,有$ n(n-1)$条弧的有向图称为有向安完全图。</li>
+</ul>
+</li>
+<li><p><strong>稀疏图/稠密图：</strong> 有很多条边或者弧的图称为稠密图，反之称为稀疏图$例如：(e\lt n\log{n})$</p>
+</li>
+<li><p><strong>权：</strong> 有时边或者弧有和他相关的数，这种与图的边或者弧相关的数叫做权。这些权可以表示一个顶点到另一个顶点的距离或者消耗。</p>
+</li>
+<li><p><strong>网：</strong> 带权的图称为网。</p>
+</li>
+<li><p><strong>子图：</strong> 假设有两个图$G=\{V,\{R\} \}$和$G^<code>=\{ V^</code>,\{R^<code>\}\}$，如果$V^</code> \subseteq V $且$R^<code>\subseteq R  $,则称$G^</code>$为$G$的子图</p>
+</li>
+<li><p><strong>邻接点：</strong></p>
+<ul>
+<li>对于无向图：$G=\{V,\{R\} \}$,如果边$(v,v^<code>) \in R$,则称顶点$v$ 和互为邻接点$v^</code>$，边$(v,v^<code>) $依附于顶点$v$和$v^</code>$。或者说边$(v,v^<code>) $和顶点$v$和$v^</code>$相关联。</li>
+<li>对于有向图：$G=\{V,\{A\} \}$,如果弧$<v,v^1> \in A$,则称顶点$v$邻接到顶点$v^<code>$，顶点$v^</code>$邻接到顶点$v$,弧$<v,v^`>$和顶点$v$，$v^`$相关联。</v,v^`></v,v^1></li>
+</ul>
+</li>
+<li><p><strong>无向图顶点的度：</strong> 在无向图中，顶点v的度是和顶点v相关联的边的数目，记做$TD(v)$</p>
+</li>
+<li><p><strong>有向图顶点的度：</strong></p>
+<ul>
+<li>入度：在有向图中，顶点v的入度是指以顶点v为头的弧的数目</li>
+<li>出度：在有向图中，顶点v的出度是指以顶点v为尾的弧的数目</li>
+</ul>
+</li>
+<li><p><strong>顶点，边(弧)，度之间的关系：</strong> 一般的，如果顶点$v_i$的度记为$TD(v_i)$，那么一个有$n$个顶点，$e$条边或者弧的图，满足如下关系：<script type="math/tex">e=\frac{1}{2} \sum_{i=1}^nTD(v_i)</script></p>
+</li>
+<li><p><strong>图的路径：</strong>无向图$G=\{V,\{E \} \}$中从顶点$V$到顶点$V^<code>$的路径是一个顶点序列$(v=v_{i,0},v_{i,1},...,v_{i,m}=v^</code>)$其中$(v_{i,j-1},v_{i,j}) \in E,1 \le j \le m$。如果G是有向图，则路径也是有向的。</p>
+</li>
+<li><p><strong>路径的长度：</strong>路径上边或者弧的数目</p>
+</li>
+<li><p><strong>回路/环</strong>第一个顶点和最后一个顶点相同的路径称为回路或者环。除了第一个和最后一个顶点之外，其余顶点不重复出现的回路，称为简单回路或者简单环。</p>
+</li>
+<li><p><strong>连通图：</strong>在无向图G中，如果从顶点$v$到顶点$v^<code>$有路径，则称$v$和$v^</code>$是连通的。若对于图中任意两个顶点$v_i$、$v_j\in V$，$v_i$和$v_j$都连通，则称G是连通图。</p>
+</li>
+<li><p><strong>连通分量：</strong>无向图中的极大连通子图称为是该图的连通分量。</p>
+</li>
+<li><p><strong>强连通图：</strong>在有向图G中，如果对于每一对$v_i,v_j \in V ,v_i \neq v_j$ ,从对$v_i到v_j$和从$v_j到v_i$都存在路径，则称G是强连通图。</p>
+</li>
+<li><p><strong>强连通分量：</strong>有向图中的极大连通子图称作有向图的强连通分量。</p>
+</li>
+<li><p><strong>连通图的生成树：</strong>一个连通图的生成树是一个极小连通子图，他含有图中的全部顶点，但是只含有构成一颗树的$n-1$条边。</p>
+</li>
+<li><p><strong>性质：</strong></p>
+<ul>
+<li>一颗有n个顶点的生成树有且只有n-1条边</li>
+<li>如果一个图有n个顶点和小于n-1条边，则是非连通图。若多于n-1条边，则一定有环。</li>
+<li>如果一个有向图恰有一个顶点的入度为0，其余顶点的入度均为1，则是一颗有向树。</li>
+</ul>
+</li>
+</ol>
+<h3 id="图的存储结构："><a href="#图的存储结构：" class="headerlink" title="图的存储结构："></a><strong>图的存储结构：</strong></h3><ol>
+<li><strong>数组表示法：</strong></li>
+</ol>
+<p>用两个数组分别存储数据元素(顶点)的信息和数据之间的关系(边或弧)的信息。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**数组表示法（邻接矩阵）**/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INFINITY INT_MAX<span class="comment">//整数类型最大值</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_VERTEX_NUM 20<span class="comment">//最大顶点个数</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span>&#123; DG,DN,uDG,UDN&#125; GraphKind;<span class="comment">//&#123;有向图，有向网，无向图，无向网&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ArcCell</span>&#123;</span></span><br><span class="line">    VRType adj;<span class="comment">//弧或者边的类型：对于无权图，用0或者1表示是否相邻</span></span><br><span class="line">               <span class="comment">//对带权图，则为权值类型</span></span><br><span class="line">    InfoType *inform;<span class="comment">//改弧相关的信息指针</span></span><br><span class="line">&#125;ArcCell, AdjMatrix[MAX_VERTEX_NUM][MAX_VERTEX_NUM];</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    VertexType vexs[MAX_VERTEX_NUM];<span class="comment">//顶点向量</span></span><br><span class="line">    AdjMatrix arcs;<span class="comment">//邻接矩阵</span></span><br><span class="line">    <span class="keyword">int</span> vexNum,arcNum;<span class="comment">//图的当前顶点数量，边或者弧数量</span></span><br><span class="line">    GraphKind kind;<span class="comment">//图类型</span></span><br><span class="line">&#125;MGraph;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><strong>邻接表：</strong><br>邻接表是图的一种链式存储结构。在邻接表中，对图中的每个顶点建立一个单链表，第$i$个单链表中的结点表示依附于顶点$v_i$的边（对有向图是以顶点$v_i$为尾的弧）。每个结点由3个域组成，其中邻接点域（adjvex）指示指示与顶点$v_i$邻接的点在图中的位置，链域（nextarc）指示下一条边或者弧的结点，数据域（info）存储和边或者弧相关的信息(如权值等)。在表头结点中除了设有链域（firstarc），指向链表中的第一个结点外，还设有存储顶点$v_i$的名或者其他有关信息的数据域（data）。<br><img src="http://img.blog.csdn.net/20160923192701459" alt="表结点"><br><img src="http://img.blog.csdn.net/20160923192718912" alt="头结点"></li>
+</ol>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/11/09/Material Design使用总结/" class="pre-post btn btn-default" title="Material Design使用总结">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Material Design使用总结</span>
+        </a>
+    
+    
+        <a href="/2018/11/09/MongoDB入门及问题总结/" class="next-post btn btn-default" title="MongoDB使用入门及问题总结">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">MongoDB使用入门及问题总结</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#图及其操作（C语言版）"><span class="toc-text">图及其操作（C语言版）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图的定义和性质："><span class="toc-text">图的定义和性质：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图的存储结构："><span class="toc-text">图的存储结构：</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
