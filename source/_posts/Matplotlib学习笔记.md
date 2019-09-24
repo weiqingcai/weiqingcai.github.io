@@ -1,11 +1,11 @@
-﻿---
+---
 title: Matplotlib学习笔记
 date: 2019-08-1 16:49:37
 tags: [数据可视化,Matplotlib]
 categories: 大数据与网络安全
 ---
 
-#Matplotlib学习笔记
+# Matplotlib学习笔记
 
 关于Matplotlib最好的学习笔记就是官网地址，上边有绘制各种图形的示例，建议去官网文档学习，另外喜欢看视频教程的可以去B站。
 
@@ -13,11 +13,11 @@ categories: 大数据与网络安全
 
 **[Matplotlib官网地址](https://matplotlib.org/index.html)**
 
-##基本图形的绘制
+## 基本图形的绘制
 
-###散点图
+### 散点图
 
-![散点图](https://img-blog.csdn.net/20180522104247531?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![散点图](https://img-blog.csdn.net/20180522104247531)
 
 绘制散点图使用matplotlib.pyplot中的scatter()函数
 
@@ -47,9 +47,9 @@ plt.show()
 
 [官网对于scatter参数的详解](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html?highlight=scatter#matplotlib.pyplot.scatter)
 
-###折线图
+### 折线图
 
-![折线图](https://img-blog.csdn.net/20180522113442425?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![折线图](https://img-blog.csdn.net/20180522113442425)
 
 绘制折线图使用matplotlib.pyplot中的plot()函数
 
@@ -94,9 +94,9 @@ date, openPrice, closePrice = np.loadtxt('price_two_month.csv',
 plt.plot_date(date, openPrice,'-')
 plt.show()
 ```
-###条形图
+### 条形图
 
-![条形图](https://img-blog.csdn.net/20180522161600757?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![条形图](https://img-blog.csdn.net/20180522161600757)
 
 绘制条形图需要使用matplotlib.pyplot中的bar()函数
 
@@ -171,7 +171,7 @@ plt.show()
 
 还可以在此基础上绘制2D的直方图,即双变量的直方图，通过颜色的深浅来表示频率的高低
 
-![双变量的直方图](https://img-blog.csdn.net/20180522191930944?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![双变量的直方图](https://img-blog.csdn.net/20180522191930944)
 
 ```
 import matplotlib.pyplot as plt
@@ -183,11 +183,11 @@ y = np.random.randn(500)-30
 plt.hist2d(x,y,bins=40)
 plt.show()
 ```
-###饼图
+### 饼图
 
 绘制饼图需要使用pyplot中的pie()函数
 
-![饼图](https://img-blog.csdn.net/20180524083843354?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![饼图](https://img-blog.csdn.net/20180524083843354)
 
 ```
 import matplotlib.pyplot as plt
