@@ -19,7 +19,7 @@ iris = sns.load_dataset("iris")
 sns.stripplot(x="day", y="total_bill", data=tips);
 ```
 可以看到很方便的展示了分类作为变量的时候散点图的分布
-![效果图](https://img-blog.csdn.net/20180531200720710?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![效果图](https://img-blog.csdn.net/20180531200720710)
 
 当是我们可以看到上图中有很多点是相互重复的，我们无法准却的观察每个点的位置，针对这种情况，Seaborn提供了多种解决办法。
 
