@@ -30,7 +30,7 @@ before_script:
   - chmod +x _travis.sh
 script:
   - sudo hexo g
-#   - gulp
+  - gulp
 
 after_success:
  # - LAST_BUILD_NUMBER=68
