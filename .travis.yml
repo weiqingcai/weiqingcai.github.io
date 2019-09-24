@@ -29,7 +29,7 @@ before_script:
   - npm install -g gulp
   - chmod +777 _travis.sh
 script:
-  - hexo g
+  - hexo clean && hexo g
 #   - gulp
 
 after_success:
