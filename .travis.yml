@@ -19,8 +19,6 @@ notifications:
 # S: Build Lifecycle
 before_install:
   - sudo apt-get install libnotify-bin
-  - git config --global user.name "[weiqingcai1994@gmail.com]"
-  - git config --global user.name "[weiqingcai1994@gmail.com]"
 
 install:
   - npm install
