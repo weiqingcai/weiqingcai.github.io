@@ -6,8 +6,6 @@ cache:
   directories:
     - "node_modules"
 
-
-
 notifications:
 
   # 邮件发送部署结果通知
@@ -23,8 +21,6 @@ before_install:
 
 install:
   - npm install
-#   - gem install travis
-  - travis login --pro --github-token ${GH_TOKEN}
 
 before_script:
   - export TZ='Asia/Shanghai'
