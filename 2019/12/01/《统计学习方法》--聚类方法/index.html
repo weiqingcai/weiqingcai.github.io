@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="统计学习,机器学习">
+
+
+    <meta name="description" content="《统计学习方法》第十四章—聚类方法聚类方法主要是依据某种相似度判别标准，将给定的未标注的数据集依据相似度自动的将其划分为若干个类或簇中。聚类方法的目的是通过算法的聚类，对未标注数据集进行一定程度...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>统计学习方法--聚类方法 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="统计学习方法--聚类方法">
+            
+	            统计学习方法--聚类方法
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/机器学习/">机器学习</a> <a class="tag-link" href="/tags/统计学习/">统计学习</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/12/01</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="《统计学习方法》第十四章—聚类方法"><a href="#《统计学习方法》第十四章—聚类方法" class="headerlink" title="《统计学习方法》第十四章—聚类方法"></a>《统计学习方法》第十四章—聚类方法</h1><p>聚类方法主要是依据某种相似度判别标准，将给定的未标注的数据集依据相似度自动的将其划分为若干个类或簇中。聚类方法的目的是通过算法的聚类，对未标注数据集进行一定程度的划分，以便于发现潜在的关系，但是聚类方法的效果严重依赖于所选的相似度判别标准。</p>
+<h2 id="相似度判别标准"><a href="#相似度判别标准" class="headerlink" title="相似度判别标准"></a>相似度判别标准</h2><p>相似度的判别主要是通过一定的标准来说明所给的实例之间的相似程度，常见的有基于距离的标准，基于相关系数的标准;针对字符串或文本还有基于编辑距离，基于词向量等的标准。针对要解决的问题选择合适的相似度判别标准是聚类方法最基础也是最核心的步骤。</p>
+<h3 id="闵可夫斯基距离"><a href="#闵可夫斯基距离" class="headerlink" title="闵可夫斯基距离"></a>闵可夫斯基距离</h3><blockquote>
+<p>定义：给定样本集合$X$，$X$是$m$维实数向量空间$R^m$中点的集合，其中$x_i,x_j \in X,x_j=(x_{j1},x_{j2},…,x_{jm}),x_i=(x_{i1},x_{i2},…,x_{im})$,$x_{im}$表示第$i$个样本的第$m$维特征,样本$x_i,x_j$的闵可夫斯基距离定义为<script type="math/tex">d_{ij}=(\sum_{k=1}^{m}|x_{ik}-x_{jk}|^p)^{\frac{1}{p}},p\geq 1</script></p>
+<ul>
+<li><ol>
+<li>欧式距离：<br>当$p=2$时就是我们常见的欧氏距离，$d_{ij}=(\sum_{k=1}^{m}|x_{ik}-x_{jk}|^2)^{\frac{1}{2}}$</li>
+</ol>
+</li>
+<li><ol>
+<li>曼哈顿距离：<br>当$p=1$时称为曼哈顿距离，$d_{ij}=(\sum_{k=1}^{m}|x_{ik}-x_{jk}|)$</li>
+</ol>
+</li>
+<li><ol>
+<li>切比雪夫距离：<br>当$p=\infty$时称为切比雪夫距离，$d_{ij}=(\max_k|x_{ik}-x_{jk}|)$</li>
+</ol>
+</li>
+</ul>
+<p>注：这里的各种距离其实和矩阵论中的各类范数对应</p>
+</blockquote>
+<h3 id="马哈拉诺比斯距离"><a href="#马哈拉诺比斯距离" class="headerlink" title="马哈拉诺比斯距离"></a>马哈拉诺比斯距离</h3><p>马哈拉诺比斯距离简称马氏距离，它考虑了样本各个分量（不同特征）之间的相关性，并且同各个分量的尺度无关（不受不同分量尺度不同的影响）</p>
+<blockquote>
+<p>定义：给定一个样本集合$X,X=(x_{ij})n\times m$样本集合各分量间的协方差矩阵记作$X$。样本$x_i$与样本$x_j$之间的马氏距离定义为<script type="math/tex">d_{ij}=[(x_i-x_j)^TS^{-1}(x_i-x_j)]^{\frac{1}{2}}</script>其中$x_i=(x_{i1},x_{i2},…,x_{im}),x_j=(x_{j1},x_{j2},…,x_{jm})$</p>
+</blockquote>
+<h3 id="闵可夫斯基距离VS马哈拉诺比斯距离"><a href="#闵可夫斯基距离VS马哈拉诺比斯距离" class="headerlink" title="闵可夫斯基距离VS马哈拉诺比斯距离"></a>闵可夫斯基距离VS马哈拉诺比斯距离</h3><ol>
+<li>闵可夫斯基距离的缺点是很明显的，首先是未考虑各个分量的量纲的不同，只是单纯的进行数值计算，因此这种度量方式很容易受到分量取值范围的影响；其次该种方式并未考虑各个分量之间的相关性，与马氏距离相比缺少了一部分信息。但是闵可夫斯基距离优势在于理解直观，计算较为简单快速。</li>
+<li>马氏距离很好的考虑了数据不同分量的问题，而且考虑了各个分量之间的相关性，在进行距离度量的同时包含一定的统计学信息，但是有时候马氏距离也</li>
+</ol>
+<p><strong>参考自:</strong><br><strong><a href="https://blog.csdn.net/shenbo2030/article/details/44226919" target="_blank" rel="noopener">欧氏距离与马氏距离的优缺点是什么？</a></strong><br><strong><a href="https://zhuanlan.zhihu.com/p/46626607" target="_blank" rel="noopener">马氏距离(Mahalanobis Distance)</a></strong></p>
+<h3 id="协方差与相关系数"><a href="#协方差与相关系数" class="headerlink" title="协方差与相关系数"></a>协方差与相关系数</h3><p>相关系数其实是对协方差的一种标准化。对于两个随机变量$X,Y$他们的协方差定义为:<script type="math/tex">Cov(X,Y)=E[(X-\mu_x)(Y-\mu_y)]</script>协方差表示了两个随机变量的协同变化情况。当协方差为正时说明两个随机变量是同向变化的（一个增大另一个也增大，一个减小另一个也减小）。对于多个随机变量而言，求解任意两个变量的协方差并按照矩阵的形式记录下来得到的就是协方差矩阵。</p>
+<p>相关系数其实可以理解成是对协方差进行了标准化，消除了协方差中量纲的影响，只是单纯的反应两个变量单位变化量时的相似程度。对于两个随机变量$X,Y$他们的相关系数定义为<script type="math/tex">\rho_{XY}=\frac{Cov(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}</script>其中$D(X),D(Y)$表示对应随机变量的方差</p>
+<p><strong>参考自：</strong><br><strong><a href="https://www.zhihu.com/question/20852004/answer/134902061" target="_blank" rel="noopener">如何通俗易懂地解释「协方差」与「相关系数」的概念？</a></strong></p>
+<h2 id="聚类方法"><a href="#聚类方法" class="headerlink" title="聚类方法"></a>聚类方法</h2><h3 id="层次聚类"><a href="#层次聚类" class="headerlink" title="层次聚类"></a>层次聚类</h3><p>层次聚类假设类别之间存在上下位的层次关系，按照聚合方向可以按照从上至下（分裂）聚类和从下到上（聚合）聚类</p>
+<ol>
+<li><strong>从上至下聚类(分裂):</strong> 在开始时将全部的样本都归为一类，然后将已有的类中距离最远的样本分到两个新的类别中，重复操作直到满足停止条件。</li>
+<li><strong>从下至上聚类(聚合):</strong> 在开始将每个样本都认为是一类，然后将已有类中距离最近的两类的样本聚合为一类，重复操作直到满足停止条件。</li>
+</ol>
+<h3 id="K-means聚类-K均值聚类"><a href="#K-means聚类-K均值聚类" class="headerlink" title="K-means聚类(K均值聚类)"></a>K-means聚类(K均值聚类)</h3><p>K均值聚类是将样本集合划分为K个子集，将样本集合中的样本划分到K个子集中，使得每个样本距离所属类的中心的距离最短。</p>
+<blockquote>
+<p>输入： N个样本的集合<br>输出：样本集合的聚类<br>(1) 初始化：随机选取K个初始样本作为类中心<br>(2) 聚类： 根据当前的类中心，计算剩余样本距离每个类中心的距离，并将其归入最近的一类中得到新的类集合<br>(3) 更新类中心：对于新得到的类集合，计算集合中样本的均值，得到新的类中心<br>(4) 迭代(2)(3)步直到满足聚类停止条件，得到聚类结果</p>
+</blockquote>
+<p>K均值聚类的优点是计算速度较快，通俗易懂，但缺点是算法效果和初始类中心的选择，K值选择有很大关系。</p>
+<h2 id="聚类方法的比较总结"><a href="#聚类方法的比较总结" class="headerlink" title="聚类方法的比较总结"></a>聚类方法的比较总结</h2><p><a href="https://www.jiqizhixin.com/articles/2019-10-16" target="_blank" rel="noopener">如何正确选择聚类算法？</a></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">码字不易</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/08/01/Matplotlib学习笔记/" class="next-post btn btn-default" title="Matplotlib学习笔记">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Matplotlib学习笔记</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#《统计学习方法》第十四章—聚类方法"><span class="toc-text">《统计学习方法》第十四章—聚类方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#相似度判别标准"><span class="toc-text">相似度判别标准</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#闵可夫斯基距离"><span class="toc-text">闵可夫斯基距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#马哈拉诺比斯距离"><span class="toc-text">马哈拉诺比斯距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#闵可夫斯基距离VS马哈拉诺比斯距离"><span class="toc-text">闵可夫斯基距离VS马哈拉诺比斯距离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协方差与相关系数"><span class="toc-text">协方差与相关系数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类方法"><span class="toc-text">聚类方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#层次聚类"><span class="toc-text">层次聚类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#K-means聚类-K均值聚类"><span class="toc-text">K-means聚类(K均值聚类)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类方法的比较总结"><span class="toc-text">聚类方法的比较总结</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

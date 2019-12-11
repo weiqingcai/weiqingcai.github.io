@@ -1,0 +1,510 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="系统安全概述,Windows">
+
+
+    <meta name="description" content="Windows系统安全综述账户分类及概述用户账户
+不同的用户身份拥有不同的权限
+每个用户包含一个名称和一个密码
+用户账户拥有唯一的安全标识符
+
+在服务器管理器中管理用户
+创建用户
+为用户重置密码...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Windows系统安全综述 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Windows系统安全综述">
+            
+	            Windows系统安全综述
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Windows/">Windows</a> <a class="tag-link" href="/tags/系统安全概述/">系统安全概述</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/11/09</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>397</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Windows系统安全综述"><a href="#Windows系统安全综述" class="headerlink" title="Windows系统安全综述"></a>Windows系统安全综述</h1><h2 id="账户分类及概述"><a href="#账户分类及概述" class="headerlink" title="账户分类及概述"></a>账户分类及概述</h2><h3 id="用户账户"><a href="#用户账户" class="headerlink" title="用户账户"></a>用户账户</h3><ul>
+<li>不同的用户身份拥有不同的权限</li>
+<li>每个用户包含一个名称和一个密码</li>
+<li>用户账户拥有唯一的安全标识符</li>
+</ul>
+<h4 id="在服务器管理器中管理用户"><a href="#在服务器管理器中管理用户" class="headerlink" title="在服务器管理器中管理用户"></a>在服务器管理器中管理用户</h4><ul>
+<li>创建用户</li>
+<li>为用户重置密码</li>
+<li>重命名用户名</li>
+<li>启用，禁用，删除用户账户</li>
+<li>为用户设置权限</li>
+</ul>
+<h4 id="通过进程与服务区分各内置用户账户的作用"><a href="#通过进程与服务区分各内置用户账户的作用" class="headerlink" title="通过进程与服务区分各内置用户账户的作用"></a>通过进程与服务区分各内置用户账户的作用</h4><ul>
+<li>与使用者关联的用户账户<ul>
+<li>Administrator（管理员用户）</li>
+<li>Guest（来宾用户）</li>
+</ul>
+</li>
+<li>与Windows组件关联的用户账户<ul>
+<li>SYSTEM（本地系统）</li>
+<li>SYSTEM SERVICE（本地服务）</li>
+<li>NETWORK SERVICE（网络服务）</li>
+</ul>
+</li>
+</ul>
+<h3 id="组账户"><a href="#组账户" class="headerlink" title="组账户"></a>组账户</h3><ul>
+<li>组是一些用户的集合</li>
+<li>组内的用户自动具备组所设置的权限</li>
+</ul>
+<h4 id="在服务器管理其中管理组"><a href="#在服务器管理其中管理组" class="headerlink" title="在服务器管理其中管理组"></a>在服务器管理其中管理组</h4><ul>
+<li>新建组</li>
+<li>向组内添加成员</li>
+<li>重命名组</li>
+<li>删除组</li>
+</ul>
+<h4 id="需要人为添加成员的内置组"><a href="#需要人为添加成员的内置组" class="headerlink" title="需要人为添加成员的内置组"></a>需要人为添加成员的内置组</h4><ul>
+<li>Administrator</li>
+<li>Guests</li>
+<li>Power User</li>
+<li>Users（标准用户）</li>
+</ul>
+<h4 id="动态包含成员的内置组"><a href="#动态包含成员的内置组" class="headerlink" title="动态包含成员的内置组"></a>动态包含成员的内置组</h4><ul>
+<li>Interactive（动态包含在本地登陆的用户）</li>
+<li>Authenticated Users（动态包含通过验证的用户，不包含来宾用户）</li>
+<li>Everyone（包含任何用户，设置开放的权限是经常使用）</li>
+</ul>
+<h3 id="克隆账户以及账户超级隐藏"><a href="#克隆账户以及账户超级隐藏" class="headerlink" title="克隆账户以及账户超级隐藏"></a>克隆账户以及账户超级隐藏</h3><ol>
+<li><p>在添加用户时在要添加的用户名后边多加一个 <code>$</code> 符号(表示隐藏)</p>
+<blockquote>
+<p>net user test$ /add</p>
+</blockquote>
+<p>通过这种方式创建的用户直接使用命令行的<code>net user</code>命令是无法查看到的，但是可以通过计算机管理界面查看到存在该账户</p>
+</li>
+<li><p>通过修改注册表中的信息来达到完全隐藏账户的</p>
+<ol>
+<li>新建一个常规的隐藏账户（test$）</li>
+<li>打开注册表，找到HKEY_LOCAL_MACHINE下的SAM，右键为其赋予权限之后展开</li>
+<li>将Administrator的权限导出，同时将test$账户的权限和用户信息注册表导出</li>
+<li>打开导出的Administrator和test$的权限注册表，用Administrator中的F的值代替test$中的F的值</li>
+<li>删除之前创建的test$用户</li>
+<li>运行之前导出的test$的注册表和test$权限的注册表</li>
+<li>完成完全隐藏用户的创建（只能通过注册表来查找到）</li>
+</ol>
+</li>
+</ol>
+<h2 id="NTFS文件系统及权限应用"><a href="#NTFS文件系统及权限应用" class="headerlink" title="NTFS文件系统及权限应用"></a>NTFS文件系统及权限应用</h2><blockquote>
+<p>NTFS (New Technology File System)，是 WindowsNT 环境的文件系统。新技术文件系统是Windows NT家族（如，Windows 2000、Windows XP、Windows Vista、Windows 7和 windows 8.1）等的限制级专用的文件系统（操作系统所在的盘符的文件系统必须格式化为NTFS的文件系统，4096簇环境下）。NTFS取代了老式的FAT文件系统。<br>NTFS对FAT和HPFS作了若干改进，例如，支持元数据，并且使用了高级数据结构，以便于改善性能、可靠性和磁盘空间利用率，并提供了若干附加扩展功能。</p>
+</blockquote>
+<ul>
+<li>提高磁盘读写性能</li>
+<li>可靠性<ul>
+<li>加密文件系统</li>
+<li>访问控制列表</li>
+</ul>
+</li>
+<li>磁盘利用率<ul>
+<li>压缩</li>
+</ul>
+</li>
+</ul>
+<h2 id="EFS加密"><a href="#EFS加密" class="headerlink" title="EFS加密"></a>EFS加密</h2><p>为了提高文件的安全性，微软在Windows中针对NTFS引入了EFS加密技术。EFS加密操作简单，对加密文件的用户也是透明的，文件加密后不必再试用期手动解密，只有加密则才能打开加密文件。</p>
+<blockquote>
+<p>EFS加密是基于公钥策略的。然后将利用FEK和数据扩展标准X算法创建加密后的文件，。如果你登录到了域环境中，密钥的生成依赖于域控制器，否则它就依赖于本地机器</p>
+<p>EFS加密最简单的办法就是在目标对象上点击鼠标右键，选择“属性”，打开属性对话框,然后在常规选项卡上点击“高级”按钮，打开高级属性对话框，选中“加密内容以便保护数据”这个选项，反之解密。</p>
+</blockquote>
+<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><p>service可以分为两个大类，服务应用程序和驱动服务。</p>
+<ul>
+<li><p>服务应用程序指遵照Service Control Manager 2接口要求的，能在系统启动时自动启动的用户能够通过服务控制面板控制的那些没有用户登录也能够运行的程序。</p>
+</li>
+<li><p>驱动服务一般指设备驱动程序协议等应用于底层设备驱动的服务</p>
+</li>
+</ul>
+<h2 id="病毒及防范"><a href="#病毒及防范" class="headerlink" title="病毒及防范"></a>病毒及防范</h2><h3 id="计算机病毒"><a href="#计算机病毒" class="headerlink" title="计算机病毒"></a>计算机病毒</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>  编制或者在计算机程序中插入的，破坏技术啊你功能或者破坏数据，影响计算机使用并且能够自我复制的一组计算机指令或者程序代码</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>非授权执行</li>
+<li>隐蔽性</li>
+<li>传染性</li>
+<li>潜伏性</li>
+<li>破坏性</li>
+<li>可触发性</li>
+</ul>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
+<li>文件型</li>
+<li>引导扇区型</li>
+<li>宏病毒</li>
+<li>VBS脚本病毒</li>
+<li>蠕虫</li>
+</ul>
+<h3 id="脚本病毒"><a href="#脚本病毒" class="headerlink" title="脚本病毒"></a>脚本病毒</h3><ul>
+<li>通常与网页相结合，将恶意的破坏性代码内嵌在网页中</li>
+<li>利用asp，htm，html，vbs，js类型的文件进行传播</li>
+<li>基于VB Script和Java Script脚本语言</li>
+<li>由Windows脚本宿主解释执行（也具有跨平台的特性）</li>
+</ul>
+<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><ul>
+<li><p>隐蔽性强</p>
+<p>浏览网页，电子邮件中的病毒可以具有双拓展名</p>
+</li>
+<li><p>传播性广</p>
+<p>可以自我复制，不依赖于其他文件就可以直接解释执行</p>
+</li>
+<li><p>病毒变种多</p>
+<p>只需要对源码稍加修改，就可以制造出新的变种病毒</p>
+</li>
+</ul>
+<h3 id="计算机木马"><a href="#计算机木马" class="headerlink" title="计算机木马"></a>计算机木马</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>一个包含在合法程序中的非法程序</p>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><ul>
+<li>未经许可即获得计算机的使用权</li>
+<li>程序容量小，执行时不会占用太多资源</li>
+<li>执行后很难停止</li>
+<li>执行时不会在系统中显示出来</li>
+<li>执行一次后会驻留在系统中，可以自动加载运行</li>
+<li>自动变更文件名</li>
+<li>作为驻留程序隐藏在系统内部</li>
+<li>分为客户端和服务端</li>
+</ul>
+<h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h4><p>文件操作，修改注册表，窃取密码，系统操控</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">码字不易</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/11/09/MongoDB入门及问题总结/" class="pre-post btn btn-default" title="MongoDB使用入门及问题总结">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">MongoDB使用入门及问题总结</span>
+        </a>
+    
+    
+        <a href="/2018/11/09/图及其操作（C语言版）/" class="next-post btn btn-default" title="图及其操作（C语言版）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">图及其操作（C语言版）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows系统安全综述"><span class="toc-text">Windows系统安全综述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#账户分类及概述"><span class="toc-text">账户分类及概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用户账户"><span class="toc-text">用户账户</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在服务器管理器中管理用户"><span class="toc-text">在服务器管理器中管理用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过进程与服务区分各内置用户账户的作用"><span class="toc-text">通过进程与服务区分各内置用户账户的作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组账户"><span class="toc-text">组账户</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在服务器管理其中管理组"><span class="toc-text">在服务器管理其中管理组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#需要人为添加成员的内置组"><span class="toc-text">需要人为添加成员的内置组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#动态包含成员的内置组"><span class="toc-text">动态包含成员的内置组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#克隆账户以及账户超级隐藏"><span class="toc-text">克隆账户以及账户超级隐藏</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NTFS文件系统及权限应用"><span class="toc-text">NTFS文件系统及权限应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EFS加密"><span class="toc-text">EFS加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务"><span class="toc-text">服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#病毒及防范"><span class="toc-text">病毒及防范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算机病毒"><span class="toc-text">计算机病毒</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分类"><span class="toc-text">分类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本病毒"><span class="toc-text">脚本病毒</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点-1"><span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算机木马"><span class="toc-text">计算机木马</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义-1"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特征"><span class="toc-text">特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#危害"><span class="toc-text">危害</span></a></li></ol></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
