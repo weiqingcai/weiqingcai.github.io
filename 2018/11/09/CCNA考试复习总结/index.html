@@ -1,0 +1,580 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="程序小栈">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+    <meta name="keywords" content="计算机网络,CCNA,Cisco">
+
+
+    <meta name="description" content="CCNA考试复习总结
+设置默认网关：ip default-network [网关IP地址]或者是：ip route [源ip地址]  [ 子 网 掩码] [下一跳ip地址]
+
+为需要远程管理的交...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>CCNA考试复习总结 | 程序小栈</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(/img/start.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="WeiQingcai">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 兜里有糖心不慌 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">程序小栈</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/大数据与网络安全/"><i class="fa "></i>大数据与网络安全</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Android/"><i class="fa "></i>Android</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构与算法/"><i class="fa "></i>数据结构与算法</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="CCNA考试复习总结">
+            
+	            CCNA考试复习总结
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/大数据与网络安全/">大数据与网络安全</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/CCNA/">CCNA</a> <a class="tag-link" href="/tags/Cisco/">Cisco</a> <a class="tag-link" href="/tags/计算机网络/">计算机网络</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/11/09</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="CCNA考试复习总结"><a href="#CCNA考试复习总结" class="headerlink" title="CCNA考试复习总结"></a>CCNA考试复习总结</h1><ul>
+<li><p>设置默认网关：ip default-network [网关IP地址]或者是：ip route [源ip地址]  [ 子 网 掩码] [下一跳ip地址]</p>
+</li>
+<li><p>为需要远程管理的交换机进行配置：</p>
+<ul>
+<li>ip default-getway [网关地址]</li>
+<li>interface vlan 1</li>
+<li>ip address [需要远程管理的交换机的ip] [掩码]</li>
+<li>no shutdown</li>
+</ul>
+</li>
+<li><p>网络不可连接时的检查步骤：</p>
+<ul>
+<li>检查网络连接是否正常</li>
+<li>验证网卡配置</li>
+<li>验证IP配置</li>
+<li>检查URL是否正确</li>
+</ul>
+</li>
+<li><p>四种不同的线：</p>
+<ul>
+<li>同种设备使用交叉反线（crossover）</li>
+<li>异种设备间使用直通线（straight through）</li>
+<li>PC的COM口连接交换机的console口使用全反电缆（rollover cable）</li>
+<li>连接带有串口的串行线（serial）</li>
+</ul>
+</li>
+<li><p>名词解释：</p>
+<ul>
+<li>CIR：约定信息速率</li>
+<li>DCE：数据通讯设备</li>
+<li>DTE：数据终端设备</li>
+<li>LMI：本地管理接口</li>
+<li>PVC：永久虚拟电路</li>
+<li>SVC：虚电路</li>
+<li>DLCI：数据链路标识符</li>
+<li>PVST+：增强的按VLAN生成树</li>
+</ul>
+</li>
+<li><p>几种协议的管理距离：</p>
+<ul>
+<li>RIP：120</li>
+<li>OSPF：110</li>
+<li>静态路由：1</li>
+<li>内部EIGRP：90</li>
+<li>外部EIGRP：170</li>
+<li>内部BGP：200</li>
+<li>EGP：140</li>
+<li>EIGRP路由汇总：5</li>
+<li>外部BGP：20</li>
+<li>IGRP：100</li>
+<li>IS-IS自制系统：115</li>
+<li>EGP：140</li>
+<li>直连网络：0</li>
+</ul>
+</li>
+<li><p>组播地址：</p>
+<ul>
+<li>IPV4：224.0.0.2</li>
+<li>IPV6：FF02：：2</li>
+</ul>
+</li>
+<li><p>本地地址：</p>
+<ul>
+<li>IPV4:127.0.0.1</li>
+<li>IPV6： FE80开头 + {本地的MAC地址}</li>
+</ul>
+</li>
+<li><p>查看CPU使用率：show process</p>
+</li>
+<li><p>查看trunk端口：</p>
+<ul>
+<li>show interface trunk</li>
+<li>show interface switchport</li>
+</ul>
+</li>
+<li><p>交换机在trunk模式下的模式：</p>
+<ul>
+<li>auto：不会主动发送DTP信息</li>
+<li>on：强制称为trunk，也会主动发送信息</li>
+<li>desireable：DTP主动模式，发DTP和对方协商</li>
+</ul>
+</li>
+<li><p>STP（802.1d）端口状态：</p>
+<ul>
+<li>阻塞(blocking)该端口被阻塞，不可以转发或接收数据包</li>
+<li>监听(listening)该端口正在等待接收bpdu数据包，bpdu可能告知该端口重新回到阻塞状态</li>
+<li>学习(learning)该端口正在向其转发数据库中添加地址，但是，并不转发数据包</li>
+<li>转发(forwarding)该端口正在转发数据包</li>
+<li>失效(disabled)该端口只是相应网管消息，并且必须先转到阻塞状态</li>
+</ul>
+</li>
+<li><p>RSTP（802.1w）端口状态：</p>
+<ul>
+<li>禁止（Discarding）</li>
+<li>学习（Learning）</li>
+<li>转发（Forwarding）</li>
+</ul>
+</li>
+<li><p>IPV6任播的三个特点：</p>
+<ul>
+<li>数据包传送到该组接口，转发到最近结点</li>
+<li>同组中多个接口公用一个地址</li>
+<li>发送到任播地址的接口被发送到最近的结点</li>
+</ul>
+</li>
+<li><p>Trunk的协议：</p>
+<ul>
+<li>通用的802.1q</li>
+<li>思科私有的ISL</li>
+</ul>
+</li>
+<li><p>IPV4向IPV6转换的方式：</p>
+<ul>
+<li>隧道</li>
+<li>双栈</li>
+<li>NAT-PT</li>
+</ul>
+</li>
+<li><p>DoD模型：</p>
+<ul>
+<li>Application</li>
+<li>Host to Host</li>
+<li>Internet</li>
+<li>Network Access</li>
+</ul>
+</li>
+<li><p>查看OSPF链路状态：show ip ospf database </p>
+</li>
+<li><p>OSPF中进程号范围为1-65535</p>
+</li>
+<li><p>DHCP中IP地址冲突解决方案：检测到IP地址冲突时，会将冲突的IP地址删除，直到冲突解决之后再将IP地址放回</p>
+</li>
+<li><p>查看端口安全状态：show port-security interface [端口名]</p>
+</li>
+<li><p>链路状态协议的特点：</p>
+<ul>
+<li>提供参看拓扑的命令</li>
+<li>计算最短路径<br>-利用触发更新</li>
+</ul>
+</li>
+<li><p>OSPF建立邻居关系的四个条件：</p>
+<ul>
+<li>区域ID一致</li>
+<li>hello，dead时间一致</li>
+<li>认证方式和认证密码一致</li>
+<li>区域性质一致（都是普通区域或者是末节区域）</li>
+</ul>
+</li>
+<li><p>在全局配置模式下查看直连设备：cdp run</p>
+</li>
+<li><p>EIGRP查看邻居关系：show ip eigrp neighbors</p>
+</li>
+<li><p>PAP采用两次握手机制，CHAP采用三次握手机制</p>
+</li>
+<li><p>PVC状态：</p>
+<ul>
+<li>ACTIVE：成功的端对端电路</li>
+<li>INACTIVE：表示成功连接到交换机，但是在另一端未检测到DTE</li>
+<li>配置的端口被交换机视为无效</li>
+</ul>
+</li>
+<li><p>SNMPv3比SNMPv2多添加的：</p>
+<ul>
+<li>数据完整性</li>
+<li>认证</li>
+<li>加密</li>
+</ul>
+</li>
+<li><p>系统日志存储位置：</p>
+<ul>
+<li>RAM</li>
+<li>控制台终端</li>
+<li>系统日志服务器</li>
+</ul>
+</li>
+<li><p>系统日志级别：</p>
+<ul>
+<li>0：Emergency</li>
+<li>1：Alert</li>
+<li>2：Critical</li>
+<li>3：Error</li>
+<li>4：Warning</li>
+<li>5：Notice</li>
+<li>6：Informational</li>
+<li>7：Debug</li>
+</ul>
+</li>
+<li><p>HSRP的virtual mac address以0000.0c07.acxx开头</p>
+</li>
+<li><p>IPV6任播的三个特点：</p>
+<ul>
+<li>数据包转发到该组接口，转发到最近的结点</li>
+<li>同组中多个接口公用一个地址</li>
+<li>发到任播地址的包被转发到最近的结点</li>
+</ul>
+</li>
+<li><p>IPV6地址：</p>
+<ul>
+<li>FF01::1 — all nodes（node-local）</li>
+<li>FF01::2 — all routers(node-local)</li>
+<li>FF02::1 — all nodes(link-local)</li>
+<li>FF02::2 — all routers(link-local)</li>
+<li>FF02::5 — OSPFv3 routers</li>
+<li>FF02::6 — OSPFv3 designated routers</li>
+<li>FF02::9 — RIP</li>
+<li>FF02::A — EIGRP routers</li>
+<li>FF02::B — Mobile agents</li>
+<li>FF02::C — SSDP</li>
+<li>FF02::D — all PIM routers</li>
+<li>FF05::2 — all routers(site-local)</li>
+<li>FF05::1:3 — DHCP</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    
+        <div class="reward" ontouchstart="">
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="/img/reward-alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="/img/reward-wepay.png"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">赞赏是不耍流氓的鼓励</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">WeiQingcai</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/11/09/Windows系统安全综述/" class="pre-post btn btn-default" title="Windows系统安全综述">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Windows系统安全综述</span>
+        </a>
+    
+    
+        <a href="/2018/11/09/计算机网络基础汇总/" class="next-post btn btn-default" title="计算机网络基础汇总">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">计算机网络基础汇总</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CCNA考试复习总结"><span class="toc-text">CCNA考试复习总结</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="/assets/tagcanvas.min.js?rev=2.9"></script>
+    <script>
+        var tagOption = {
+            textColour: '#444', // 字体颜色
+            outlineMethod: 'block', // 选中模式
+            outlineColour: '#FFDAB9', // 选中模式的颜色
+            interval: 30 || 30, // 动画帧之间的时间间隔，值越大，转动幅度越大
+            textHeight: 13,
+            outlineRadius: 3,
+            freezeActive: true || '', // 选中的标签是否继续滚动
+            frontSelect: true || '', // 不选标签云后部的标签
+            initial: [0.1, -0.1],
+            depth: 0.5,
+            decel: 0.95,
+            maxSpeed: 0.03,
+            reverse: true || '', // 是否反向触发
+            fadeIn: 500, // 进入动画时间
+            wheelZoom: false || '' // 是否启用鼠标滚轮
+        }
+        TagCanvas.Start('tag-cloud-3d','',tagOption);
+    </script>
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
