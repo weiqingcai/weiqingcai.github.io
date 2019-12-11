@@ -18,6 +18,8 @@ notifications:
 # S: Build Lifecycle
 before_install:
   - sudo apt-get install libnotify-bin
+  - git config --global user.name "[weiqingcai1994@gmail.com]"
+  - git config --global user.name "[weiqingcai1994@gmail.com]"
 
 install:
   - npm install
@@ -27,7 +29,8 @@ before_script:
   - npm install -g gulp
   - chmod +x _travis.sh
 script:
-  - hexo g
+  - hexo clean
+  - hexo generate
 #   - gulp
 
 after_success:
