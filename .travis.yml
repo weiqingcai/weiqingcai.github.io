@@ -1,8 +1,6 @@
 language: node_js
 node_js: stable
 
-sudo: required
-
 #cache
 cache:
   directories:
@@ -26,7 +24,7 @@ before_install:
 install:
   - npm install
 #   - gem install travis
-#   - travis login --pro --github-token ${GH_TOKEN}
+  - travis login --pro --github-token ${GH_TOKEN}
 
 before_script:
   - export TZ='Asia/Shanghai'
