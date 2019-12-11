@@ -19,7 +19,7 @@ notifications:
 # S: Build Lifecycle
 before_install:
   - sudo apt-get install libnotify-bin
-
+  - npm install -g hexo-cli
 install:
   - npm install
 
