@@ -17,7 +17,7 @@ categories: 大数据与网络安全
 
 ### 散点图
 
-![散点图](https://img-blog.csdn.net/20180522104247531)
+![散点图](https://img-blog.csdn.net/20180522104247531?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 绘制散点图使用matplotlib.pyplot中的scatter()函数
 
@@ -49,7 +49,7 @@ plt.show()
 
 ### 折线图
 
-![折线图](https://img-blog.csdn.net/20180522113442425)
+![折线图](https://img-blog.csdn.net/20180522113442425?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 绘制折线图使用matplotlib.pyplot中的plot()函数
 
@@ -96,7 +96,7 @@ plt.show()
 ```
 ### 条形图
 
-![条形图](https://img-blog.csdn.net/20180522161600757)
+![条形图](https://img-blog.csdn.net/20180522161600757?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 绘制条形图需要使用matplotlib.pyplot中的bar()函数
 
@@ -171,7 +171,7 @@ plt.show()
 
 还可以在此基础上绘制2D的直方图,即双变量的直方图，通过颜色的深浅来表示频率的高低
 
-![双变量的直方图](https://img-blog.csdn.net/20180522191930944)
+![双变量的直方图](https://img-blog.csdn.net/20180522191930944?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 ```
 import matplotlib.pyplot as plt
@@ -187,7 +187,7 @@ plt.show()
 
 绘制饼图需要使用pyplot中的pie()函数
 
-![饼图](https://img-blog.csdn.net/20180524083843354)
+![饼图](https://img-blog.csdn.net/20180524083843354?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 ```
 import matplotlib.pyplot as plt
