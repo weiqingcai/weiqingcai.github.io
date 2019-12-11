@@ -3,6 +3,7 @@ node_js: stable
 
 #cache
 cache:
+  apt: true
   directories:
     - "node_modules"
 
