@@ -1,9 +1,10 @@
 language: node_js
 node_js: stable
 
+sudo: false
+
 #cache
 cache:
-  apt: true
   directories:
     - "node_modules"
 
@@ -13,13 +14,13 @@ notifications:
   email:
     recipients:
       - 759934331@qq.com
-    on_success: change
+    on_success: never
     on_failure: always
 
 # S: Build Lifecycle
-before_install:
-  - sudo apt-get install libnotify-bin
-  - npm install -g hexo-cli
+#before_install:
+#  - sudo apt-get install libnotify-bin
+#  - npm install -g hexo-cli
 install:
   - npm install
 
@@ -33,8 +34,8 @@ script:
 #   - gulp
 
 after_success:
- # - LAST_BUILD_NUMBER=68
- # - for i in $(seq 1 $LAST_BUILD_NUMBER ); do  travis logs $i --delete --force ; done
+# - LAST_BUILD_NUMBER=68
+# - for i in $(seq 1 $LAST_BUILD_NUMBER ); do  travis logs $i --delete --force ; done
 
 after_script:
   - ./_travis.sh
@@ -45,6 +46,6 @@ branches:
   only:
     - hexo-lab
 env:
- global:
-   - GH_REF: github.com/weiqingcai/weiqingcai.github.io.git
+  global:
+    - GH_REF: github.com/weiqingcai/weiqingcai.github.io.git
 
