@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>程序小栈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这是我的小栈，记录点滴">
+<meta property="og:type" content="website">
+<meta property="og:title" content="程序小栈">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="程序小栈">
+<meta property="og:description" content="这是我的小栈，记录点滴">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="WeiQingcai">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">程序小栈</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-激活函数总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/09/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2021-03-09T03:17:45.165Z" itemprop="datePublished">2021-03-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: 激活函数总结<br>date: 2020-06-19 16:40:00<br>tags: [机器学习,深度学习]<br>categories: 大数据与网络安全</p>
+<h1 id="激活函数总结"><a href="#激活函数总结" class="headerlink" title="激活函数总结"></a>激活函数总结</h1><p>使用激活函数的本质原因在于通过引入非线性的激活函数将原本线性的网络具备拟合任意函数的能力。若是没有非线性的激活函数，神经网络从本质上始终是单层感知机的线性组合。</p>
+<h2 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h2><p><img src="C:\Users\Wei\Pictures\sigmoid.png" alt=""></p>
+<script type="math/tex; mode=display">
+f(z)=\frac{1}{1+exp(-z)}</script><p>其导函数为：</p>
+<script type="math/tex; mode=display">
+f^{'}(z) =\frac{exp(-z)}{[1+exp(-z)]^2}=f(z)(1-f(z))</script><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>梯度平滑</li>
+<li>输出值在0-1之间，可以近似看作是概率值</li>
+<li>函数值在趋近0和1时候的变化率会变得很小，即梯度很小，接近于0。这样神经网络在反向传播时候就会无法更新神经元，与此类神经元相连的神经元更新频率也会很低，当深度神经网络包含多饱和神经元时，整个网络的训练几乎停滞</li>
+<li>计算量大，正向和反向传播都包含幂运算和除法</li>
+<li>值域为[0,1]即输出值恒大于0，导致参数更新路径呈锯齿形。该问题的具体解释可以参考文章<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38646522/article/details/79534677">cs231n_激活函数</a></li>
+</ul>
+<h2 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h2><p><img src="C:\Users\Wei\Pictures\Tanh.png" alt=""></p>
+<script type="math/tex; mode=display">
+tanh(z)=\frac{e^z-e^{-z}}{e^z+e^{-z}}</script><p>其导函数为：</p>
+<script type="math/tex; mode=display">
+f^{'}(z)=1-(f(z))^2</script><h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>梯度平滑</li>
+<li>梯度消失问题比sigmoid要轻，收敛速度更快</li>
+<li>输出范围[-1，1]，以0为中心</li>
+<li>缺点同sigmoid相同</li>
+</ul>
+<h2 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h2><p><img src="C:\Users\Wei\Pictures\ReLU.png" alt=""></p>
+<script type="math/tex; mode=display">
+f(z)=max(0,z)</script><p>其导函数为：</p>
+<script type="math/tex; mode=display">
+f^{'}=
+\begin{cases}
+1,z>0\\
+0,z<=0
+\end{cases}</script><h3 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>运算简单，不涉及指数运算，速度快</li>
+<li>一定程度缓解梯度消失问题，在输入大于0的部分导数为1，不会像sigmoid一样由于导数太小而产生梯度消失问题</li>
+<li>但是可能会陷入死细胞状态，网络的部分分量永远都不会更新</li>
+</ul>
+<h2 id="ELU"><a href="#ELU" class="headerlink" title="ELU"></a>ELU</h2><p><img src="C:\Users\Wei\Pictures\ELU.png" style="zoom:75%;" /></p>
+<script type="math/tex; mode=display">
+f(z)=
+\begin{cases}
+z &if & z>0\\
+\alpha(e^z-1)&if & z<0
+\end{cases}</script><p>其导函数为：</p>
+<script type="math/tex; mode=display">
+f^{'}(z) = 
+\begin{cases}
+1& if &x>0\\
+ELU(z)+\alpha=\alpha e^z & if & x<=0
+\end{cases}</script><h3 id="优缺点-3"><a href="#优缺点-3" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>能避免ReLU死亡的问题</li>
+<li>输出能得到负值，有利于推动权重和偏置向正确方向变化</li>
+<li>无法避免梯度爆炸问题</li>
+<li>网络不学习参数<code>alpha</code>，需要手动设置超参数</li>
+<li>包含指数运算，计算复杂</li>
+</ul>
+<h2 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h2><p><img src="C:\Users\Wei\Pictures\Leaky ReLU.png" alt=""></p>
+<script type="math/tex; mode=display">
+f(z) = max(\alpha z,z)</script><p>其导函数为：</p>
+<script type="math/tex; mode=display">
+f^{'}=
+\begin{cases}
+\alpha,z<=0\\
+1,z>0\\
+\end{cases}</script><h3 id="优缺点-4"><a href="#优缺点-4" class="headerlink" title="优缺点"></a>优缺点</h3><ul>
+<li>一定程度避免ReLU死亡问题，计算时始终存在一个较小的梯度</li>
+<li>运算速度角块，不涉及指数运算</li>
+<li>无法避免梯度爆炸问题</li>
+<li>神经网络不学习超参数<code>alpha</code>,需要自己设定</li>
+<li>两部分都是线性的</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2021/03/09/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/" data-id="ckm1rujy9002188ts7xltgim0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Matplotlib学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Matplotlib学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Matplotlib学习笔记"><a href="#Matplotlib学习笔记" class="headerlink" title="Matplotlib学习笔记"></a>Matplotlib学习笔记</h1><p>关于Matplotlib最好的学习笔记就是官网地址，上边有绘制各种图形的示例，建议去官网文档学习，另外喜欢看视频教程的可以去B站。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av6989413">B站关于Matplotlib的视频教程</a></strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://matplotlib.org/index.html">Matplotlib官网地址</a></strong></p>
+<h2 id="基本图形的绘制"><a href="#基本图形的绘制" class="headerlink" title="基本图形的绘制"></a>基本图形的绘制</h2><h3 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h3><p><img src="https://img-blog.csdn.net/20180522104247531?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="散点图"></p>
+<p>绘制散点图使用matplotlib.pyplot中的scatter()函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">#生成两个随机数组，分别用于对应x轴和y轴</span><br><span class="line">x &#x3D; np.random.random(100)</span><br><span class="line">y &#x3D; np.random.random(100)</span><br><span class="line"></span><br><span class="line">#绘制散点图的函数，x，y分别对应点的x轴坐标和y轴坐标</span><br><span class="line">plt.scatter(x,y)</span><br><span class="line">#显示散点图</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>scatter()函数常用参数：</strong></p>
+<ul>
+<li><p>s：表示点面积大小，默认为20    </p>
+</li>
+<li><p>c：表示颜色，默认为‘b’（蓝色）</p>
+</li>
+<li><p>marker：表示形状，默认为‘o’（圆形），<a target="_blank" rel="noopener" href="https://matplotlib.org/api/markers_api.html#module-matplotlib.markers">可选的marker列表</a></p>
+</li>
+<li><p>alpha：表示透明度，默认为1，取值范围在0-1之间，0为完全透明，1为不透明</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html?highlight=scatter#matplotlib.pyplot.scatter">官网对于scatter参数的详解</a></p>
+<h3 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h3><p><img src="https://img-blog.csdn.net/20180522113442425?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="折线图"></p>
+<p>绘制折线图使用matplotlib.pyplot中的plot()函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">#生成一个等区间的序列，从-10到20，平均分成5份</span><br><span class="line">x &#x3D; np.linspace(-10,20,5)</span><br><span class="line">y &#x3D; x**2</span><br><span class="line"></span><br><span class="line">plt.plot(x,y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>plot常用参数：</strong></p>
+<ul>
+<li><p>linestyle：表示线类型</p>
+</li>
+<li><p>marker：表示点形状，默认是‘o’（圆形）</p>
+</li>
+<li><p>c：表示颜色，默认是‘b’（蓝色） </p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html?highlight=plot#matplotlib.pyplot.plot">官网对于plot参数的详解</a></p>
+<p>当x轴是以时间为单位时，需要使用plot_date()函数来绘制，并设置linestyle（线型）参数为<strong>‘—’</strong>才会显示为折线图</p>
+<p><img src="https://img-blog.csdn.net/20180522155508435?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="日期折线图"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.dates as mdates</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line">#加载数据</span><br><span class="line">date, openPrice, closePrice &#x3D; np.loadtxt(&#39;price_two_month.csv&#39;,</span><br><span class="line">                                         delimiter&#x3D;&#39;,&#39;,</span><br><span class="line">                                         converters&#x3D;&#123;5: mdates.strpdate2num(&#39;%Y-%m-%d&#39;)&#125;,</span><br><span class="line">                                         skiprows&#x3D;1,</span><br><span class="line">                                         usecols&#x3D;(5, 8, 11),</span><br><span class="line">                                         unpack&#x3D;True,</span><br><span class="line">                                         encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line">#使用plot_date()函数来绘制折线图，并设置线型为‘-’</span><br><span class="line">plt.plot_date(date, openPrice,&#39;-&#39;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="条形图"><a href="#条形图" class="headerlink" title="条形图"></a>条形图</h3><p><img src="https://img-blog.csdn.net/20180522161600757?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="条形图"></p>
+<p>绘制条形图需要使用matplotlib.pyplot中的bar()函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">N &#x3D; 10</span><br><span class="line"></span><br><span class="line">y &#x3D; np.random.random(10)</span><br><span class="line">index &#x3D; np.arange(N)</span><br><span class="line">#left参数表示下边的索引值，height表示对应于索引值的条形图的高度</span><br><span class="line">p1 &#x3D; plt.bar(left&#x3D;index,height&#x3D;y)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>常用参数：</strong></p>
+<ul>
+<li><p>c：表示颜色，默认值为‘b’（蓝色）</p>
+</li>
+<li><p>width：表示宽度，默认值为0.8</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.bar.html?highlight=bar#matplotlib.pyplot.bar">官网对于bar参数的详解</a></p>
+<p>若是需要绘制水平的条形图，需要使用barh()函数，并修改其中的参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">N &#x3D; 10</span><br><span class="line"></span><br><span class="line">y &#x3D; np.random.random(10)</span><br><span class="line">index &#x3D; np.arange(N)</span><br><span class="line">#left需要设置为0，添加bottom参数并设置为index，同时height参数修改为width</span><br><span class="line">p1 &#x3D; plt.barh(left &#x3D; 0,bottom&#x3D;index,width&#x3D;y)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180522162814774?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="横向条形图"></p>
+<h3 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h3><p>绘制直方图需要使用hist()函数<br>  <img src="https://img-blog.csdn.net/20180522190721463?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="直方图"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">#数据的均值</span><br><span class="line">mu &#x3D; 100</span><br><span class="line">#数据的方差</span><br><span class="line">sigma &#x3D; 20</span><br><span class="line">#构造一组数据</span><br><span class="line">x &#x3D; mu+sigma*np.random.randn(2000)</span><br><span class="line">#绘制直方图x为数据，bins表示分的组数，normed表示是否进行标准化，即是否用频率来表示。而不是具体的数值</span><br><span class="line">plt.hist(x,bins&#x3D;50，normed&#x3D;True)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>常用参数：</strong></p>
+<ul>
+<li><p>c：表示颜色</p>
+</li>
+<li><p>normed：表示是否进行标准化</p>
+</li>
+<li><p>bins：表示组数 </p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist.html?highlight=hist#matplotlib.pyplot.hist">官网对于hist参数的详解</a></p>
+<p>还可以在此基础上绘制2D的直方图,即双变量的直方图，通过颜色的深浅来表示频率的高低</p>
+<p><img src="https://img-blog.csdn.net/20180522191930944?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="双变量的直方图"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x &#x3D; np.random.randn(500)+20</span><br><span class="line">y &#x3D; np.random.randn(500)-30</span><br><span class="line"></span><br><span class="line">plt.hist2d(x,y,bins&#x3D;40)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h3><p>绘制饼图需要使用pyplot中的pie()函数</p>
+<p><img src="https://img-blog.csdn.net/20180524083843354?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="饼图"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">&#x2F;&#x2F;设置每个标签</span><br><span class="line">lables &#x3D; &#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;</span><br><span class="line">&#x2F;&#x2F;每个标签所对应的数值</span><br><span class="line">fracs &#x3D; [15,28,20,40]</span><br><span class="line">&#x2F;&#x2F;若需要显示为正圆，需要设置x，y轴比例一致</span><br><span class="line">plt.axes(aspect&#x3D;1)</span><br><span class="line">&#x2F;&#x2F;设置相关参数</span><br><span class="line">plt.pie(x&#x3D;fracs,labels&#x3D;lables,autopct&#x3D;&#39;%.0f%%&#39;,explode&#x3D;explode,shadow&#x3D;True)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>常用参数：</strong></p>
+<ul>
+<li><p>autopct：表示是否显示各部分所占的比例，使用python中的格式化数据显示</p>
+</li>
+<li><p>explode：表示是否突出显示某一部分 ，0表示不突出显示</p>
+</li>
+<li><p>shadow：表示是否添加阴影</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.pie.html?highlight=pie#matplotlib.pyplot.pie">官网对于pie的参数详解</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckm1rujxe000888ts91q89nqa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Matplotlib学习笔记（2）--Matplotlib面向对象绘图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89--Matplotlib%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE/" class="article-date">
+  <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89--Matplotlib%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE/">Matplotlib学习笔记（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Matplotlib面向对象简介"><a href="#Matplotlib面向对象简介" class="headerlink" title="Matplotlib面向对象简介"></a>Matplotlib面向对象简介</h2><p>Matplotlib面向对象主要是可以实现更加定制化的绘图，但相比于通过直接使用pyplot而言使用也更加复杂。Matplotlib中大的对象主要分为三个，FigureCanvas（画布），Figure（图），Axes（绘制的坐标轴）。</p>
+<h2 id="一张图中绘制多个子图"><a href="#一张图中绘制多个子图" class="headerlink" title="一张图中绘制多个子图"></a>一张图中绘制多个子图</h2><p><img src="https://img-blog.csdn.net/20180524094217309?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="绘制多个子图"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x &#x3D; np.arange(1, 100)</span><br><span class="line"></span><br><span class="line"># 创建一个图</span><br><span class="line">fig &#x3D; plt.figure()</span><br><span class="line">#331表示，将这个图分为3*3的格式(即一共可以添加9个子图)，并添加一号子图</span><br><span class="line">ax1 &#x3D; fig.add_subplot(331)</span><br><span class="line">ax1.plot(x,x)</span><br><span class="line">#334表示向这个3*3的图中添加四号子图</span><br><span class="line">ax2 &#x3D; fig.add_subplot(334)</span><br><span class="line">ax2.plot(x,np.log(x))</span><br><span class="line"></span><br><span class="line"># 对于同一个figure而言，划分成的格式应该一样</span><br><span class="line"># 例如对于上边的figure而言，fig.add_subplot()中的参数只能是“33X”</span><br><span class="line"># 33表示的是将一个figure按照3*3划分，X表示要操作的子图，取值范围为1-9</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="生成多张图"><a href="#生成多张图" class="headerlink" title="生成多张图"></a>生成多张图</h2><p>生成多张图可以通过创建多个Figure对象来实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x &#x3D; np.arange(0, 100)</span><br><span class="line"></span><br><span class="line">fig1 &#x3D; plt.figure()</span><br><span class="line">ax1 &#x3D; fig1.add_subplot(111)</span><br><span class="line"></span><br><span class="line">ax1.plot(x,x)</span><br><span class="line"></span><br><span class="line">fig2 &#x3D; plt.figure()</span><br><span class="line">ax2 &#x3D; fig2.add_subplot(111)</span><br><span class="line"></span><br><span class="line">ax2.plot(x,-x)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="网格背景及图例的显示"><a href="#网格背景及图例的显示" class="headerlink" title="网格背景及图例的显示"></a>网格背景及图例的显示</h2><p><img src="https://img-blog.csdn.net/20180524102934730?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="网格及图例显示"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x &#x3D; np.arange(1,10,1)</span><br><span class="line"></span><br><span class="line">plt.plot(x,x*2,label&#x3D;&quot;Normal&quot;)</span><br><span class="line">plt.plot(x,x*3,label&#x3D;&quot;Fast&quot;)</span><br><span class="line">plt.plot(x,x*4,label&#x3D;&quot;Faster&quot;)</span><br><span class="line"></span><br><span class="line">#网格的显示可以通过plt.grid(True)来显示</span><br><span class="line">plt.grid(True)</span><br><span class="line">#图例的显示可以通过plt.legend()来显示，需要提前给要绘制的图形添加上label</span><br><span class="line">plt.legend()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong><a target="_blank" rel="noopener" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html?highlight=legend#matplotlib.pyplot.legend">官网对于legend的参数的详解</a></strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.grid.html?highlight=grid#matplotlib.pyplot.grid">官网对于grid的参数的详解</a></strong></p>
+<p>在使用面向对象的绘图中可以通过对Axes的操作来实现图例的显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x &#x3D; np.arange(1,10,1)</span><br><span class="line"></span><br><span class="line">fig &#x3D; plt.figure()</span><br><span class="line">ax1 &#x3D; fig.add_subplot(111)</span><br><span class="line">ax1.plot(x,x*2,label&#x3D;&quot;Normal&quot;)</span><br><span class="line">ax1.legend()</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="调整坐标轴范围"><a href="#调整坐标轴范围" class="headerlink" title="调整坐标轴范围"></a>调整坐标轴范围</h2><p>调整坐标轴范围可以有多种方式，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x &#x3D; np.arange(1,11,1)</span><br><span class="line"></span><br><span class="line">fig &#x3D; plt.figure()</span><br><span class="line">ax1 &#x3D; fig.add_subplot(111)</span><br><span class="line">ax1.plot(x,x)</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li><p><strong>方式一</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#使用plt.axis()函数，四个值分别对应着x轴的起点，终点，y轴的起点，终点</span><br><span class="line">plt.axis([5,10,4,8])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>方式二</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#使用plt.xlim()函数</span><br><span class="line">plt.xlim(xmin&#x3D;2,xmax&#x3D;8)</span><br><span class="line">plt.ylim(ymin&#x3D;2,ymax&#x3D;8)</span><br></pre></td></tr></table></figure>
+<h2 id="调整坐标轴的刻度"><a href="#调整坐标轴的刻度" class="headerlink" title="调整坐标轴的刻度"></a>调整坐标轴的刻度</h2></li>
+</ol>
+<p><img src="https://img-blog.csdn.net/20180524162315535?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="调整坐标轴刻度"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">x &#x3D; np.arange(1,11,1)</span><br><span class="line"></span><br><span class="line">plt.plot(x,x)</span><br><span class="line"></span><br><span class="line">ax &#x3D; plt.gca()</span><br><span class="line">#只调整x轴刻度</span><br><span class="line">ax.locator_params(&#39;x&#39;,nbins&#x3D;20)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>调整坐标轴的刻度有两种方式：</p>
+<ol>
+<li><p>通过Axes对象的locator_params()函数（面向对象的方式）</p>
+</li>
+<li><p>通过matplotlib.pyplot的locator_params()函数</p>
+</li>
+</ol>
+<p>两种方式其实使用的都是locator_params()，其有多个参数可供选择</p>
+<p><strong>常用参数有：</strong></p>
+<ul>
+<li><p>nbins：划分成多少份刻度</p>
+</li>
+<li><p>x：表示调整的是x轴刻度</p>
+</li>
+<li><p>y：表示调整的是y轴刻度</p>
+</li>
+<li><p>注：若x，y都不填则默认参数为both，即两个轴都会调整</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.locator_params.html?highlight=locator_params#matplotlib.pyplot.locator_params">locator_params()官网参数详解</a></p>
+<h2 id="绘制样式的美化"><a href="#绘制样式的美化" class="headerlink" title="绘制样式的美化"></a>绘制样式的美化</h2><p>之前的绘制都是直接使用原生的样式来绘制，而Matplotlib内建的提供了更多的多种样式可供我们选择。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#通过使用该方法可以美化我们绘制出的图形</span><br><span class="line">plt.style.use(&#39;ggplot&#39;)</span><br><span class="line"></span><br><span class="line">#该方法可以查看当前可供选择的style</span><br><span class="line">plt.style.available</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89--Matplotlib%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE/" data-id="ckm1rujxf000988ts6z3352ja" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Python小知识汇总" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" class="article-date">
+  <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/01/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/">Python小知识汇总</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="记录使用Python中遇到的小知识（持续更新）"><a href="#记录使用Python中遇到的小知识（持续更新）" class="headerlink" title="记录使用Python中遇到的小知识（持续更新）"></a>记录使用Python中遇到的小知识（持续更新）</h1><h2 id="1-安装包时提示权限拒绝"><a href="#1-安装包时提示权限拒绝" class="headerlink" title="1.安装包时提示权限拒绝"></a>1.安装包时提示权限拒绝</h2><h3 id="报错："><a href="#报错：" class="headerlink" title="报错："></a>报错：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not install packages due to an EnvironmentError: [WinError 5] 拒绝访问。: &#39;d:\\python36\\scripts\\pip.exe&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --user &lt;target-packages&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2-误操作导致pip被卸载："><a href="#2-误操作导致pip被卸载：" class="headerlink" title="2.误操作导致pip被卸载："></a>2.误操作导致pip被卸载：</h2><h3 id="报错：-1"><a href="#报错：-1" class="headerlink" title="报错："></a>报错：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ModuleNotFoundError: No module named &#39;pip&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="解决：-1"><a href="#解决：-1" class="headerlink" title="解决："></a>解决：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#先执行</span><br><span class="line">python -m ensurepip</span><br><span class="line">#后执行</span><br><span class="line">python -m pip install --upgrade pip</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="3-更换Pypi为国内镜像源"><a href="#3-更换Pypi为国内镜像源" class="headerlink" title="3.更换Pypi为国内镜像源"></a>3.更换Pypi为国内镜像源</h2><h3 id="解决：-2"><a href="#解决：-2" class="headerlink" title="解决："></a>解决：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pip -U (保证pip版本大于10.0.0)</span><br><span class="line">pip config set global.index-url &lt;国内镜像地址&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="国内镜像："><a href="#国内镜像：" class="headerlink" title="国内镜像："></a><strong>国内镜像：</strong></h4><pre><code>清华：https://pypi.tuna.tsinghua.edu.cn/simple
+
+阿里云：http://mirrors.aliyun.com/pypi/simple/
+
+中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/
+
+华中理工大学：http://pypi.hustunique.com/
+
+山东理工大学：http://pypi.sdutlinux.org/ 
+
+豆瓣：http://pypi.douban.com/simple/
+</code></pre><h2 id="4-443端口读超时"><a href="#4-443端口读超时" class="headerlink" title="4. 443端口读超时"></a>4. 443端口读超时</h2><h3 id="报错：-2"><a href="#报错：-2" class="headerlink" title="报错："></a>报错：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReadTimeoutError: HTTPSConnectionPool(host&#x3D;&#39;pypi.tuna.tsinghua.edu.cn&#39;, port&#x3D;443): Read timed out.</span><br></pre></td></tr></table></figure>
+<h3 id="解决：-3"><a href="#解决：-3" class="headerlink" title="解决："></a>解决：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在下载第三方包时加上参数   --timeout&#x3D;100 （超时时长设置为100秒）</span><br><span class="line"></span><br><span class="line">pip install --timeout&#x3D;100 &lt;target-packages&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="5-将Jupyter配置成Windows系统服务，开机自启动"><a href="#5-将Jupyter配置成Windows系统服务，开机自启动" class="headerlink" title="5.将Jupyter配置成Windows系统服务，开机自启动"></a>5.将Jupyter配置成Windows系统服务，开机自启动</h2><h4 id="解决方案参考自"><a href="#解决方案参考自" class="headerlink" title="解决方案参考自:"></a>解决方案参考自:</h4><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000014518848?utm_source=tag-newest">ttps://segmentfault.com/a/1190000014518848?utm_source=tag-newest</a></p>
+<p>在配置过程中遇到的问题汇总参看另一篇博文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wqc_CSDN/article/details/88663563">配置Jupyter服务时遇到的问题</a></p>
+<h2 id="6-解决ModuleNotFoundError-No-module-named-‘numpy-core-multiarray-umath’-错误"><a href="#6-解决ModuleNotFoundError-No-module-named-‘numpy-core-multiarray-umath’-错误" class="headerlink" title="6. 解决ModuleNotFoundError: No module named ‘numpy.core._multiarray_umath’ 错误"></a>6. 解决ModuleNotFoundError: No module named ‘numpy.core._multiarray_umath’ 错误</h2><h3 id="解决：-4"><a href="#解决：-4" class="headerlink" title="解决："></a>解决：</h3><p>这个大多是因为numpy的版本较低导致，可以通过更新numpy版本来修复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade numpy</span><br></pre></td></tr></table></figure>
+<h4 id="解决办法参考自："><a href="#解决办法参考自：" class="headerlink" title="解决办法参考自："></a>解决办法参考自：</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41010198/article/details/86738635">https://blog.csdn.net/weixin_41010198/article/details/86738635</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" data-id="ckm1rujxi000d88tsgxvlflx9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="tag">小知识</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Seaborn学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Seaborn学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Seaborn简介"><a href="#Seaborn简介" class="headerlink" title="Seaborn简介"></a>Seaborn简介</h2><p>Seaborn是基于matplotlib的Python可视化库。它提供了一个高级界面来绘制有吸引力的统计图形。可以使得数据可视化更加的方便，美观。关于Seaborn的学习，推荐去官网，里边有详细的教程和示例。</p>
+<h2 id="Seaborn常用功能简介"><a href="#Seaborn常用功能简介" class="headerlink" title="Seaborn常用功能简介"></a>Seaborn常用功能简介</h2><h3 id="直接使用Seaborn的美化功能"><a href="#直接使用Seaborn的美化功能" class="headerlink" title="直接使用Seaborn的美化功能"></a>直接使用Seaborn的美化功能</h3><p>Seaborn直接提供了多种对matplotlib绘制的图形的美化功能，可以直接使用。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>使用matplotlib绘制图形，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#定义一个简单的绘图函数</span><br><span class="line">def sinplot(flip&#x3D;1):</span><br><span class="line">    x &#x3D; np.linspace(0, 14, 100)</span><br><span class="line">    for i in range(1, 7):</span><br><span class="line">        plt.plot(x, np.sin(x + i * .5) * (7 - i) * flip)</span><br></pre></td></tr></table></figure>
+<p><strong>直接使用matplotlib绘图效果</strong><br><img src="https://img-blog.csdn.net/20180531092416691?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="直接使用matplotlib绘图"></p>
+<p>使用Seaborn提供的默认主题美化图形绘制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#只需要在绘制图形之前调用Seaborn的set()函数就可以直接使用其设定好的默认主题进行美化</span><br><span class="line">sns.set()</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p><strong>使用Seaborn默认主题绘制效果</strong><br><img src="https://img-blog.csdn.net/20180531092541541?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="使用Seaborn默认主题绘制效果"></p>
+<p>Seaborn提供了多种风格的主题以供使用，可以通过sns.set_style()来直接使用。</p>
+<blockquote>
+<p>提供的直接使用的主题：<br>darkgrid，whitegrid，dark，white，和ticks<br>默认为darkgrid</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#使用Seaborn提供的主题绘制</span><br><span class="line">sns.set_style(&quot;ticks&quot;)</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p><strong>使用提供的主题‘ticks’绘制效果</strong><br><img src="https://img-blog.csdn.net/20180531092820181?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="使用提供的主题绘制"></p>
+<p>我们可以使用sns.despine()函数来去除图片顶部和右侧的坐标轴线，使得图片更加美观</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(&#39;ticks&#39;)</span><br><span class="line">sinplot()</span><br><span class="line">sns.despine()</span><br></pre></td></tr></table></figure>
+<p><strong>去除顶部和右侧轴线效果</strong><br><img src="https://img-blog.csdn.net/20180531093211224?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="去除轴线"></p>
+<p>Seaborn还提供了更为友好的with用法，可以让我们在一张图片中采用多种的绘图风格，所有在with域中的绘制采用一种风格，而不在with域中的则可以使用另一种风格。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#在with中使用一种风格</span><br><span class="line">with sns.axes_style(&quot;darkgrid&quot;):</span><br><span class="line">    plt.subplot(211)</span><br><span class="line">    sinplot()</span><br><span class="line">#不在with中的使用另一种风格，我们也可以使用多个with域来使用多种风格</span><br><span class="line">plt.subplot(212)</span><br><span class="line">sinplot(-1)</span><br></pre></td></tr></table></figure>
+<p><strong>一张图中使用多种风格效果</strong><br><img src="https://img-blog.csdn.net/20180531093922383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="一张图中使用多种风格效果"></p>
+<p>当然了，除了默认的提供的这些主题，我们也可以自己定义一些绘图的风格。通过向axes_style()和set_style()传递参数，可以定义自己的绘图主题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#通过传入字典的方式来定制自己的绘图风格</span><br><span class="line">sns.set_style(&quot;darkgrid&quot;, &#123;&quot;axes.facecolor&quot;: &quot;.9&quot;&#125;)</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p>我们可以通过直接调用set_style()函数来查看全部可以使用的参数。</p>
+<p><strong>set_style()可用参数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#39;axes.axisbelow&#39;: True,</span><br><span class="line"> &#39;axes.edgecolor&#39;: &#39;.15&#39;,</span><br><span class="line"> &#39;axes.facecolor&#39;: &#39;white&#39;,</span><br><span class="line"> &#39;axes.grid&#39;: False,</span><br><span class="line"> &#39;axes.labelcolor&#39;: &#39;.15&#39;,</span><br><span class="line"> &#39;axes.linewidth&#39;: 1.25,</span><br><span class="line"> &#39;figure.facecolor&#39;: &#39;white&#39;,</span><br><span class="line"> &#39;font.family&#39;: [&#39;sans-serif&#39;],</span><br><span class="line"> &#39;font.sans-serif&#39;: [&#39;Arial&#39;,</span><br><span class="line">  &#39;DejaVu Sans&#39;,</span><br><span class="line">  &#39;Liberation Sans&#39;,</span><br><span class="line">  &#39;Bitstream Vera Sans&#39;,</span><br><span class="line">  &#39;sans-serif&#39;],</span><br><span class="line"> &#39;grid.color&#39;: &#39;.8&#39;,</span><br><span class="line"> &#39;grid.linestyle&#39;: &#39;-&#39;,</span><br><span class="line"> &#39;image.cmap&#39;: &#39;rocket&#39;,</span><br><span class="line"> &#39;legend.frameon&#39;: False,</span><br><span class="line"> &#39;legend.numpoints&#39;: 1,</span><br><span class="line"> &#39;legend.scatterpoints&#39;: 1,</span><br><span class="line"> &#39;lines.solid_capstyle&#39;: &#39;round&#39;,</span><br><span class="line"> &#39;text.color&#39;: &#39;.15&#39;,</span><br><span class="line"> &#39;xtick.color&#39;: &#39;.15&#39;,</span><br><span class="line"> &#39;xtick.direction&#39;: &#39;out&#39;,</span><br><span class="line"> &#39;xtick.major.size&#39;: 6.0,</span><br><span class="line"> &#39;xtick.minor.size&#39;: 3.0,</span><br><span class="line"> &#39;ytick.color&#39;: &#39;.15&#39;,</span><br><span class="line"> &#39;ytick.direction&#39;: &#39;out&#39;,</span><br><span class="line"> &#39;ytick.major.size&#39;: 6.0,</span><br><span class="line"> &#39;ytick.minor.size&#39;: 3.0&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们还可以通过修改context参数来缩放图片中的元素。</p>
+<blockquote>
+<p>Seaborn内置了多种context风格 : paper, notebook, talk, and poster<br>默认使用的是notebook</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(&quot;poster&quot;)</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p><strong>设置context效果为poster</strong><br><img src="https://img-blog.csdn.net/2018053110001674?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="设置context效果"></p>
+<h3 id="使用Seaborn的调色板"><a href="#使用Seaborn的调色板" class="headerlink" title="使用Seaborn的调色板"></a>使用Seaborn的调色板</h3><p>Seaborn提供了可以便于使用的调色板，可以方便的作用于数据的可视化。</p>
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><p><strong>定性（或分类）调色板最适合用于区分不具有固有排序的离散数据块。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#可以使用color_palette()来调用生成一个色板</span><br><span class="line">current_palette &#x3D; sns.color_palette()</span><br><span class="line">sns.palplot(current_palette)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531102235644?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="分类色板"></p>
+<p>我们也可以根据需要来定制一个循环的色板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#使用hls的颜色空间，分割成8个颜色</span><br><span class="line">sns.palplot(sns.color_palette(&quot;hls&quot;, 8))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531102839870?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="分割颜色空间"></p>
+<p>Seaborn还提供了一个提取配对颜色的方法，可以获得两个颜色相近的颜色对</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(&quot;Paired&quot;,10))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531103223177?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="配对颜色效果"></p>
+<p><strong>第二大类调色板被称为“顺序”。当数据范围从相对较低或不中断的值到相对较高或有趣的值时，这种颜色映射是适当的</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#逐渐变深色板</span><br><span class="line">sns.palplot(sns.color_palette(&quot;Blues&quot;))</span><br><span class="line">#若要是使得逐渐变浅，只需要在颜色后边加上‘_r’即可</span><br><span class="line"></span><br><span class="line">#由深变浅色板</span><br><span class="line">sns.palplot(sns.color_palette(&quot;Blues_r&quot;))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531104733555?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="渐变深色板"></p>
+<p><strong>第三类调色板被称为“发散”。这些数据用于大数值低值和高值有趣的数据。数据中通常也有明确的中点。例如，如果从某个基准时间点绘制温度变化，最好使用分散的色彩映射来显示相对减少的区域和相对增加的区域。</strong></p>
+<p>用于区分的色板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(&quot;BrBG&quot;, 7))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531143916680?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+<p>我们也可以自定义这种发散的调色板</p>
+<p><strong>中心颜色为浅色调的色板</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#sep控制中间浅色调的宽度</span><br><span class="line">sns.palplot(sns.diverging_palette(10, 220, sep&#x3D;90, n&#x3D;7))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531144957111?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="中心颜色为浅色调的色板"></p>
+<p><strong>中心颜色为深色调的色板</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.diverging_palette(255, 133, l&#x3D;60, n&#x3D;7, center&#x3D;&quot;dark&quot;))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/2018053114505044?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="中心颜色为深色调的色板"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckm1rujxl000h88tsgz6s9tcu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Seaborn/" rel="tag">Seaborn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Seaborn学习笔记（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" class="article-date">
+  <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">Seaborn学习笔记（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Seaborn中专门提供了针对分类数据的绘图函数，可以很好的展示分类数据的分布情况。</p>
+<h4 id="分类数据的可视化"><a href="#分类数据的可视化" class="headerlink" title="分类数据的可视化"></a>分类数据的可视化</h4><p><strong>1. 分类的散点图</strong></p>
+<p>可以使用stripplot()来展示散点图中一个变量是分类的情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">titanic &#x3D; sns.load_dataset(&quot;titanic&quot;)</span><br><span class="line">tips &#x3D; sns.load_dataset(&quot;tips&quot;)</span><br><span class="line">iris &#x3D; sns.load_dataset(&quot;iris&quot;)</span><br><span class="line">sns.stripplot(x&#x3D;&quot;day&quot;, y&#x3D;&quot;total_bill&quot;, data&#x3D;tips);</span><br></pre></td></tr></table></figure>
+<p>可以看到很方便的展示了分类作为变量的时候散点图的分布<br><img src="https://img-blog.csdn.net/20180531200720710?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+<p>当是我们可以看到上图中有很多点是相互重复的，我们无法准却的观察每个点的位置，针对这种情况，Seaborn提供了多种解决办法。</p>
+<ol>
+<li><p>第一种是：通过给点加一些随机的偏移量（分类坐标上的），设置jitter参数为True即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.stripplot(x&#x3D;&quot;day&quot;, y&#x3D;&quot;total_bill&quot;, data&#x3D;tips, jitter&#x3D;True);</span><br></pre></td></tr></table></figure>
+<p>我们可以很明显的看到聚集的点被随机的分散开了<br><img src="https://img-blog.csdn.net/2018053120110783?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+</li>
+<li><p>第二种是直接使用 swarmplot()函数来绘制，这种方法使得数据更为比较明显的分散</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.swarmplot(x&#x3D;&quot;day&quot;, y&#x3D;&quot;total_bill&quot;, data&#x3D;tips);</span><br></pre></td></tr></table></figure>
+<p> <img src="https://img-blog.csdn.net/20180531201518915?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+</li>
+</ol>
+<p><strong>2. 类别内部数据分类的情况的展示</strong><br>Seaborn中提供多种方式来统计一个类别内数据的整体分布情况，主要方式有盒图，小提琴图</p>
+<ol>
+<li><p>使用boxplot()来绘制盒图<br> 关于什么事盒图以及他的使用方法可以参考这个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%9B%92%E5%9B%BE/8594518?fr=aladdin">关于盒图的介绍</a></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.boxplot(x&#x3D;&quot;day&quot;, y&#x3D;&quot;total_bill&quot;, hue&#x3D;&quot;time&quot;, data&#x3D;tips);</span><br></pre></td></tr></table></figure>
+<p> <img src="https://img-blog.csdn.net/20180531202338399?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+</li>
+<li><p>使用violinplot()来绘制小提琴图<br>关于什么事盒图以及他的使用方法可以参考这个<a target="_blank" rel="noopener" href="http://www.mamicode.com/info-detail-1899511.html">小提琴图的介绍</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.violinplot(x&#x3D;&quot;total_bill&quot;, y&#x3D;&quot;day&quot;, hue&#x3D;&quot;time&quot;, data&#x3D;tips);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531202815915?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>我们主要学习了解了怎么使用Seaborn来实现对matplotlib所绘图形的美化<a target="_blank" rel="noopener" href="https://blog.csdn.net/wqc_CSDN/article/details/80515920">Seaborn学习笔记</a>，包括直接使用其提供的默认主题，自定义主题，通过域的限制来绘制不同风格的主题以及各种色板的使用</li>
+<li>了解了Seaborn提供的展示数据间关系的绘图函数<a target="_blank" rel="noopener" href="https://blog.csdn.net/wqc_CSDN/article/details/80524487">Seaborn学习笔记（二）</a>，包括绘制单变量数据的分布，多变量数据的分布以及多种展示数据分布的图</li>
+<li>最后学习了展示数据集中数据的分布情况，了解整个数据集的统计信息的展示。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" data-id="ckm1rujxm000j88ts7akq04ec" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Seaborn/" rel="tag">Seaborn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Seaborn学习笔记（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-date">
+  <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">Seaborn学习笔记（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前学习了解的都是Seaborn的数据绘制时候的美化功能，只是为了使得绘制出的图形更加好看，Seaborn同样提供了许多的用于展示数据相互关系的绘图函数。</p>
+<h4 id="Seaborn绘制数据集的分布"><a href="#Seaborn绘制数据集的分布" class="headerlink" title="Seaborn绘制数据集的分布"></a>Seaborn绘制数据集的分布</h4><p><strong>1.  绘制单变量分布</strong><br>最简便快速查看seaborn中单变量分布的是distplot()方法。默认情况下，这将绘制数据的直方图并拟合核心密度估计值（KDE）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &#x3D; np.random.normal(size&#x3D;100)</span><br><span class="line">sns.distplot(x);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531163739976?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="绘制单变量分布图"></p>
+<p>上边是使用distplot()绘制了一个变量分布的总体密度估计图，我们也可以选择在直方图中显示出具体每个数据在直方图区间的位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#还是使用随机生成的数据，但是设置rug为true</span><br><span class="line">x &#x3D; np.random.normal(size&#x3D;100)</span><br><span class="line">sns.distplot(x, kde&#x3D;False, rug&#x3D;True);</span><br></pre></td></tr></table></figure>
+<p>我们可以看到具体的数据的密度分布情况，而不是拟合的曲线<br><img src="https://img-blog.csdn.net/20180531165038920?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="具体的密度分布"></p>
+<p>同样的，我们也可以只显示具体数据的密度分布和他的对应拟合曲线</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &#x3D; np.random.normal(size&#x3D;100)</span><br><span class="line">sns.distplot(x, hist&#x3D;False, rug&#x3D;True);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531165356769?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="密度分布及拟合曲线"></p>
+<p>若是我们只是需要绘制数据分布密度的概览，而不是需要绘制直方图，我们可以直接使用Seaborn中提供的kdeplot()函数，上边的distplot()也是通过调用它来显示密度分布拟合曲线的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#直接显示密度分布的拟合曲线，而不是绘制直方图</span><br><span class="line">sns.kdeplot(x, shade&#x3D;True);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/2018053117105578?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="概率密度拟合曲线"></p>
+<p>我们可以通过bw参数来控制拟合曲线的精细程度，就类似于绘制直方图时的bins参数一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#使用默认的bw参数</span><br><span class="line">sns.kdeplot(x)</span><br><span class="line">#调整bw参数，使得显示出来的密度分布拟合曲线更加接近数据</span><br><span class="line">sns.kdeplot(x, bw&#x3D;.2, label&#x3D;&quot;bw: 0.2&quot;)</span><br><span class="line">sns.kdeplot(x, bw&#x3D;2, label&#x3D;&quot;bw: 2&quot;)</span><br><span class="line">plt.legend();</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531171424811?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="调整拟合的精细程度"></p>
+<p><strong>2.  绘制双变量分布</strong><br>Seaborn提供了用于描述双变量分布情况的绘图函数，可以直观的查看双变量的分布情况。该函数创建一个多面板图形，显示两个变量之间的二元（或关节）关系以及每个单独轴上的单变量（或边际）分布。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(x&#x3D;&quot;x&quot;, y&#x3D;&quot;y&quot;, data&#x3D;df);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531172607660?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="双变量的散点图"></p>
+<p>此外Seaborn还提供了直方图中的二元关系图，也常被称为“六边形图”，该图对于较大的数据集效果最好。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x, y &#x3D; np.random.multivariate_normal(mean, cov, 1000).T</span><br><span class="line">with sns.axes_style(&quot;white&quot;):</span><br><span class="line">    sns.jointplot(x&#x3D;x, y&#x3D;y, kind&#x3D;&quot;hex&quot;, color&#x3D;&quot;k&quot;);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531173025214?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="六边形图"></p>
+<p>也可以使用核密度图来估计二元变量的关系，在Seaborn中会以轮廓图的形式显示出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.jointplot(x&#x3D;&quot;x&quot;, y&#x3D;&quot;y&quot;, data&#x3D;df, kind&#x3D;&quot;kde&quot;);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531173254855?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="核密度图表示二元关系"></p>
+<p>Seaborn也允许将这类型的图绘制到已经用matplotlib绘制出来的轴上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#先用matplotlib绘制出坐标轴</span><br><span class="line">f, ax &#x3D; plt.subplots(figsize&#x3D;(6, 6))</span><br><span class="line">#用Seaborn将需要展示的图绘制到matplotlib轴上</span><br><span class="line">sns.kdeplot(df.x, df.y, ax&#x3D;ax)</span><br><span class="line">sns.rugplot(df.x, color&#x3D;&quot;g&quot;, ax&#x3D;ax)</span><br><span class="line">sns.rugplot(df.y, vertical&#x3D;True, ax&#x3D;ax);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531193722663?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图展示"></p>
+<p>可以使用kdeplot()中的n_levels参数来控制轮廓的数量，使得图片显示的更加连续或者是稀疏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f, ax &#x3D; plt.subplots(figsize&#x3D;(6, 6))</span><br><span class="line">#用n_levels参数控制显示的疏密程度</span><br><span class="line">sns.kdeplot(df.x, df.y, ax&#x3D;ax,n_levels&#x3D;100)</span><br><span class="line">sns.rugplot(df.x, color&#x3D;&quot;g&quot;, ax&#x3D;ax)</span><br><span class="line">sns.rugplot(df.y, vertical&#x3D;True, ax&#x3D;ax);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531194515226?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+<p><strong>3.  展示数据集中的成对关系</strong><br>要在数据集中绘制多个成对的双变量分布，可以使用该pairplot()函数。这将创建一个轴矩阵并显示DataFrame中每对列的关系。默认情况下，它也绘制每个变量在对角轴上的单变量分布。</p>
+<p>一下使用的是鸢尾花数据集来展示这一效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iris &#x3D; sns.load_dataset(&quot;iris&quot;)</span><br><span class="line">sns.pairplot(iris);</span><br></pre></td></tr></table></figure>
+<p>可以看到起使用多个子图来展示两个特征的数据之间的相互关系，同时也在对角线上绘制了每个单变量的分布情况。<br><img src="https://img-blog.csdn.net/20180531195058496?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" data-id="ckm1rujxn000o88ts9a5x0elr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Seaborn/" rel="tag">Seaborn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-学习用Python制作一个简易爬虫并做初步的数据可视化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/%E5%AD%A6%E4%B9%A0%E7%94%A8Python%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%88%AC%E8%99%AB%E5%B9%B6%E5%81%9A%E5%88%9D%E6%AD%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" class="article-date">
+  <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/01/%E5%AD%A6%E4%B9%A0%E7%94%A8Python%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%88%AC%E8%99%AB%E5%B9%B6%E5%81%9A%E5%88%9D%E6%AD%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">学习用Python制作一个简易爬虫并作初步的数据可视化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-整体思路流程"><a href="#1-整体思路流程" class="headerlink" title="1.  整体思路流程"></a>1.  整体思路流程</h2><ol>
+<li>通过URL获取说要爬取的页面的响应信息（Requests库的使用）</li>
+<li>通过python中的解析库来对response进行结构化解析（BeautifulSoup库的使用）</li>
+<li>通过对解析库的使用和对所需要的信息的定位从response中获取需要的数据（selecter和xpath的使用）</li>
+<li>将数据组织成一定的格式进行保存（MongoDB的使用）</li>
+<li>通过对数据库中的数据进行筛选和组织，进行数据可视化的初步展示（HighCharts库的使用）</li>
+</ol>
+<h2 id="2-简单代码演示"><a href="#2-简单代码演示" class="headerlink" title="2.  简单代码演示"></a>2.  简单代码演示</h2><h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.  准备工作"></a>1.  准备工作</h3><p>下载并安装所需要的python库，包括：</p>
+<ul>
+<li><p>requests库：用于向指定url发起请求</p>
+</li>
+<li><p>BeautifulSoup库：用于解析返回的网页信息</p>
+</li>
+<li><p>lxml库：用于解析网页返回结果</p>
+</li>
+<li><p>pymongo库：用于实现python对MongoDB的操作</p>
+</li>
+<li><p>HighCharts库：对于数据进行初步可视化的展示</p>
+</li>
+</ul>
+<p>所有以上的库都直接可以使用pip命令进行下载</p>
+<h3 id="2-对所需要的网页进行请求并解析返回的数据"><a href="#2-对所需要的网页进行请求并解析返回的数据" class="headerlink" title="2.  对所需要的网页进行请求并解析返回的数据"></a>2.  对所需要的网页进行请求并解析返回的数据</h3><p>对于想要做一个简单的爬虫而言，这一步其实很简单，主要是通过requests库来进行请求，然后对返回的数据进行一个解析，解析之后通过对于元素的定位和选择来获取所需要的数据元素，进而获取到数据的一个过程。</p>
+<p><strong>一个简单的网络爬虫示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#58同城的二手市场主页面</span><br><span class="line">start_url &#x3D; &#39;http:&#x2F;&#x2F;bj.58.com&#x2F;sale.shtml&#39;</span><br><span class="line">url_host &#x3D; &#39;http:&#x2F;&#x2F;bj.58.com&#39;</span><br><span class="line">#定义一个爬虫函数来获取二手市场页面中的全部大类页面的连接</span><br><span class="line">def get_channel_urls(url):</span><br><span class="line">	#使用Requests库来进行一次请求</span><br><span class="line">    web_data &#x3D; requests.get(url)</span><br><span class="line">    #使用BeautifulSoup对获取到的页面进行解析</span><br><span class="line">    soup &#x3D; BeautifulSoup(web_data.text, &#39;lxml&#39;)</span><br><span class="line">    #根据页面内的定位信息获取到全部大类所对应的连接</span><br><span class="line">    urls &#x3D; soup.select(&#39;ul.ym-submnu &gt; li &gt; b &gt; a&#39;)</span><br><span class="line">    #作这两行处理是因为有的标签有链接，但是却是空内容</span><br><span class="line">    for link in urls:</span><br><span class="line">        if link.text.isspace():</span><br><span class="line">            continue</span><br><span class="line">        else:</span><br><span class="line">            page_url &#x3D; url_host + link.get(&#39;href&#39;)</span><br><span class="line">            print(page_url)</span><br></pre></td></tr></table></figure>
+<p>对于定位页面中所需标签位置的方法有很多种，可以自己根据页面的情况多进行尝试。<br><img src="https://img-blog.csdn.net/20180518200734337?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="58同城中关于大类连接的定位"></p>
+<p>可以看到所有的大类链接都位于ul标签 &gt; li标签 &gt; b标签 &gt; a标签<br>故此我们可以使用上边代码中的方式来获取全部的大类标签</p>
+<pre><code>注 ： 在进行标签定位时 ‘&gt;’ 符号表示上一个标签的严格的子标签，而‘空格’ 符号表示上一个标签的子标签或者子孙标签
+
+例如：
+
+对于ul.ym-submnu &gt; li而言，表示class属性为ym-submnu的ul标签的子标签li，则选出来的li只能是ul.ym-submnu的子标签
+
+若是ul.ym-submnu li而言，表示class属性为ym-submnu的ul标签的子孙标签，即选出来的li可能是ul.ym-submnu的子标签或者子孙标签
+</code></pre><p><strong>爬取结果部分截图</strong><br><img src="https://img-blog.csdn.net/20180518202237248?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="爬取结果部分截图"></p>
+<p>以上就是一个简单的网页爬虫的制作过程，我们可以通过定义不同的爬虫来实现爬取不同页面的信息，并通过程序的控制来实现一个自动化爬虫。</p>
+<h3 id="3-对爬取到的数据进行存储和初步的可视化显示"><a href="#3-对爬取到的数据进行存储和初步的可视化显示" class="headerlink" title="3.  对爬取到的数据进行存储和初步的可视化显示"></a>3.  对爬取到的数据进行存储和初步的可视化显示</h3><p>python中用于数据的可视化显示的库有很多，我们可以根据需要来选择不同的库。数据的存储推荐使用MongoDB的方式，比起Mysql来说有很大的便利性，更适合大规模的数据整理。数据的可视化使用了HighCharts，可以直接在网页上显示出数据结果。</p>
+<ol>
+<li><p>关于MongoDB数据库的入门使用可以参看这篇博文——-<a target="_blank" rel="noopener" href="https://blog.csdn.net/wqc_CSDN/article/details/80307222">MongoDB入门及问题总结</a></p>
+</li>
+<li><p>关于HighCharts的使用可以参看其官网<a target="_blank" rel="noopener" href="https://www.hcharts.cn/docs/start-introduction">HighCharts官网使用文档</a></p>
+</li>
+</ol>
+<p><strong>首先：</strong>在程序中创建一个MongoDB的连接用于存储数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">client &#x3D; pymongo.MongoClient(&#39;localhost&#39;, 27017)#链接MongoDB</span><br><span class="line">DB_58 &#x3D; client[&#39;DB_58&#39;]#创建一个数据库</span><br><span class="line">url_list_tab &#x3D; DB_58[&#39;url_list_tab&#39;]#创建用于存储全部商品url的文档</span><br><span class="line">item_detail_tab &#x3D; DB_58[&#39;item_detail_tab&#39;]#创建用于存储商品详情的文档</span><br></pre></td></tr></table></figure></p>
+<p><strong>然后：</strong>通过之前获取到的每个分类的链接，来爬取该分类下的全部的商品链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 从每个频道获取全部的商品链接</span><br><span class="line">def get_liks_from(channel, pages, who_sells&#x3D;0):</span><br><span class="line">    # http:&#x2F;&#x2F;bj.58.com&#x2F;diannao&#x2F;0&#x2F;pn5&#x2F;</span><br><span class="line">    list_view &#x3D; &#39;&#123;&#125;&#123;&#125;&#x2F;pn&#123;&#125;&#x2F;&#39;.format(channel, str(who_sells), str(pages))</span><br><span class="line">    web_data &#x3D; requests.get(list_view)</span><br><span class="line">    time.sleep(2)</span><br><span class="line">    soup &#x3D; BeautifulSoup(web_data.text, &#39;lxml&#39;)</span><br><span class="line">    #爬取个人商家列表</span><br><span class="line">    if soup.find(&#39;td&#39;,&#39;t&#39;):</span><br><span class="line">        for link in soup.select(&#39;.zzinfo &gt; td.t &gt; a.t&#39;):</span><br><span class="line">            item_link &#x3D; link.get(&#39;href&#39;).split(&#39;?&#39;)[0]</span><br><span class="line">            #去除掉跳转类型的连接</span><br><span class="line">            if item_link !&#x3D; &#39;http:&#x2F;&#x2F;jump.zhineng.58.com&#x2F;jump&#39;:</span><br><span class="line">	            #得到想要的商品页面链接之后保存在数据库中</span><br><span class="line">                url_list_tab.insert_one(&#123;&#39;url&#39;: item_link&#125;)</span><br><span class="line">                print(item_link)</span><br><span class="line">    else:</span><br><span class="line">        pass</span><br><span class="line">    #爬取店铺商家列表</span><br><span class="line">    if soup.find(&#39;div&#39;,&#39;left&#39;):</span><br><span class="line">        for link in soup.select(&#39;a.title&#39;):</span><br><span class="line">            item_link &#x3D; link.get(&#39;href&#39;)</span><br><span class="line">            #去除掉跳转类型的连接</span><br><span class="line">            if item_link !&#x3D; &#39;http:&#x2F;&#x2F;jump.zhineng.58.com&#x2F;jump&#39;:</span><br><span class="line">	            #得到想要的商品页面链接之后保存在数据库中</span><br><span class="line">                url_list_tab.insert_one(&#123;&#39;url&#39;: item_link&#125;)</span><br><span class="line">                print(item_link)</span><br><span class="line">    else:</span><br><span class="line">        pass</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>由于58个人卖家的二手信息会跳转到转转这个平台，所以需要根据页面中的标签来判断是那种类型的页面</p>
+<p><strong>第三步：</strong>在获取到全部的商品的url之后需要对商品的详情进行爬取，同时保存在数据库中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 爬取商品详情页的信息</span><br><span class="line">def get_item_info(url):</span><br><span class="line">    if &#39;short.58.com&#39; not in url:</span><br><span class="line">	    #加一个延时，爬取太快58会出来验证码</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        web_data &#x3D; requests.get(url)</span><br><span class="line">        soup &#x3D; BeautifulSoup(web_data.text, &#39;lxml&#39;)</span><br><span class="line">        # 根据页面中的独特元素来辨别是哪个版本的网页</span><br><span class="line">        if soup.find(&#39;span&#39;, &#39;want_left&#39;):</span><br><span class="line">            parse_person_item_info(soup)</span><br><span class="line">        else:</span><br><span class="line">            parse_shop_item_info(soup)</span><br><span class="line">    else:</span><br><span class="line">        print(&#39;error with url : &#39;+url)</span><br><span class="line"></span><br><span class="line"># 解析个人卖家的商品详情</span><br><span class="line">def parse_person_item_info(soup):</span><br><span class="line">    item_detail_tab.insert_one(&#123;</span><br><span class="line">        &#39;title&#39;: soup.select(&#39;h1.info_titile&#39;)[0].text,</span><br><span class="line">        &#39;price&#39;: soup.select(&#39;span.price_now &gt; i&#39;)[0].text,</span><br><span class="line">        &#39;area&#39;: soup.select(&#39;div.palce_li &gt; span &gt; i &#39;)[0].text,</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"># 解析商家的商品详情</span><br><span class="line">def parse_shop_item_info(soup):</span><br><span class="line">    item_detail_tab.insert_one(&#123;</span><br><span class="line">        &#39;title&#39;: (soup.title.text).split(&#39;-&#39;)[0],</span><br><span class="line">        &#39;price&#39;: soup.select(&#39;div.su_con &gt; span.price&#39;)[0].text,</span><br><span class="line">        &#39;area&#39;: list(soup.select(&#39;.c_25d&#39;)[-1].stripped_strings),</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p>至此，我们所需要的数据就算是获取完毕，接下来我们需要做的就是根据需要来将数据进行整理，然后通过图表的方式来展示数据中包含的信息。</p>
+<p><strong>第四步：</strong>这一步需要使用Highcharts来进行数据的展示，推荐使用Jupyter Notebook来进行操作，他可以直接将数据展示在网页上，极大地方便了数据查看。<br>Jupyter Notebook的安装和使用也很方便，网上也有很多的使用教程，直接附上其官网地址<strong><a target="_blank" rel="noopener" href="http://jupyter.org/">Jupyter NoteBook官网</a></strong>大家可以去查看</p>
+<p>首先要获取商品的一个地区列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#首先获取数据库中的全部地区</span><br><span class="line">area_list &#x3D; []</span><br><span class="line">for i in item_detail_tab.find():</span><br><span class="line">    area_list.append(i[&#39;area&#39;][0])</span><br><span class="line">#将全部地区放入set中进行去重，这样就得到一个全部地区的列表</span><br><span class="line">area_index &#x3D; list(set(area_list))</span><br></pre></td></tr></table></figure><br>然后就是根据地区列表来统计每个地区的二手商品的数量（以发布商品的帖子数为记）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#统计每个地区的发帖数量</span><br><span class="line">post_times &#x3D; []</span><br><span class="line">for index in area_index:</span><br><span class="line">    post_times.append(area_list.count(index))</span><br></pre></td></tr></table></figure>
+<p>此时我们已经获取了商品的地区列表以及每个地区所对应的商品数量，需要做的就是将数据构造成Highcharts所要求的格式并进行展示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#定义一个迭代器函数来构造Highcharts所需要的数据格式</span><br><span class="line">def data_gen(types):</span><br><span class="line">    length &#x3D; 0</span><br><span class="line">    if length  &lt;&#x3D; len(area_index):</span><br><span class="line">        for area,times in zip(area_index,post_times):</span><br><span class="line">            data &#x3D; &#123;</span><br><span class="line">                &#39;name&#39;:area,</span><br><span class="line">                &#39;data&#39;:[times],</span><br><span class="line">                &#39;type&#39;:types</span><br><span class="line">            &#125;</span><br><span class="line">            yield data</span><br><span class="line">            length +&#x3D; 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#将构造好的数据放入charts中进行展示</span><br><span class="line">seroes &#x3D; [data for data in data_gen(&#39;column&#39;)]</span><br><span class="line">charts.plot(seroes,show&#x3D;&#39;inline&#39;,options&#x3D;dict(title&#x3D;dict(text&#x3D;&#39;最近7日发帖数量区域统计图&#39;)))</span><br></pre></td></tr></table></figure>
+<p>至此我们就做了一个简易的爬虫来获取了一定的数据，并将结果进行了可视化的展示。</p>
+<p><img src="https://img-blog.csdn.net/20180525153346206?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="数据展示结果图"></p>
+<h2 id="3-总结回顾"><a href="#3-总结回顾" class="headerlink" title="3.  总结回顾"></a>3.  总结回顾</h2><p>简单的总结一下在这个爬虫中我们所学到的一些东西：</p>
+<ol>
+<li>使用requests库进行网络请求</li>
+<li>使用BeautifulSoup解析库对网页数据进行解析</li>
+<li>学习如何通过selecter的方式选择网页中需要的元素</li>
+<li>使用MongoDB进行数据的存储和读取</li>
+<li>使用HighCharts对数据进行可视化的展示</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/%E5%AD%A6%E4%B9%A0%E7%94%A8Python%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%88%AC%E8%99%AB%E5%B9%B6%E5%81%9A%E5%88%9D%E6%AD%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" data-id="ckm1rujy4001n88tsfmfe0h0i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-《统计学习方法》笔记--提升方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%E7%AC%94%E8%AE%B0--%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2019-08-01T03:10:37.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/01/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%E7%AC%94%E8%AE%B0--%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/">统计学习方法--提升方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="提升方法概述"><a href="#提升方法概述" class="headerlink" title="提升方法概述"></a>提升方法概述</h2><p>提升方法基于这样一种思想：对于任何一个复杂任务而言，将多个专家的判断进行合适的综合得到的判断，要比任何单独一位专家做出的单独判断要好。基于这种思想，提升方法在分类问题中通过改变训练样本权重，学习多个分类器，并将这些分类器合理组合来提高性能。这样对于提升方法来说有两个主要的问题需要解决：（1）如何在每一轮中改变训练数据的权值或者概率分布（2）如何将弱分类器组合成一个强分类器。</p>
+<h2 id="AdaBoost算法"><a href="#AdaBoost算法" class="headerlink" title="AdaBoost算法"></a>AdaBoost算法</h2><p>AdaBoost算法是代表性的提升算法。针对提升方法中的两个主要问题，AdaBoost采用的解决办法是：（1）对于第一个问题，AdaBoost提高前一轮弱分类器错误分类样本的权值，而降低那些被正确分类样本的权值。这样一来，前一轮中错误分类样本在后一轮的训练中能得到更大的关注。（2）对于第二个问题，AdaBoost采用加权多数表决的方式来组合各个弱分类器。即加大分类误差率小的分类器的投票权重，使其在表决中起较大作用，减小分类误差率大的分类器的投票权重，使其在表决中其较小作用。</p>
+<blockquote>
+<p>输入：训练数据集$T={(x_1,y_1),(x_2,y_2)…(x_N,y_N)}$，其中$x_i\in\chi\subseteq R^n,y_i\in Y={-1,+1}$;弱学习算法</p>
+<p>输出：最终分类器$G(x)$</p>
+<p>(1) 初始化训练数据的权值分布<script type="math/tex">D_1 = (\omega_{11},...,\omega_{1i},...,\omega_{1N}), \omega_{1i}=\frac{1}{N},i=1,2,...N</script><br>(2) 对$m=1,2,…,M$</p>
+<ul>
+<li>(a) 使用具有权值分布$D_m$的训练数据学习，得到基本分类器$G_m(x):\chi\rightarrow{-1,+1}$</li>
+<li>(b) 计算$G<em>m(x)$在训练数据集上的分类误差率$$e_m=\sum</em>{i=1}^{N}P(G<em>m(x_i)\not ={y_i})=\sum</em>{i=1}^{N}\omega<em>{mi}I(G_m(x_i)\not ={y_i})=\sum</em>{G<em>m(x_i)\not ={y_i}}\omega</em>{mi}$$其中$\omega_{mi}$表示第$m$轮中第$i$个实例的权值</li>
+<li>(c) 计算$G_m(x)$的系数<script type="math/tex">\alpha_m=\frac{1}{2}\log\frac{1-e_m}{e_m}</script></li>
+<li>(d) 更新训练数据的权值分布<script type="math/tex">D_{m+1}=(\omega_{(m+1,1)},...,\omega_{(m+1,i)},...,\omega_{(m+1,N)})</script> <script type="math/tex">\omega_{(m+1,i)}=\frac{\omega_{mi}}{Z_m}\exp(-\alpha_m y_i G_m(x_i)),i=1,2,...,N;</script> $Z<em>m$为规范化因子 $$Z_m=\sum</em>{i=1}^{N}\omega<em>{mi}\exp(-\alpha_m y_i G_m(x_i)<script type="math/tex">(3) 构建基本分类器的线性组合</script>f(x)=\sum</em>{m=1}^{M}\alpha<em>m G_m(x)<script type="math/tex">得到最终的分类器</script>G(x)=sign(f(x))=sign(\sum</em>{m=1}^{M}\alpha_m G_m(x))$$</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%E7%AC%94%E8%AE%B0--%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/" data-id="ckm1rujxt000z88ts7mxzhb4s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" rel="tag">统计学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-《统计学习方法》笔记--最大熵模型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/12/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%E7%AC%94%E8%AE%B0--%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/" class="article-date">
+  <time datetime="2019-07-12T08:49:37.000Z" itemprop="datePublished">2019-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/12/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%E7%AC%94%E8%AE%B0--%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/">统计学习方法--最大熵模型</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="最大熵模型概述"><a href="#最大熵模型概述" class="headerlink" title="最大熵模型概述"></a>最大熵模型概述</h2><p>最大熵模型是将最大熵原理应用于分类任务中得到的模型。认为在全部可能的模型中，熵最大的模型是最好的模型。</p>
+<h3 id="最大熵原理"><a href="#最大熵原理" class="headerlink" title="最大熵原理"></a>最大熵原理</h3><p>最大熵原理认为，学习概率模型时，在所有可能的概率模型分布中，熵最大的模型就是最好的模型。由于通常用约束条件来确定概率模型的集合，因此最大熵原理也可以表述为在满足约束条件的模型集合中选取熵最大的模型。熵，最大熵原理都最初演变自热力学领域。关于信息论中的熵可以参考之前的文章中的介绍 <strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/wqc_CSDN/article/details/91945219">《统计学习方法》—决策树</a></strong></p>
+<h2 id="最大熵模型"><a href="#最大熵模型" class="headerlink" title="最大熵模型"></a>最大熵模型</h2><blockquote>
+<p>在要求解的问题中，假设满足所有约束条件的模型集合为</p>
+<script type="math/tex; mode=display">C\equiv \{P \in \mathcal{P}|E_P(f_i)=E_{P^{\thicksim}}(f_i)\}</script><p>其中$i=1,2,…,n$。定义在条件概率分布$P(Y|X)$上的条件熵为</p>
+<script type="math/tex; mode=display">H(P)=-\sum_{x,y}P^{\thicksim}(x)P(y|x)\log P(y|x)</script><p>其中$P^{\thicksim}(x)$表示边缘分布$P(x)$的经验分布，$E_{P^{\thicksim}}(f_i)$表示特征函数$f(x,y)$关于经验分布$P^{\thicksim}(x,y)$的期望。则模型集合$C$中条件熵$H(P)$最大的模型称为最大熵模型。</p>
+</blockquote>
+<h2 id="最大熵模型的学习"><a href="#最大熵模型的学习" class="headerlink" title="最大熵模型的学习"></a>最大熵模型的学习</h2><p>最大熵模型的学习过程就是求解最大熵模型的过程。一般可以将其形式化为约束最优化问题。<br>对于给定的训练数据集$T={(x_1,y_1),(x_2,y_2),…,(x_N,y_N)}$,以及特征函数$f_i(x,y),i=1,2,…,n$,最大熵模型的学习等价于约束最优化问题：</p>
+<script type="math/tex; mode=display">\max_{P\in C} H(P)=-\sum_{x,y}P^{\thicksim}(x)P(y|x)\log P(y|x)</script><script type="math/tex; mode=display">s.t.  E_P(f_i)=E_{P^\thicksim}(fi),i=1,2,...,n</script><script type="math/tex; mode=display">\sum_yP(y|x)=1</script>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/12/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%E7%AC%94%E8%AE%B0--%E6%9C%80%E5%A4%A7%E7%86%B5%E6%A8%A1%E5%9E%8B/" data-id="ckm1rujxu001388ts2s0kb8or" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" rel="tag">统计学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E5%AD%A6/">杂学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CCNA/" rel="tag">CCNA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cisco/" rel="tag">Cisco</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELK/" rel="tag">ELK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Material-Design/" rel="tag">Material Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSOC/" rel="tag">OpenSOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seaborn/" rel="tag">Seaborn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI%E6%94%AF%E6%8C%81%E5%BA%93/" rel="tag">UI支持库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag">信息收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE/" rel="tag">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E6%94%BB%E5%87%BB/" rel="tag">密码攻击</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="tag">小知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0/" rel="tag">系统安全概述</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" rel="tag">统计学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" rel="tag">编程规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CCNA/" style="font-size: 10px;">CCNA</a> <a href="/tags/Cisco/" style="font-size: 10px;">Cisco</a> <a href="/tags/ELK/" style="font-size: 10px;">ELK</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Material-Design/" style="font-size: 10px;">Material Design</a> <a href="/tags/Matplotlib/" style="font-size: 12.5px;">Matplotlib</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/OpenSOC/" style="font-size: 10px;">OpenSOC</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Seaborn/" style="font-size: 15px;">Seaborn</a> <a href="/tags/UI%E6%94%AF%E6%8C%81%E5%BA%93/" style="font-size: 10px;">UI支持库</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 10px;">信息收集</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%AF%86%E7%A0%81%E6%94%BB%E5%87%BB/" style="font-size: 12.5px;">密码攻击</a> <a href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" style="font-size: 10px;">小知识</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 17.5px;">数据可视化</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 12.5px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" style="font-size: 10px;">日志分析</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">机器学习</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">渗透测试</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">系统安全概述</a> <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">统计学习</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编程规范</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">网络协议</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">自动化测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/09/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Matplotlib学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89--Matplotlib%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE/">Matplotlib学习笔记（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/">Python小知识汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Seaborn学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 WeiQingcai<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Seaborn学习笔记 | 程序小栈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Seaborn简介Seaborn是基于matplotlib的Python可视化库。它提供了一个高级界面来绘制有吸引力的统计图形。可以使得数据可视化更加的方便，美观。关于Seaborn的学习，推荐去官网，里边有详细的教程和示例。 Seaborn常用功能简介直接使用Seaborn的美化功能Seaborn直接提供了多种对matplotlib绘制的图形的美化功能，可以直接使用。 示例使用matplotli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Seaborn学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="程序小栈">
+<meta property="og:description" content="Seaborn简介Seaborn是基于matplotlib的Python可视化库。它提供了一个高级界面来绘制有吸引力的统计图形。可以使得数据可视化更加的方便，美观。关于Seaborn的学习，推荐去官网，里边有详细的教程和示例。 Seaborn常用功能简介直接使用Seaborn的美化功能Seaborn直接提供了多种对matplotlib绘制的图形的美化功能，可以直接使用。 示例使用matplotli">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531092416691?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531092541541?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531092820181?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531093211224?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531093922383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/2018053110001674?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531102235644?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531102839870?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531103223177?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531104733555?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531143916680?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180531144957111?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/2018053114505044?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="article:published_time" content="2019-08-01T08:49:37.000Z">
+<meta property="article:modified_time" content="2021-03-09T03:17:45.154Z">
+<meta property="article:author" content="WeiQingcai">
+<meta property="article:tag" content="数据可视化">
+<meta property="article:tag" content="Seaborn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180531092416691?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+  
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">程序小栈</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Seaborn学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Seaborn学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Seaborn简介"><a href="#Seaborn简介" class="headerlink" title="Seaborn简介"></a>Seaborn简介</h2><p>Seaborn是基于matplotlib的Python可视化库。它提供了一个高级界面来绘制有吸引力的统计图形。可以使得数据可视化更加的方便，美观。关于Seaborn的学习，推荐去官网，里边有详细的教程和示例。</p>
+<h2 id="Seaborn常用功能简介"><a href="#Seaborn常用功能简介" class="headerlink" title="Seaborn常用功能简介"></a>Seaborn常用功能简介</h2><h3 id="直接使用Seaborn的美化功能"><a href="#直接使用Seaborn的美化功能" class="headerlink" title="直接使用Seaborn的美化功能"></a>直接使用Seaborn的美化功能</h3><p>Seaborn直接提供了多种对matplotlib绘制的图形的美化功能，可以直接使用。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>使用matplotlib绘制图形，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#定义一个简单的绘图函数</span><br><span class="line">def sinplot(flip&#x3D;1):</span><br><span class="line">    x &#x3D; np.linspace(0, 14, 100)</span><br><span class="line">    for i in range(1, 7):</span><br><span class="line">        plt.plot(x, np.sin(x + i * .5) * (7 - i) * flip)</span><br></pre></td></tr></table></figure>
+<p><strong>直接使用matplotlib绘图效果</strong><br><img src="https://img-blog.csdn.net/20180531092416691?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="直接使用matplotlib绘图"></p>
+<p>使用Seaborn提供的默认主题美化图形绘制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#只需要在绘制图形之前调用Seaborn的set()函数就可以直接使用其设定好的默认主题进行美化</span><br><span class="line">sns.set()</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p><strong>使用Seaborn默认主题绘制效果</strong><br><img src="https://img-blog.csdn.net/20180531092541541?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="使用Seaborn默认主题绘制效果"></p>
+<p>Seaborn提供了多种风格的主题以供使用，可以通过sns.set_style()来直接使用。</p>
+<blockquote>
+<p>提供的直接使用的主题：<br>darkgrid，whitegrid，dark，white，和ticks<br>默认为darkgrid</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#使用Seaborn提供的主题绘制</span><br><span class="line">sns.set_style(&quot;ticks&quot;)</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p><strong>使用提供的主题‘ticks’绘制效果</strong><br><img src="https://img-blog.csdn.net/20180531092820181?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="使用提供的主题绘制"></p>
+<p>我们可以使用sns.despine()函数来去除图片顶部和右侧的坐标轴线，使得图片更加美观</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sns.set_style(&#39;ticks&#39;)</span><br><span class="line">sinplot()</span><br><span class="line">sns.despine()</span><br></pre></td></tr></table></figure>
+<p><strong>去除顶部和右侧轴线效果</strong><br><img src="https://img-blog.csdn.net/20180531093211224?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="去除轴线"></p>
+<p>Seaborn还提供了更为友好的with用法，可以让我们在一张图片中采用多种的绘图风格，所有在with域中的绘制采用一种风格，而不在with域中的则可以使用另一种风格。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#在with中使用一种风格</span><br><span class="line">with sns.axes_style(&quot;darkgrid&quot;):</span><br><span class="line">    plt.subplot(211)</span><br><span class="line">    sinplot()</span><br><span class="line">#不在with中的使用另一种风格，我们也可以使用多个with域来使用多种风格</span><br><span class="line">plt.subplot(212)</span><br><span class="line">sinplot(-1)</span><br></pre></td></tr></table></figure>
+<p><strong>一张图中使用多种风格效果</strong><br><img src="https://img-blog.csdn.net/20180531093922383?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="一张图中使用多种风格效果"></p>
+<p>当然了，除了默认的提供的这些主题，我们也可以自己定义一些绘图的风格。通过向axes_style()和set_style()传递参数，可以定义自己的绘图主题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#通过传入字典的方式来定制自己的绘图风格</span><br><span class="line">sns.set_style(&quot;darkgrid&quot;, &#123;&quot;axes.facecolor&quot;: &quot;.9&quot;&#125;)</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p>我们可以通过直接调用set_style()函数来查看全部可以使用的参数。</p>
+<p><strong>set_style()可用参数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#39;axes.axisbelow&#39;: True,</span><br><span class="line"> &#39;axes.edgecolor&#39;: &#39;.15&#39;,</span><br><span class="line"> &#39;axes.facecolor&#39;: &#39;white&#39;,</span><br><span class="line"> &#39;axes.grid&#39;: False,</span><br><span class="line"> &#39;axes.labelcolor&#39;: &#39;.15&#39;,</span><br><span class="line"> &#39;axes.linewidth&#39;: 1.25,</span><br><span class="line"> &#39;figure.facecolor&#39;: &#39;white&#39;,</span><br><span class="line"> &#39;font.family&#39;: [&#39;sans-serif&#39;],</span><br><span class="line"> &#39;font.sans-serif&#39;: [&#39;Arial&#39;,</span><br><span class="line">  &#39;DejaVu Sans&#39;,</span><br><span class="line">  &#39;Liberation Sans&#39;,</span><br><span class="line">  &#39;Bitstream Vera Sans&#39;,</span><br><span class="line">  &#39;sans-serif&#39;],</span><br><span class="line"> &#39;grid.color&#39;: &#39;.8&#39;,</span><br><span class="line"> &#39;grid.linestyle&#39;: &#39;-&#39;,</span><br><span class="line"> &#39;image.cmap&#39;: &#39;rocket&#39;,</span><br><span class="line"> &#39;legend.frameon&#39;: False,</span><br><span class="line"> &#39;legend.numpoints&#39;: 1,</span><br><span class="line"> &#39;legend.scatterpoints&#39;: 1,</span><br><span class="line"> &#39;lines.solid_capstyle&#39;: &#39;round&#39;,</span><br><span class="line"> &#39;text.color&#39;: &#39;.15&#39;,</span><br><span class="line"> &#39;xtick.color&#39;: &#39;.15&#39;,</span><br><span class="line"> &#39;xtick.direction&#39;: &#39;out&#39;,</span><br><span class="line"> &#39;xtick.major.size&#39;: 6.0,</span><br><span class="line"> &#39;xtick.minor.size&#39;: 3.0,</span><br><span class="line"> &#39;ytick.color&#39;: &#39;.15&#39;,</span><br><span class="line"> &#39;ytick.direction&#39;: &#39;out&#39;,</span><br><span class="line"> &#39;ytick.major.size&#39;: 6.0,</span><br><span class="line"> &#39;ytick.minor.size&#39;: 3.0&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们还可以通过修改context参数来缩放图片中的元素。</p>
+<blockquote>
+<p>Seaborn内置了多种context风格 : paper, notebook, talk, and poster<br>默认使用的是notebook</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.set_context(&quot;poster&quot;)</span><br><span class="line">sinplot()</span><br></pre></td></tr></table></figure>
+<p><strong>设置context效果为poster</strong><br><img src="https://img-blog.csdn.net/2018053110001674?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="设置context效果"></p>
+<h3 id="使用Seaborn的调色板"><a href="#使用Seaborn的调色板" class="headerlink" title="使用Seaborn的调色板"></a>使用Seaborn的调色板</h3><p>Seaborn提供了可以便于使用的调色板，可以方便的作用于数据的可视化。</p>
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><p><strong>定性（或分类）调色板最适合用于区分不具有固有排序的离散数据块。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#可以使用color_palette()来调用生成一个色板</span><br><span class="line">current_palette &#x3D; sns.color_palette()</span><br><span class="line">sns.palplot(current_palette)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531102235644?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="分类色板"></p>
+<p>我们也可以根据需要来定制一个循环的色板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#使用hls的颜色空间，分割成8个颜色</span><br><span class="line">sns.palplot(sns.color_palette(&quot;hls&quot;, 8))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531102839870?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="分割颜色空间"></p>
+<p>Seaborn还提供了一个提取配对颜色的方法，可以获得两个颜色相近的颜色对</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(&quot;Paired&quot;,10))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531103223177?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="配对颜色效果"></p>
+<p><strong>第二大类调色板被称为“顺序”。当数据范围从相对较低或不中断的值到相对较高或有趣的值时，这种颜色映射是适当的</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#逐渐变深色板</span><br><span class="line">sns.palplot(sns.color_palette(&quot;Blues&quot;))</span><br><span class="line">#若要是使得逐渐变浅，只需要在颜色后边加上‘_r’即可</span><br><span class="line"></span><br><span class="line">#由深变浅色板</span><br><span class="line">sns.palplot(sns.color_palette(&quot;Blues_r&quot;))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531104733555?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="渐变深色板"></p>
+<p><strong>第三类调色板被称为“发散”。这些数据用于大数值低值和高值有趣的数据。数据中通常也有明确的中点。例如，如果从某个基准时间点绘制温度变化，最好使用分散的色彩映射来显示相对减少的区域和相对增加的区域。</strong></p>
+<p>用于区分的色板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.color_palette(&quot;BrBG&quot;, 7))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531143916680?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="效果图"></p>
+<p>我们也可以自定义这种发散的调色板</p>
+<p><strong>中心颜色为浅色调的色板</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#sep控制中间浅色调的宽度</span><br><span class="line">sns.palplot(sns.diverging_palette(10, 220, sep&#x3D;90, n&#x3D;7))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/20180531144957111?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="中心颜色为浅色调的色板"></p>
+<p><strong>中心颜色为深色调的色板</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.palplot(sns.diverging_palette(255, 133, l&#x3D;60, n&#x3D;7, center&#x3D;&quot;dark&quot;))</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdn.net/2018053114505044?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="中心颜色为深色调的色板"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckm1rujxl000h88tsgz6s9tcu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Seaborn/" rel="tag">Seaborn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/01/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python小知识汇总
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Seaborn学习笔记（三）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E5%AD%A6/">杂学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CCNA/" rel="tag">CCNA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cisco/" rel="tag">Cisco</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELK/" rel="tag">ELK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Material-Design/" rel="tag">Material Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSOC/" rel="tag">OpenSOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seaborn/" rel="tag">Seaborn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI%E6%94%AF%E6%8C%81%E5%BA%93/" rel="tag">UI支持库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag">信息收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE/" rel="tag">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E6%94%BB%E5%87%BB/" rel="tag">密码攻击</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="tag">小知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0/" rel="tag">系统安全概述</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" rel="tag">统计学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" rel="tag">编程规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CCNA/" style="font-size: 10px;">CCNA</a> <a href="/tags/Cisco/" style="font-size: 10px;">Cisco</a> <a href="/tags/ELK/" style="font-size: 10px;">ELK</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Material-Design/" style="font-size: 10px;">Material Design</a> <a href="/tags/Matplotlib/" style="font-size: 12.5px;">Matplotlib</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/OpenSOC/" style="font-size: 10px;">OpenSOC</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Seaborn/" style="font-size: 15px;">Seaborn</a> <a href="/tags/UI%E6%94%AF%E6%8C%81%E5%BA%93/" style="font-size: 10px;">UI支持库</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 10px;">信息收集</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%AF%86%E7%A0%81%E6%94%BB%E5%87%BB/" style="font-size: 12.5px;">密码攻击</a> <a href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" style="font-size: 10px;">小知识</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 17.5px;">数据可视化</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 12.5px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" style="font-size: 10px;">日志分析</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">机器学习</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">渗透测试</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">系统安全概述</a> <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">统计学习</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编程规范</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">网络协议</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">自动化测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/09/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Matplotlib学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89--Matplotlib%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE/">Matplotlib学习笔记（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/">Python小知识汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Seaborn学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 WeiQingcai<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

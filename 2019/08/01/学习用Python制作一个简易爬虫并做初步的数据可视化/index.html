@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>学习用Python制作一个简易爬虫并作初步的数据可视化 | 程序小栈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.  整体思路流程 通过URL获取说要爬取的页面的响应信息（Requests库的使用） 通过python中的解析库来对response进行结构化解析（BeautifulSoup库的使用） 通过对解析库的使用和对所需要的信息的定位从response中获取需要的数据（selecter和xpath的使用） 将数据组织成一定的格式进行保存（MongoDB的使用） 通过对数据库中的数据进行筛选和组织，进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习用Python制作一个简易爬虫并作初步的数据可视化">
+<meta property="og:url" content="http://yoursite.com/2019/08/01/%E5%AD%A6%E4%B9%A0%E7%94%A8Python%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%88%AC%E8%99%AB%E5%B9%B6%E5%81%9A%E5%88%9D%E6%AD%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/index.html">
+<meta property="og:site_name" content="程序小栈">
+<meta property="og:description" content="1.  整体思路流程 通过URL获取说要爬取的页面的响应信息（Requests库的使用） 通过python中的解析库来对response进行结构化解析（BeautifulSoup库的使用） 通过对解析库的使用和对所需要的信息的定位从response中获取需要的数据（selecter和xpath的使用） 将数据组织成一定的格式进行保存（MongoDB的使用） 通过对数据库中的数据进行筛选和组织，进行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518200734337?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180518202237248?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180525153346206?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="article:published_time" content="2019-08-01T08:49:37.000Z">
+<meta property="article:modified_time" content="2021-03-09T03:17:45.162Z">
+<meta property="article:author" content="WeiQingcai">
+<meta property="article:tag" content="数据可视化">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180518200734337?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+  
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">程序小栈</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-学习用Python制作一个简易爬虫并做初步的数据可视化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/%E5%AD%A6%E4%B9%A0%E7%94%A8Python%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%88%AC%E8%99%AB%E5%B9%B6%E5%81%9A%E5%88%9D%E6%AD%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" class="article-date">
+  <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      学习用Python制作一个简易爬虫并作初步的数据可视化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-整体思路流程"><a href="#1-整体思路流程" class="headerlink" title="1.  整体思路流程"></a>1.  整体思路流程</h2><ol>
+<li>通过URL获取说要爬取的页面的响应信息（Requests库的使用）</li>
+<li>通过python中的解析库来对response进行结构化解析（BeautifulSoup库的使用）</li>
+<li>通过对解析库的使用和对所需要的信息的定位从response中获取需要的数据（selecter和xpath的使用）</li>
+<li>将数据组织成一定的格式进行保存（MongoDB的使用）</li>
+<li>通过对数据库中的数据进行筛选和组织，进行数据可视化的初步展示（HighCharts库的使用）</li>
+</ol>
+<h2 id="2-简单代码演示"><a href="#2-简单代码演示" class="headerlink" title="2.  简单代码演示"></a>2.  简单代码演示</h2><h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.  准备工作"></a>1.  准备工作</h3><p>下载并安装所需要的python库，包括：</p>
+<ul>
+<li><p>requests库：用于向指定url发起请求</p>
+</li>
+<li><p>BeautifulSoup库：用于解析返回的网页信息</p>
+</li>
+<li><p>lxml库：用于解析网页返回结果</p>
+</li>
+<li><p>pymongo库：用于实现python对MongoDB的操作</p>
+</li>
+<li><p>HighCharts库：对于数据进行初步可视化的展示</p>
+</li>
+</ul>
+<p>所有以上的库都直接可以使用pip命令进行下载</p>
+<h3 id="2-对所需要的网页进行请求并解析返回的数据"><a href="#2-对所需要的网页进行请求并解析返回的数据" class="headerlink" title="2.  对所需要的网页进行请求并解析返回的数据"></a>2.  对所需要的网页进行请求并解析返回的数据</h3><p>对于想要做一个简单的爬虫而言，这一步其实很简单，主要是通过requests库来进行请求，然后对返回的数据进行一个解析，解析之后通过对于元素的定位和选择来获取所需要的数据元素，进而获取到数据的一个过程。</p>
+<p><strong>一个简单的网络爬虫示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#58同城的二手市场主页面</span><br><span class="line">start_url &#x3D; &#39;http:&#x2F;&#x2F;bj.58.com&#x2F;sale.shtml&#39;</span><br><span class="line">url_host &#x3D; &#39;http:&#x2F;&#x2F;bj.58.com&#39;</span><br><span class="line">#定义一个爬虫函数来获取二手市场页面中的全部大类页面的连接</span><br><span class="line">def get_channel_urls(url):</span><br><span class="line">	#使用Requests库来进行一次请求</span><br><span class="line">    web_data &#x3D; requests.get(url)</span><br><span class="line">    #使用BeautifulSoup对获取到的页面进行解析</span><br><span class="line">    soup &#x3D; BeautifulSoup(web_data.text, &#39;lxml&#39;)</span><br><span class="line">    #根据页面内的定位信息获取到全部大类所对应的连接</span><br><span class="line">    urls &#x3D; soup.select(&#39;ul.ym-submnu &gt; li &gt; b &gt; a&#39;)</span><br><span class="line">    #作这两行处理是因为有的标签有链接，但是却是空内容</span><br><span class="line">    for link in urls:</span><br><span class="line">        if link.text.isspace():</span><br><span class="line">            continue</span><br><span class="line">        else:</span><br><span class="line">            page_url &#x3D; url_host + link.get(&#39;href&#39;)</span><br><span class="line">            print(page_url)</span><br></pre></td></tr></table></figure>
+<p>对于定位页面中所需标签位置的方法有很多种，可以自己根据页面的情况多进行尝试。<br><img src="https://img-blog.csdn.net/20180518200734337?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="58同城中关于大类连接的定位"></p>
+<p>可以看到所有的大类链接都位于ul标签 &gt; li标签 &gt; b标签 &gt; a标签<br>故此我们可以使用上边代码中的方式来获取全部的大类标签</p>
+<pre><code>注 ： 在进行标签定位时 ‘&gt;’ 符号表示上一个标签的严格的子标签，而‘空格’ 符号表示上一个标签的子标签或者子孙标签
+
+例如：
+
+对于ul.ym-submnu &gt; li而言，表示class属性为ym-submnu的ul标签的子标签li，则选出来的li只能是ul.ym-submnu的子标签
+
+若是ul.ym-submnu li而言，表示class属性为ym-submnu的ul标签的子孙标签，即选出来的li可能是ul.ym-submnu的子标签或者子孙标签
+</code></pre><p><strong>爬取结果部分截图</strong><br><img src="https://img-blog.csdn.net/20180518202237248?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="爬取结果部分截图"></p>
+<p>以上就是一个简单的网页爬虫的制作过程，我们可以通过定义不同的爬虫来实现爬取不同页面的信息，并通过程序的控制来实现一个自动化爬虫。</p>
+<h3 id="3-对爬取到的数据进行存储和初步的可视化显示"><a href="#3-对爬取到的数据进行存储和初步的可视化显示" class="headerlink" title="3.  对爬取到的数据进行存储和初步的可视化显示"></a>3.  对爬取到的数据进行存储和初步的可视化显示</h3><p>python中用于数据的可视化显示的库有很多，我们可以根据需要来选择不同的库。数据的存储推荐使用MongoDB的方式，比起Mysql来说有很大的便利性，更适合大规模的数据整理。数据的可视化使用了HighCharts，可以直接在网页上显示出数据结果。</p>
+<ol>
+<li><p>关于MongoDB数据库的入门使用可以参看这篇博文——-<a target="_blank" rel="noopener" href="https://blog.csdn.net/wqc_CSDN/article/details/80307222">MongoDB入门及问题总结</a></p>
+</li>
+<li><p>关于HighCharts的使用可以参看其官网<a target="_blank" rel="noopener" href="https://www.hcharts.cn/docs/start-introduction">HighCharts官网使用文档</a></p>
+</li>
+</ol>
+<p><strong>首先：</strong>在程序中创建一个MongoDB的连接用于存储数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">client &#x3D; pymongo.MongoClient(&#39;localhost&#39;, 27017)#链接MongoDB</span><br><span class="line">DB_58 &#x3D; client[&#39;DB_58&#39;]#创建一个数据库</span><br><span class="line">url_list_tab &#x3D; DB_58[&#39;url_list_tab&#39;]#创建用于存储全部商品url的文档</span><br><span class="line">item_detail_tab &#x3D; DB_58[&#39;item_detail_tab&#39;]#创建用于存储商品详情的文档</span><br></pre></td></tr></table></figure></p>
+<p><strong>然后：</strong>通过之前获取到的每个分类的链接，来爬取该分类下的全部的商品链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 从每个频道获取全部的商品链接</span><br><span class="line">def get_liks_from(channel, pages, who_sells&#x3D;0):</span><br><span class="line">    # http:&#x2F;&#x2F;bj.58.com&#x2F;diannao&#x2F;0&#x2F;pn5&#x2F;</span><br><span class="line">    list_view &#x3D; &#39;&#123;&#125;&#123;&#125;&#x2F;pn&#123;&#125;&#x2F;&#39;.format(channel, str(who_sells), str(pages))</span><br><span class="line">    web_data &#x3D; requests.get(list_view)</span><br><span class="line">    time.sleep(2)</span><br><span class="line">    soup &#x3D; BeautifulSoup(web_data.text, &#39;lxml&#39;)</span><br><span class="line">    #爬取个人商家列表</span><br><span class="line">    if soup.find(&#39;td&#39;,&#39;t&#39;):</span><br><span class="line">        for link in soup.select(&#39;.zzinfo &gt; td.t &gt; a.t&#39;):</span><br><span class="line">            item_link &#x3D; link.get(&#39;href&#39;).split(&#39;?&#39;)[0]</span><br><span class="line">            #去除掉跳转类型的连接</span><br><span class="line">            if item_link !&#x3D; &#39;http:&#x2F;&#x2F;jump.zhineng.58.com&#x2F;jump&#39;:</span><br><span class="line">	            #得到想要的商品页面链接之后保存在数据库中</span><br><span class="line">                url_list_tab.insert_one(&#123;&#39;url&#39;: item_link&#125;)</span><br><span class="line">                print(item_link)</span><br><span class="line">    else:</span><br><span class="line">        pass</span><br><span class="line">    #爬取店铺商家列表</span><br><span class="line">    if soup.find(&#39;div&#39;,&#39;left&#39;):</span><br><span class="line">        for link in soup.select(&#39;a.title&#39;):</span><br><span class="line">            item_link &#x3D; link.get(&#39;href&#39;)</span><br><span class="line">            #去除掉跳转类型的连接</span><br><span class="line">            if item_link !&#x3D; &#39;http:&#x2F;&#x2F;jump.zhineng.58.com&#x2F;jump&#39;:</span><br><span class="line">	            #得到想要的商品页面链接之后保存在数据库中</span><br><span class="line">                url_list_tab.insert_one(&#123;&#39;url&#39;: item_link&#125;)</span><br><span class="line">                print(item_link)</span><br><span class="line">    else:</span><br><span class="line">        pass</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>由于58个人卖家的二手信息会跳转到转转这个平台，所以需要根据页面中的标签来判断是那种类型的页面</p>
+<p><strong>第三步：</strong>在获取到全部的商品的url之后需要对商品的详情进行爬取，同时保存在数据库中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 爬取商品详情页的信息</span><br><span class="line">def get_item_info(url):</span><br><span class="line">    if &#39;short.58.com&#39; not in url:</span><br><span class="line">	    #加一个延时，爬取太快58会出来验证码</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        web_data &#x3D; requests.get(url)</span><br><span class="line">        soup &#x3D; BeautifulSoup(web_data.text, &#39;lxml&#39;)</span><br><span class="line">        # 根据页面中的独特元素来辨别是哪个版本的网页</span><br><span class="line">        if soup.find(&#39;span&#39;, &#39;want_left&#39;):</span><br><span class="line">            parse_person_item_info(soup)</span><br><span class="line">        else:</span><br><span class="line">            parse_shop_item_info(soup)</span><br><span class="line">    else:</span><br><span class="line">        print(&#39;error with url : &#39;+url)</span><br><span class="line"></span><br><span class="line"># 解析个人卖家的商品详情</span><br><span class="line">def parse_person_item_info(soup):</span><br><span class="line">    item_detail_tab.insert_one(&#123;</span><br><span class="line">        &#39;title&#39;: soup.select(&#39;h1.info_titile&#39;)[0].text,</span><br><span class="line">        &#39;price&#39;: soup.select(&#39;span.price_now &gt; i&#39;)[0].text,</span><br><span class="line">        &#39;area&#39;: soup.select(&#39;div.palce_li &gt; span &gt; i &#39;)[0].text,</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"># 解析商家的商品详情</span><br><span class="line">def parse_shop_item_info(soup):</span><br><span class="line">    item_detail_tab.insert_one(&#123;</span><br><span class="line">        &#39;title&#39;: (soup.title.text).split(&#39;-&#39;)[0],</span><br><span class="line">        &#39;price&#39;: soup.select(&#39;div.su_con &gt; span.price&#39;)[0].text,</span><br><span class="line">        &#39;area&#39;: list(soup.select(&#39;.c_25d&#39;)[-1].stripped_strings),</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p>至此，我们所需要的数据就算是获取完毕，接下来我们需要做的就是根据需要来将数据进行整理，然后通过图表的方式来展示数据中包含的信息。</p>
+<p><strong>第四步：</strong>这一步需要使用Highcharts来进行数据的展示，推荐使用Jupyter Notebook来进行操作，他可以直接将数据展示在网页上，极大地方便了数据查看。<br>Jupyter Notebook的安装和使用也很方便，网上也有很多的使用教程，直接附上其官网地址<strong><a target="_blank" rel="noopener" href="http://jupyter.org/">Jupyter NoteBook官网</a></strong>大家可以去查看</p>
+<p>首先要获取商品的一个地区列表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#首先获取数据库中的全部地区</span><br><span class="line">area_list &#x3D; []</span><br><span class="line">for i in item_detail_tab.find():</span><br><span class="line">    area_list.append(i[&#39;area&#39;][0])</span><br><span class="line">#将全部地区放入set中进行去重，这样就得到一个全部地区的列表</span><br><span class="line">area_index &#x3D; list(set(area_list))</span><br></pre></td></tr></table></figure><br>然后就是根据地区列表来统计每个地区的二手商品的数量（以发布商品的帖子数为记）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#统计每个地区的发帖数量</span><br><span class="line">post_times &#x3D; []</span><br><span class="line">for index in area_index:</span><br><span class="line">    post_times.append(area_list.count(index))</span><br></pre></td></tr></table></figure>
+<p>此时我们已经获取了商品的地区列表以及每个地区所对应的商品数量，需要做的就是将数据构造成Highcharts所要求的格式并进行展示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#定义一个迭代器函数来构造Highcharts所需要的数据格式</span><br><span class="line">def data_gen(types):</span><br><span class="line">    length &#x3D; 0</span><br><span class="line">    if length  &lt;&#x3D; len(area_index):</span><br><span class="line">        for area,times in zip(area_index,post_times):</span><br><span class="line">            data &#x3D; &#123;</span><br><span class="line">                &#39;name&#39;:area,</span><br><span class="line">                &#39;data&#39;:[times],</span><br><span class="line">                &#39;type&#39;:types</span><br><span class="line">            &#125;</span><br><span class="line">            yield data</span><br><span class="line">            length +&#x3D; 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#将构造好的数据放入charts中进行展示</span><br><span class="line">seroes &#x3D; [data for data in data_gen(&#39;column&#39;)]</span><br><span class="line">charts.plot(seroes,show&#x3D;&#39;inline&#39;,options&#x3D;dict(title&#x3D;dict(text&#x3D;&#39;最近7日发帖数量区域统计图&#39;)))</span><br></pre></td></tr></table></figure>
+<p>至此我们就做了一个简易的爬虫来获取了一定的数据，并将结果进行了可视化的展示。</p>
+<p><img src="https://img-blog.csdn.net/20180525153346206?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dxY19DU0RO/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="数据展示结果图"></p>
+<h2 id="3-总结回顾"><a href="#3-总结回顾" class="headerlink" title="3.  总结回顾"></a>3.  总结回顾</h2><p>简单的总结一下在这个爬虫中我们所学到的一些东西：</p>
+<ol>
+<li>使用requests库进行网络请求</li>
+<li>使用BeautifulSoup解析库对网页数据进行解析</li>
+<li>学习如何通过selecter的方式选择网页中需要的元素</li>
+<li>使用MongoDB进行数据的存储和读取</li>
+<li>使用HighCharts对数据进行可视化的展示</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/%E5%AD%A6%E4%B9%A0%E7%94%A8Python%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93%E7%88%AC%E8%99%AB%E5%B9%B6%E5%81%9A%E5%88%9D%E6%AD%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" data-id="ckm1rujy4001n88tsfmfe0h0i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Seaborn学习笔记（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/01/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B%E7%AC%94%E8%AE%B0--%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">统计学习方法--提升方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E5%AD%A6/">杂学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CCNA/" rel="tag">CCNA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cisco/" rel="tag">Cisco</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELK/" rel="tag">ELK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Material-Design/" rel="tag">Material Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSOC/" rel="tag">OpenSOC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seaborn/" rel="tag">Seaborn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI%E6%94%AF%E6%8C%81%E5%BA%93/" rel="tag">UI支持库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag">信息收集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE/" rel="tag">图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E6%94%BB%E5%87%BB/" rel="tag">密码攻击</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="tag">小知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0/" rel="tag">系统安全概述</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" rel="tag">统计学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" rel="tag">编程规范</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag">自动化测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/CCNA/" style="font-size: 10px;">CCNA</a> <a href="/tags/Cisco/" style="font-size: 10px;">Cisco</a> <a href="/tags/ELK/" style="font-size: 10px;">ELK</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Material-Design/" style="font-size: 10px;">Material Design</a> <a href="/tags/Matplotlib/" style="font-size: 12.5px;">Matplotlib</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/OpenSOC/" style="font-size: 10px;">OpenSOC</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Seaborn/" style="font-size: 15px;">Seaborn</a> <a href="/tags/UI%E6%94%AF%E6%8C%81%E5%BA%93/" style="font-size: 10px;">UI支持库</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 10px;">信息收集</a> <a href="/tags/%E5%9B%BE/" style="font-size: 10px;">图</a> <a href="/tags/%E5%AF%86%E7%A0%81%E6%94%BB%E5%87%BB/" style="font-size: 12.5px;">密码攻击</a> <a href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" style="font-size: 10px;">小知识</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 10px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 17.5px;">数据可视化</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 12.5px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" style="font-size: 10px;">日志分析</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">机器学习</a> <a href="/tags/%E6%A0%91/" style="font-size: 10px;">树</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">渗透测试</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">系统安全概述</a> <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">统计学习</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 10px;">编程规范</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">网络协议</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">自动化测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 12.5px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/09/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Matplotlib学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89--Matplotlib%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE/">Matplotlib学习笔记（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/">Python小知识汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Seaborn学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 WeiQingcai<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
