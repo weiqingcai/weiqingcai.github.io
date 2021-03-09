@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Windows系统安全综述 | Hexo</title>
+  <meta name="description" content="Windows系统安全综述账户分类及概述用户账户 不同的用户身份拥有不同的权限 每个用户包含一个名称和一个密码 用户账户拥有唯一的安全标识符  在服务器管理器中管理用户 创建用户 为用户重置密码 重命名用户名 启用，禁用，删除用户账户 为用户设置权限  通过进程与服务区分各内置用户账户的作用 与使用者关联的用户账户 Administrator（管理员用户） Guest（来宾用户）   与Windo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows系统安全综述">
+<meta property="og:url" content="http://yoursite.com/2018/11/09/Windows%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/index.html">
+<meta property="og:site_name" content="程序小栈">
+<meta property="og:description" content="Windows系统安全综述账户分类及概述用户账户 不同的用户身份拥有不同的权限 每个用户包含一个名称和一个密码 用户账户拥有唯一的安全标识符  在服务器管理器中管理用户 创建用户 为用户重置密码 重命名用户名 启用，禁用，删除用户账户 为用户设置权限  通过进程与服务区分各内置用户账户的作用 与使用者关联的用户账户 Administrator（管理员用户） Guest（来宾用户）   与Windo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-09T08:49:37.000Z">
+<meta property="article:modified_time" content="2021-03-09T03:17:45.155Z">
+<meta property="article:author" content="WeiQingcai">
+<meta property="article:tag" content="系统安全概述">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2018/11/09/Windows%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="程序小栈" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E5%AD%A6/">杂学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/" rel="tag">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CCNA/" rel="tag">CCNA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cisco/" rel="tag">Cisco</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELK/" rel="tag">ELK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Material-Design/" rel="tag">Material Design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Matplotlib/" rel="tag">Matplotlib</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenSOC/" rel="tag">OpenSOC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Seaborn/" rel="tag">Seaborn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI%E6%94%AF%E6%8C%81%E5%BA%93/" rel="tag">UI支持库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/" rel="tag">Windows</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="tag">信息收集</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE/" rel="tag">图</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E6%94%BB%E5%87%BB/" rel="tag">密码攻击</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="tag">小知识</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="tag">排序算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">数据可视化</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" rel="tag">日志分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%91/" rel="tag">树</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0/" rel="tag">系统安全概述</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" rel="tag">统计学习</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" rel="tag">编程规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="tag">网络协议</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" rel="tag">自动化测试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Android/" style="font-size: 13px;">Android</a> <a href="/tags/CCNA/" style="font-size: 13px;">CCNA</a> <a href="/tags/Cisco/" style="font-size: 13px;">Cisco</a> <a href="/tags/ELK/" style="font-size: 13px;">ELK</a> <a href="/tags/Java/" style="font-size: 13px;">Java</a> <a href="/tags/Material-Design/" style="font-size: 13px;">Material Design</a> <a href="/tags/Matplotlib/" style="font-size: 13.25px;">Matplotlib</a> <a href="/tags/MongoDB/" style="font-size: 13px;">MongoDB</a> <a href="/tags/OpenSOC/" style="font-size: 13px;">OpenSOC</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/Seaborn/" style="font-size: 13.5px;">Seaborn</a> <a href="/tags/UI%E6%94%AF%E6%8C%81%E5%BA%93/" style="font-size: 13px;">UI支持库</a> <a href="/tags/Windows/" style="font-size: 13px;">Windows</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 13px;">信息收集</a> <a href="/tags/%E5%9B%BE/" style="font-size: 13px;">图</a> <a href="/tags/%E5%AF%86%E7%A0%81%E6%94%BB%E5%87%BB/" style="font-size: 13.25px;">密码攻击</a> <a href="/tags/%E5%B0%8F%E7%9F%A5%E8%AF%86/" style="font-size: 13px;">小知识</a> <a href="/tags/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" style="font-size: 13px;">排序算法</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" style="font-size: 13.75px;">数据可视化</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 13.25px;">数据结构</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" style="font-size: 13px;">日志分析</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 14px;">机器学习</a> <a href="/tags/%E6%A0%91/" style="font-size: 13px;">树</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 13.5px;">渗透测试</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 13px;">爬虫</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13px;">算法</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0/" style="font-size: 13px;">系统安全概述</a> <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" style="font-size: 14px;">统计学习</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E8%A7%84%E8%8C%83/" style="font-size: 13px;">编程规范</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" style="font-size: 13px;">网络协议</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 13px;">自动化测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13.25px;">计算机网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">13</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/03/09/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-03-09T03:17:45.165Z" itemprop="datePublished">2021-03-09</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Matplotlib学习笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/01/Matplotlib%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89--Matplotlib%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE/" class="title">Matplotlib学习笔记（二）</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/01/Python%E5%B0%8F%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/" class="title">Python小知识汇总</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/01/Seaborn%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Seaborn学习笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-01T08:49:37.000Z" itemprop="datePublished">2019-08-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Windows系统安全综述" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Windows系统安全综述
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/11/09/Windows%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/" class="article-date">
+	  <time datetime="2018-11-09T08:49:37.000Z" itemprop="datePublished">2018-11-09</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">大数据与网络安全</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Windows/" rel="tag">Windows</a>, <a class="article-tag-link-link" href="/tags/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0/" rel="tag">系统安全概述</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/11/09/Windows%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="Windows系统安全综述"><a href="#Windows系统安全综述" class="headerlink" title="Windows系统安全综述"></a>Windows系统安全综述</h1><h2 id="账户分类及概述"><a href="#账户分类及概述" class="headerlink" title="账户分类及概述"></a>账户分类及概述</h2><h3 id="用户账户"><a href="#用户账户" class="headerlink" title="用户账户"></a>用户账户</h3><ul>
+<li>不同的用户身份拥有不同的权限</li>
+<li>每个用户包含一个名称和一个密码</li>
+<li>用户账户拥有唯一的安全标识符</li>
+</ul>
+<h4 id="在服务器管理器中管理用户"><a href="#在服务器管理器中管理用户" class="headerlink" title="在服务器管理器中管理用户"></a>在服务器管理器中管理用户</h4><ul>
+<li>创建用户</li>
+<li>为用户重置密码</li>
+<li>重命名用户名</li>
+<li>启用，禁用，删除用户账户</li>
+<li>为用户设置权限</li>
+</ul>
+<h4 id="通过进程与服务区分各内置用户账户的作用"><a href="#通过进程与服务区分各内置用户账户的作用" class="headerlink" title="通过进程与服务区分各内置用户账户的作用"></a>通过进程与服务区分各内置用户账户的作用</h4><ul>
+<li>与使用者关联的用户账户<ul>
+<li>Administrator（管理员用户）</li>
+<li>Guest（来宾用户）</li>
+</ul>
+</li>
+<li>与Windows组件关联的用户账户<ul>
+<li>SYSTEM（本地系统）</li>
+<li>SYSTEM SERVICE（本地服务）</li>
+<li>NETWORK SERVICE（网络服务）</li>
+</ul>
+</li>
+</ul>
+<h3 id="组账户"><a href="#组账户" class="headerlink" title="组账户"></a>组账户</h3><ul>
+<li>组是一些用户的集合</li>
+<li>组内的用户自动具备组所设置的权限</li>
+</ul>
+<h4 id="在服务器管理其中管理组"><a href="#在服务器管理其中管理组" class="headerlink" title="在服务器管理其中管理组"></a>在服务器管理其中管理组</h4><ul>
+<li>新建组</li>
+<li>向组内添加成员</li>
+<li>重命名组</li>
+<li>删除组</li>
+</ul>
+<h4 id="需要人为添加成员的内置组"><a href="#需要人为添加成员的内置组" class="headerlink" title="需要人为添加成员的内置组"></a>需要人为添加成员的内置组</h4><ul>
+<li>Administrator</li>
+<li>Guests</li>
+<li>Power User</li>
+<li>Users（标准用户）</li>
+</ul>
+<h4 id="动态包含成员的内置组"><a href="#动态包含成员的内置组" class="headerlink" title="动态包含成员的内置组"></a>动态包含成员的内置组</h4><ul>
+<li>Interactive（动态包含在本地登陆的用户）</li>
+<li>Authenticated Users（动态包含通过验证的用户，不包含来宾用户）</li>
+<li>Everyone（包含任何用户，设置开放的权限是经常使用）</li>
+</ul>
+<h3 id="克隆账户以及账户超级隐藏"><a href="#克隆账户以及账户超级隐藏" class="headerlink" title="克隆账户以及账户超级隐藏"></a>克隆账户以及账户超级隐藏</h3><ol>
+<li><p>在添加用户时在要添加的用户名后边多加一个 <code>$</code> 符号(表示隐藏)</p>
+<blockquote>
+<p>net user test$ /add</p>
+</blockquote>
+<p>通过这种方式创建的用户直接使用命令行的<code>net user</code>命令是无法查看到的，但是可以通过计算机管理界面查看到存在该账户</p>
+</li>
+<li><p>通过修改注册表中的信息来达到完全隐藏账户的</p>
+<ol>
+<li>新建一个常规的隐藏账户（test$）</li>
+<li>打开注册表，找到HKEY_LOCAL_MACHINE下的SAM，右键为其赋予权限之后展开</li>
+<li>将Administrator的权限导出，同时将test$账户的权限和用户信息注册表导出</li>
+<li>打开导出的Administrator和test$的权限注册表，用Administrator中的F的值代替test$中的F的值</li>
+<li>删除之前创建的test$用户</li>
+<li>运行之前导出的test$的注册表和test$权限的注册表</li>
+<li>完成完全隐藏用户的创建（只能通过注册表来查找到）</li>
+</ol>
+</li>
+</ol>
+<h2 id="NTFS文件系统及权限应用"><a href="#NTFS文件系统及权限应用" class="headerlink" title="NTFS文件系统及权限应用"></a>NTFS文件系统及权限应用</h2><blockquote>
+<p>NTFS (New Technology File System)，是 WindowsNT 环境的文件系统。新技术文件系统是Windows NT家族（如，Windows 2000、Windows XP、Windows Vista、Windows 7和 windows 8.1）等的限制级专用的文件系统（操作系统所在的盘符的文件系统必须格式化为NTFS的文件系统，4096簇环境下）。NTFS取代了老式的FAT文件系统。<br>NTFS对FAT和HPFS作了若干改进，例如，支持元数据，并且使用了高级数据结构，以便于改善性能、可靠性和磁盘空间利用率，并提供了若干附加扩展功能。</p>
+</blockquote>
+<ul>
+<li>提高磁盘读写性能</li>
+<li>可靠性<ul>
+<li>加密文件系统</li>
+<li>访问控制列表</li>
+</ul>
+</li>
+<li>磁盘利用率<ul>
+<li>压缩</li>
+</ul>
+</li>
+</ul>
+<h2 id="EFS加密"><a href="#EFS加密" class="headerlink" title="EFS加密"></a>EFS加密</h2><p>为了提高文件的安全性，微软在Windows中针对NTFS引入了EFS加密技术。EFS加密操作简单，对加密文件的用户也是透明的，文件加密后不必再试用期手动解密，只有加密则才能打开加密文件。</p>
+<blockquote>
+<p>EFS加密是基于公钥策略的。然后将利用FEK和数据扩展标准X算法创建加密后的文件，。如果你登录到了域环境中，密钥的生成依赖于域控制器，否则它就依赖于本地机器</p>
+<p>EFS加密最简单的办法就是在目标对象上点击鼠标右键，选择“属性”，打开属性对话框,然后在常规选项卡上点击“高级”按钮，打开高级属性对话框，选中“加密内容以便保护数据”这个选项，反之解密。</p>
+</blockquote>
+<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><p>service可以分为两个大类，服务应用程序和驱动服务。</p>
+<ul>
+<li><p>服务应用程序指遵照Service Control Manager 2接口要求的，能在系统启动时自动启动的用户能够通过服务控制面板控制的那些没有用户登录也能够运行的程序。</p>
+</li>
+<li><p>驱动服务一般指设备驱动程序协议等应用于底层设备驱动的服务</p>
+</li>
+</ul>
+<h2 id="病毒及防范"><a href="#病毒及防范" class="headerlink" title="病毒及防范"></a>病毒及防范</h2><h3 id="计算机病毒"><a href="#计算机病毒" class="headerlink" title="计算机病毒"></a>计算机病毒</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>  编制或者在计算机程序中插入的，破坏技术啊你功能或者破坏数据，影响计算机使用并且能够自我复制的一组计算机指令或者程序代码</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>非授权执行</li>
+<li>隐蔽性</li>
+<li>传染性</li>
+<li>潜伏性</li>
+<li>破坏性</li>
+<li>可触发性</li>
+</ul>
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><ul>
+<li>文件型</li>
+<li>引导扇区型</li>
+<li>宏病毒</li>
+<li>VBS脚本病毒</li>
+<li>蠕虫</li>
+</ul>
+<h3 id="脚本病毒"><a href="#脚本病毒" class="headerlink" title="脚本病毒"></a>脚本病毒</h3><ul>
+<li>通常与网页相结合，将恶意的破坏性代码内嵌在网页中</li>
+<li>利用asp，htm，html，vbs，js类型的文件进行传播</li>
+<li>基于VB Script和Java Script脚本语言</li>
+<li>由Windows脚本宿主解释执行（也具有跨平台的特性）</li>
+</ul>
+<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><ul>
+<li><p>隐蔽性强</p>
+<p>浏览网页，电子邮件中的病毒可以具有双拓展名</p>
+</li>
+<li><p>传播性广</p>
+<p>可以自我复制，不依赖于其他文件就可以直接解释执行</p>
+</li>
+<li><p>病毒变种多</p>
+<p>只需要对源码稍加修改，就可以制造出新的变种病毒</p>
+</li>
+</ul>
+<h3 id="计算机木马"><a href="#计算机木马" class="headerlink" title="计算机木马"></a>计算机木马</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>一个包含在合法程序中的非法程序</p>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><ul>
+<li>未经许可即获得计算机的使用权</li>
+<li>程序容量小，执行时不会占用太多资源</li>
+<li>执行后很难停止</li>
+<li>执行时不会在系统中显示出来</li>
+<li>执行一次后会驻留在系统中，可以自动加载运行</li>
+<li>自动变更文件名</li>
+<li>作为驻留程序隐藏在系统内部</li>
+<li>分为客户端和服务端</li>
+</ul>
+<h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h4><p>文件操作，修改注册表，窃取密码，系统操控</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2018/11/09/Windows%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/" title="Windows系统安全综述" target="_blank" rel="external">http://yoursite.com/2018/11/09/Windows%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%BB%BC%E8%BF%B0/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/11/09/MongoDB%E5%85%A5%E9%97%A8%E5%8F%8A%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" title="MongoDB使用入门及问题总结"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/11/09/%E5%9B%BE%E5%8F%8A%E5%85%B6%E6%93%8D%E4%BD%9C%EF%BC%88C%E8%AF%AD%E8%A8%80%E7%89%88%EF%BC%89/" title="图及其操作（C语言版）"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
