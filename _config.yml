@@ -6,7 +6,7 @@
 title: 程序小栈
 subtitle:
 description: 这是我的小栈，记录点滴
-keywords:
+keywords: Python & Go & Network Security
 author: WeiQingcai
 language: zh-CN
 timezone:
@@ -14,7 +14,7 @@ avatar: /image/avatar.png
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://weiqingcai.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -33,7 +33,6 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -76,6 +75,22 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: pure
 
+# hexo-neat
+neat_enable: true
+neat_html:
+  enable: true
+  exclude:  
+neat_css:
+  enable: true
+  exclude:
+    - '*.min.css'
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - '*.min.js' 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
