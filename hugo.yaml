@@ -3,6 +3,7 @@ languageCode: zh-cn
 defaultContentLanguage: zh
 title: 程序小栈
 theme: PaperMod
+themesDir: themes
 paginate: 10
 
 enableRobotsTXT: true
