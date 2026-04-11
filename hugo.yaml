@@ -4,7 +4,8 @@ defaultContentLanguage: zh
 title: 程序小栈
 theme: PaperMod
 themesDir: themes
-paginate: 10
+pagination:
+  pagerSize: 10
 
 enableRobotsTXT: true
 buildDrafts: false
