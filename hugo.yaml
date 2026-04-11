@@ -1,0 +1,93 @@
+baseURL: https://weiqingcai.github.io/
+languageCode: zh-cn
+defaultContentLanguage: zh
+title: 程序小栈
+theme: PaperMod
+paginate: 10
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: production
+  author: 卫清才
+  description: 这是我的小栈，记录点滴
+  keywords: [博客, 技术, Python, 网络安全, 机器学习]
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowWordCount: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  TocOpen: false
+  math: true
+
+  profileMode:
+    enabled: true
+    title: "程序小栈"
+    subtitle: "这是我的小栈，记录点滴"
+    imageUrl: "/images/avatar.jpg"
+    imageTitle: "卫清才"
+    buttons:
+      - name: 文章
+        url: posts
+      - name: 归档
+        url: archives
+      - name: 标签
+        url: tags
+      - name: 关于
+        url: about
+
+  homeInfoParams:
+    Title: "你好，我是卫清才 👋"
+    Content: >
+      欢迎来到我的技术博客，这里记录了我在
+      **机器学习**、**网络安全**、**数据可视化**等领域的学习笔记与思考。
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/weiqingcai"
+    - name: Rss
+      url: "/index.xml"
+
+  assets:
+    disableHLJS: true
+
+  cover:
+    hidden: true
+    hiddenInList: true
+    hiddenInSingle: true
+
+  fuseOpts:
+    isCaseInsensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    style: monokai
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
