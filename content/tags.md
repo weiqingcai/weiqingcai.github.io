@@ -1,7 +1,8 @@
 ---
 title: "标签"
-layout: tags
+layout: "terms"
 slug: tags
+url: /tags/
 menu:
   main:
     weight: 25

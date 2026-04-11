@@ -1,10 +1,11 @@
 ---
 title: "分类"
-layout: categories
+layout: "terms"
 slug: categories
+url: /categories/
 menu:
   main:
-    weight: 25
+    weight: 20
     params:
       icon: folder
 ---
