@@ -46,12 +46,6 @@ params:
       - name: 关于
         url: about
 
-  homeInfoParams:
-    Title: "你好，我是卫清才 👋"
-    Content: >
-      欢迎来到我的技术博客，这里记录了我在
-      **机器学习**、**网络安全**、**数据可视化**等领域的学习笔记与思考。
-
   socialIcons:
     - name: github
       url: "https://github.com/weiqingcai"
